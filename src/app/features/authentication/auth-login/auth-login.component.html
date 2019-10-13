@@ -1,0 +1,118 @@
+<div class="page-wrapper">
+  <div class="page-inner bg-brand-gradient">
+    <div class="page-content-wrapper bg-transparent m-0">
+      <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+        <div class="d-flex align-items-center container p-0">
+          <div
+            class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+            <a [routerLink]="['/']" class="page-logo-link press-scale-down d-flex align-items-center">
+              <img src="assets/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+              <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
+            </a>
+          </div>
+          <a [routerLink]="['/auth/register']" class="btn-link text-white ml-auto">
+            Create Account
+          </a>
+        </div>
+      </div>
+      <div class="flex-1"
+        style="background: url(assets/img/backgrounds/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+        <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+          <div class="row">
+            <div class="col col-md-6 col-lg-7 hidden-sm-down">
+              <h2 class="fs-xxl fw-500 mt-4 text-white">
+                The simplest UI toolkit for developers &amp; programmers
+                <small class="h3 fw-300 mt-3 mb-5 text-white opacity-60">
+                  Presenting you with the next level of innovative UX design and engineering. The most modular toolkit
+                  available with over 600+ layout permutations. Experience the simplicity of SmartAdmin, everywhere you
+                  go!
+                </small>
+              </h2>
+              <a href="#" class="fs-lg fw-500 text-white opacity-70">Learn more &gt;&gt;</a>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
+              <h1 class="text-white fw-300 mb-3 d-sm-block d-md-none">
+                Secure login
+              </h1>
+              <div class="card p-4 rounded-plus bg-faded">
+                <wizard #wizard class="arc-wizard" navBarLayout="large-empty-symbols">
+                  <wizard-step stepTitle="User" navigationSymbol="1">
+                    <form #profileForm="ngForm">
+                      <div class="form-group">
+                        <label for="">Email address</label>
+                        <div class="input-group mb-3">
+                          <input #email="ngModel" required type="text" email placeholder="Enter Email Address"
+                            name="Email" class="form-control"
+                            [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="loginModel.Email">
+                          <label *ngIf="email.invalid && (email.dirty || email.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Email - is a required field
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="">Password</label>
+                        <div class="input-group mb-3">
+                          <input type="password" #password="ngModel" required
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" placeholder="Enter Password"
+                            name="Password" class="form-control" [ngClass]="{'is-invalid': !password.valid && (password.dirty || password.touched 
+                          || isProfileFormSubmitted)}" [(ngModel)]="loginModel.Password">
+                          <label
+                            *ngIf="password.invalid && (password.dirty || password.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Valid Password - is a required field
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group text-left">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" [(ngModel)]="loginModel.IsRemember" name="checkbox-fill-2"
+                            id="checkbox-fill-2">
+                          <label class="custom-control-label" for="rememberme"> Remember me</label>
+                        </div>
+                      </div>
+                      <button (click)="onProfileFormSubmit(profileForm)" class="btn btn-primary shadow-2 mb-4 mt-1 mr-0"
+                        [goToStep]="personalForm && personalForm.valid == true ? 2 : 1"
+                        [disabled]="!profileForm.valid">Continue</button>
+                    </form>
+                    <p class="mb-2 text-muted">Forgot password? <a [routerLink]="['/auth/reset-password']">Reset</a></p>
+                    <p class="mb-0 text-muted">Don’t have an account? <a [routerLink]="['/auth/register']">Sign up</a>
+                    </p>
+                  </wizard-step>
+                  <wizard-step stepTitle="Security" navigationSymbol="2">
+                    <form #securityForm="ngForm">
+                      <p>A code was send to your mobile number:</p>
+
+                      <div class="phone-number-container shadow-2">+44 07XX XXX XX60</div>
+                      <div class="form-group">
+                        <label for="">SMS Code</label>
+                        <div class="input-group mb-3">
+                          <input [(ngModel)]="loginModel.SMSCode"
+                            [ngClass]="{'is-invalid': !smsCode.valid && isSecurityFormSubmitted && (smsCode.dirty || smsCode.touched || isSecurityFormSubmitted)}"
+                            type="text" (blur)="isSecurityFormSubmitted = true;" #smsCode="ngModel" name="smsCode"
+                            required pattern="^[0-9]{6}$" class="form-control">
+                          <label
+                            *ngIf="smsCode.invalid && isSecurityFormSubmitted && (smsCode.dirty || smsCode.touched)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Enter valid 6 digit code
+                          </label>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary shadow-2 mt-3" [disabled]="!securityForm.valid">Verify and
+                        login</button>
+                    </form>
+                  </wizard-step>
+                </wizard>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+          2019 © SmartAdmin by&nbsp;<a href="https://www.gotbootstrap.com" class="text-white opacity-40 fw-500"
+            title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

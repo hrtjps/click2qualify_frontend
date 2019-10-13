@@ -1,0 +1,14 @@
+<ol class="breadcrumb page-breadcrumb" *ngIf="vm$ | async as vm">
+  <li class="breadcrumb-item"><a href="#" smartStubClick>SmartAdmin</a></li>
+
+  <ng-container *ngIf="vm.state && vm.state.data && vm.state.data.breadcrumbs">
+    <li class="breadcrumb-item" *ngFor="let crumb of vm.state.data.breadcrumbs; let i = index" [class.active]="vm.state.data.breadcrumbs.length === (i + 1)">
+      {{crumb}}
+    </li>
+    
+  </ng-container>
+
+  <li class="position-absolute pos-top pos-right d-none d-sm-block">
+    <span>{{ date | date }}</span>
+  </li>
+</ol>

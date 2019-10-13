@@ -1,0 +1,33 @@
+<div class="hidden-md-down">
+  <a
+    class="header-icon"
+    data-toggle="modal"
+    (click)="openModal($event)"
+  >
+    <i class="fal fa-cog"></i>
+  </a>
+</div>
+
+<ng-template #template>
+  <div
+    class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100"
+  >
+    <h4 class="m-0 text-center color-white">
+      Layout Settings
+      <small class="mb-0 opacity-80">User Interface Settings</small>
+    </h4>
+    <button
+      type="button"
+      class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true"><i class="fal fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body p-0">
+    <smart-settings></smart-settings>
+  </div>
+</ng-template>
+

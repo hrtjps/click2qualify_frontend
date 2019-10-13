@@ -1,0 +1,8 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div
+    *ngIf="vm.active"
+    class="filter-message js-filter-message bg-success-600"
+  >
+    showing {{ vm.matched }} from {{ vm.total }} total
+  </div>
+</ng-container>

@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="jumbotron col-12">
+
+    <h1 class="display-4">Kubernetes Clusters</h1>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam condimentum, orci quis sagittis
+      consequat, tortor ipsum bibendum mi, non vehicula odio urna nec turpis. Phasellus egestas elit eget nisl
+      dignissim, ac elementum dolor faucibus. Quisque massa est, tincidunt a molestie vitae, blandit id neque. Quisque
+      consequat ultrices aliquet</p>
+    <button routerLink="/cluster/detail-cluster" class="btn-sm shadow-1 btn-primary btn-left" type="button"
+      (click)="gotToAddService()">
+      <i class="fal fa-plus mr-2"></i>
+      Add a cluster
+    </button>
+
+  </div>
+  <div class="card col-12">
+    <div class="card-header">
+      <h5>Current Clusters</h5>
+      <button class="btn-sm shadow-1 btn-primary floatRight" type="button" (click)="gotToAddService()" routerLink="/cluster/detail-cluster"> 
+        <i class="fal fa-plus"></i>
+        Add a cluster
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="emptyContainer" *ngIf="serviceList.length < 1">
+        <h5>No services found.</h5>
+        <p>You haven't added any services yet. Add your first service!</p>
+        <button class="btn shadow-2 btn-primary" type="button">Create a service</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tbody>
+            <tr class="unread">
+              <th style="padding-left:20px;">
+                <h6 class="mb-1">Name</h6>
+              </th>
+              <th>
+                <p class="m-0">Cluster URL</p>
+              </th>
+              <th>
+                <h6 class="text-muted">Status</h6>
+              </th>
+              <th>
+              </th>
+            </tr>
+            <tr class="unread" *ngFor="let service of serviceList">
+              <td style="padding-left:20px;">
+                <h6 class="mb-1">{{service.name}} OF CLUSTER </h6>
+              </td>
+              <td>
+                <p class="m-0">{{service.type}}</p>
+              </td>
+              <td>
+                <h6 class="text-muted"> <i class="fal fa-circle f-10 mr-2"
+                    [ngClass]="getStatus(service.status).className"></i>{{getStatus(service.status).label}}</h6>
+              </td>
+              <td>
+                <a href="javascript:" class="label theme-bg text-white f-12 floatRight editService"
+                  (click)="gotToService(service.id)">Edit Cluster</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

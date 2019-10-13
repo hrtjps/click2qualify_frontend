@@ -1,0 +1,22 @@
+<div class="nav-filter" *ngIf="vm$ | async as vm">
+  <div class="position-relative">
+    <input
+      type="text"
+      id="nav_filter_input"
+      placeholder="Filter menu"
+      class="form-control"
+      #input
+      (keyup)="handleKeyup($event, input.value)"
+      value="{{vm.text}}"
+      tabindex="0"
+    />
+    <a
+      href="#"
+      class="btn-primary btn-search-close js-waves-off"
+      data-class="list-filter-active"
+      (click)="toggleFilter($event)"
+    >
+      <i class="fal fa-chevron-up"></i>
+    </a>
+  </div>
+</div>

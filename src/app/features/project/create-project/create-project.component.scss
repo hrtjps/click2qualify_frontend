@@ -1,0 +1,24 @@
+.prj-description {
+  height: 200px;
+}
+
+.signupDropdown {
+  .dropdown-toggle {
+    cursor: pointer;
+    padding: 3px 15px;
+  }
+  .dropdown-menu {
+    min-width: 5rem;
+    max-height: 280px;
+    padding: 10px 0;
+    .scroll {
+      width: 100%;
+      height: 100%;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+  }
+  .dropdown-item {
+    cursor: pointer;
+  }
+}

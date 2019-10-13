@@ -1,0 +1,257 @@
+<alert type="primary" #alert1>
+  <button type="button" class="close" (click)="alert1.close()" aria-label="Close">
+    <span aria-hidden="true">
+      <i class="fal fa-times"></i>
+    </span>
+  </button>
+  <div class="d-flex flex-start w-100">
+    <div class="mr-2">
+      <span class="icon-stack icon-stack-lg">
+        <i class="base base-6 icon-stack-3x opacity-100 color-primary-500"></i>
+        <i class="base base-10 icon-stack-2x opacity-100 color-primary-300 fa-flip-vertical"></i>
+        <i class="fal fa-info icon-stack-1x opacity-100 color-white"></i>
+      </span>
+    </div>
+    <div class="d-flex flex-fill">
+      <div class="flex-fill">
+        <span class="h5">Organise your services into a project</span>
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam condimentum,
+        orci quis sagittis consequat, tortor ipsum bibendum mi, non vehicula odio urna nec turpis.
+        Phasellus egestas elit eget nisl dignissim, ac elementum dolor faucibus. Quisque massa est,
+        tincidunt a molestie vitae, blandit id neque. Quisque consequat ultrices aliquet
+      </div>
+    </div>
+  </div>
+</alert>
+<form #projectForm="ngForm">
+  <div class="row">
+    <div class="col-xl-6">
+      <smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-1" #panel1>
+        <h2 panelTitle>
+          Create <span class="fw-300"><i>Project</i></span>
+        </h2>
+        <div panelContent>
+          <div class="panel-tag mb-3">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="form-group">
+            <label for="">Project Name</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.name"
+                [ngClass]="{'is-invalid': prjName.invalid && isFormSubmitted && (prjName.dirty || prjName.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #prjName="ngModel" name="prjName" required
+                class="form-control">
+              <label *ngIf="prjName.invalid && isFormSubmitted && (prjName.dirty || prjName.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Project Name - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Project Description</label>
+            <div class="input-group mb-3">
+              <textarea [(ngModel)]="projectModel.description"
+                [ngClass]="{'is-invalid': prjDescription.invalid && isFormSubmitted && (prjDescription.dirty || prjDescription.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #prjDescription="ngModel" name="prjDescription" required
+                class="form-control prj-description"></textarea>
+              <label
+                *ngIf="prjDescription.invalid && isFormSubmitted && (prjDescription.dirty || prjDescription.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Project Description - is a required field
+              </label>
+            </div>
+          </div>
+          <ngx-dropzone class="mb-3" [accept]="'image/*'" (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <div>
+                <h2>Project images</h2>
+              </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+              [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" [disabled]="!projectForm.valid"
+              (click)="createProject(projectForm)">
+              Create Project</button>
+          </div>
+        </div>
+      </smart-panel>
+    </div>
+    <div class="col-xl-6">
+      <smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-2" #panel2>
+        <h2 panelTitle>Owner</h2>
+        <div panelContent>
+          <div class="panel-tag mb-3">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="form-group">
+            <label for="">Owner Name</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.ownerName"
+                [ngClass]="{'is-invalid': ownerName.invalid && isFormSubmitted && (ownerName.dirty || ownerName.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #ownerName="ngModel" name="ownerName" required
+                class="form-control">
+              <label *ngIf="ownerName.invalid && isFormSubmitted && (ownerName.dirty || ownerName.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Owner Name - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Owner Email</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.ownerEmail" email
+                [ngClass]="{'is-invalid': ownerEmail.invalid && isFormSubmitted && (ownerEmail.dirty || ownerEmail.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #ownerEmail="ngModel" name="ownerEmail" required
+                class="form-control" />
+              <label *ngIf="ownerEmail.invalid && isFormSubmitted && (ownerEmail.dirty || ownerEmail.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Owner Email - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Owner Contact Number</label>
+            <div class="input-group mb-3 signupDropdown">
+              <div class="input-group-prepend">
+                <button class="btn btn-primary dropdown-toggle" (click)="toggle0=!toggle0"
+                  type="button">+{{projectModel.countryCode}}</button>
+                <div class="dropdown-menu" [ngClass]="{'show': toggle0}">
+                  <div class="scroll">
+                    <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                      (click)="projectModel.countryCode = countryCode.dialCode; toggle0 = false;">
+                      +{{countryCode.dialCode+": "+countryCode.name}}</div>
+                  </div>
+                </div>
+              </div>
+              <input [(ngModel)]="projectModel.contactNumber" name="contactNumber" type="text" class="form-control"
+                aria-label="Text input with dropdown button">
+            </div>
+          </div>
+        </div>
+      </smart-panel>
+
+      <smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-3" #panel3>
+        <h2 panelTitle>
+          Business Contact
+        </h2>
+        <div panelContent>
+          <div class="panel-tag mb-3">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="form-group">
+            <label for="">Business Name</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.businessName"
+                [ngClass]="{'is-invalid': businessName.invalid && isFormSubmitted && (businessName.dirty || businessName.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #businessName="ngModel" name="businessName" required
+                class="form-control">
+              <label *ngIf="businessName.invalid && isFormSubmitted && (businessName.dirty || businessName.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Business Name - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Business Email</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.businessEmail" email
+                [ngClass]="{'is-invalid': businessEmail.invalid && isFormSubmitted && (businessEmail.dirty || businessEmail.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #businessEmail="ngModel" name="businessEmail" required
+                class="form-control" />
+              <label *ngIf="businessEmail.invalid && isFormSubmitted && (businessEmail.dirty || businessEmail.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Business Email - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Business Contact number</label>
+            <div class="input-group mb-3 signupDropdown">
+              <div class="input-group-prepend">
+                <button class="btn btn-primary dropdown-toggle" (click)="toggle2 = !toggle2"
+                  type="button">+{{projectModel.businessCountryCode}}</button>
+                <div class="dropdown-menu" [ngClass]="{'show': toggle2}">
+                  <div class="scroll">
+                    <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                      (click)="projectModel.businessCountryCode=countryCode.dialCode; toggle1 = false">
+                      +{{countryCode.dialCode+": "+countryCode.name}}</div>
+                  </div>
+                </div>
+              </div>
+              <input [(ngModel)]="projectModel.businessNumber" name="businessNumber" type="text" class="form-control"
+                aria-label="Text input with dropdown button">
+            </div>
+          </div>
+        </div>
+      </smart-panel>
+      <smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-3" #panel3>
+        <h2 panelTitle>
+          Technical Contact
+        </h2>
+        <div panelContent>
+          <div class="panel-tag mb-3">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="form-group">
+            <label for="">Technical Name</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.technicalName"
+                [ngClass]="{'is-invalid': technicalName.invalid && isFormSubmitted && (technicalName.dirty || technicalName.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #technicalName="ngModel" name="technicalName" required
+                class="form-control">
+              <label *ngIf="technicalName.invalid && isFormSubmitted && (technicalName.dirty || technicalName.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Technical Name - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Technical Email</label>
+            <div class="input-group mb-3">
+              <input [(ngModel)]="projectModel.technicalEmail" email
+                [ngClass]="{'is-invalid': technicalEmail.invalid && isFormSubmitted && (technicalEmail.dirty || technicalEmail.touched)}"
+                type="text" (blur)="isFormSubmitted = true;" #technicalEmail="ngModel" name="technicalEmail" required
+                class="form-control" />
+              <label *ngIf="technicalEmail.invalid && isFormSubmitted && (technicalEmail.dirty || technicalEmail.touched)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Technical Email - is a required field
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Technical Contact number</label>
+            <div class="input-group mb-3 signupDropdown">
+              <div class="input-group-prepend">
+                <button class="btn btn-primary dropdown-toggle" (click)="toggle1 = !toggle1"
+                  type="button">+{{projectModel.technicalCountryCode}}</button>
+                <div class="dropdown-menu" [ngClass]="{'show': toggle1}">
+                  <div class="scroll">
+                    <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                      (click)="projectModel.technicalCountryCode=countryCode.dialCode; toggle1 = false">
+                      +{{countryCode.dialCode+": "+countryCode.name}}</div>
+                  </div>
+                </div>
+              </div>
+              <input [(ngModel)]="projectModel.technicalNumber" name="technicalNumber" type="text" class="form-control"
+                aria-label="Text input with dropdown button">
+            </div>
+          </div>
+        </div>
+      </smart-panel>
+      <smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-3" #panel3>
+        <h2 panelTitle>
+          Project Detail
+        </h2>
+        <div panelContent>
+          Project Detail Content
+        </div>
+      </smart-panel>
+    </div>
+  </div>
+
+</form>

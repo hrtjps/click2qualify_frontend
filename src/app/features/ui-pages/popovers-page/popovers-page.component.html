@@ -1,0 +1,492 @@
+<div class="subheader">
+  <h1 class="subheader-title">
+      <i class="subheader-icon fal fa-window"></i> Popovers
+      <small>
+          Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.
+      </small>
+  </h1>
+</div>
+<div class="row">
+  <div class="col-xl-6">
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-1"
+      #panel1
+    >
+      <h2 panelTitle>
+        Basic <span class="fw-300"><i>Popover</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Minimalistic popover with no content - just title
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="popover"
+          popover="Popover title"
+        >
+          Click to toggle popover
+        </button>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-2"
+      #panel2
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Content</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          <p>
+            Default content value if
+            <code>data-content=[string|element|function]</code> attribute isn't
+            present.
+          </p>
+          <p>
+            If a function is given, it will be called with its
+            <code>this</code> reference set to the element that the popover is
+            attached to.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg"
+          data-toggle="popover"
+          popover="Popover title"
+          popover="And here's some amazing content. It's very engaging. Right?"
+        >
+          Popover with content
+        </button>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-3"
+      #panel3
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Animation</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Disable the CSS fade transition to the popover using attribute
+          <code>data-animation="false"</code>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="popover"
+          popover
+          placement="top"
+          data-animation="false"
+          title="Popover title"
+          popover="And here's some amazing content. It's very engaging. Right?"
+        >
+          Not Animated
+        </button>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-4"
+      #panel4
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Title</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          <p>
+            Default title value if <code>title</code> attribute isn't present.
+          </p>
+          <p>
+            If a function is given, it will be called with its
+            <code>this</code> reference set to the element that the popover is
+            attached to.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="popover"
+          popover
+          data-original-title="Original Title"
+          popover="And here's some amazing content. It's very engaging. Right?"
+        >
+          Display popover with original title
+        </button>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-5"
+      #panel5
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Container</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Appends the popover to a specific element. Example:
+          <code>container: 'body'</code>. This option is particularly useful in
+          that it allows you to position the popover in the flow of the document
+          near the triggering element - which will prevent the popover from
+          floating away from the triggering element during a window resize
+        </div>
+        <div class="d-flex align-items-end">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="popover"
+            popover
+            data-container="#test-container"
+            title="Popover title"
+            popover="And here's some amazing content. It's very engaging. Right?"
+          >
+            Display popover
+          </button>
+
+          <a
+            href="#"
+            smartStubClick
+            class="btn btn-success btn-xs ml-auto"
+            data-action="toggle"
+            data-class="d-none"
+            data-target="#test-container"
+          >
+            hide container
+          </a>
+        </div>
+        <div id="test-container" class="p-3 rounded bg-warning-100 mt-3">
+          The popover is nested inside this container but displayed on the
+          element above. Once this container is hidden the popover will not be
+          visible. Try hiding this container by pressing the "hide" button above
+        </div>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-7"
+      #panel7
+    >
+      <h2 panelTitle>
+        Delayed <span class="fw-300"><i>Popover</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          <p>
+            Delay showing and hiding the popover (ms) - does not apply to manual
+            trigger type
+          </p>
+          <p>If a number is supplied, delay is applied to both hide/show</p>
+          <p>
+            Object structure is: <code>delay: "show": 500, "hide": 100 </code>
+          </p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg"
+          data-toggle="popover"
+          popover
+          placement="auto"
+          title="I was 1/2 sec late!"
+          popover="And here's some amazing content. It's very engaging. Right?"
+        >
+          Delayed toggle
+        </button>
+      </div>
+    </smart-panel>
+  </div>
+  <div class="col-xl-6">
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-8"
+      #panel8
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Placement</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          <p>
+            How to position the popover - auto | top | bottom | left | right.<br />When
+            <code>auto</code> is specified, it will dynamically reorient the
+            popover.
+          </p>
+          <p>
+            When a function is used to determine the placement, it is called
+            with the popover DOM node as its first argument and the triggering
+            element DOM node as its second. The <code>this</code> context is set
+            to the popover instance.
+          </p>
+        </div>
+        <div class="demo">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-container="body"
+            data-toggle="popover"
+            popover
+            placement="auto"
+            popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Auto
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-container="body"
+            data-toggle="popover"
+            popover
+            placement="top"
+            popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Top
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-container="body"
+            data-toggle="popover"
+            popover
+            placement="right"
+            popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Right
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-container="body"
+            data-toggle="popover"
+            popover
+            placement="bottom"
+            popover="Vivamus
+						sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Down
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-container="body"
+            data-toggle="popover"
+            popover
+            placement="left"
+            popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Left
+          </button>
+        </div>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-9"
+      #panel9
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Selector</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          <p>
+            If a selector is provided, popover objects will be delegated to the
+            specified targets. In practice, this is used to enable dynamic HTML
+            content to have popovers added.
+          </p>
+          <p>
+            The <code>selector</code> option essentially allows you to run
+            tooltips and popovers using jQuery's <code>on</code> function, which
+            means that you can allow dynamically added HTML with the correct
+            selectors to trigger popups as if they were present in the
+            originally loaded DOM. Without the selector option, only elements
+            present in the initial DOM will trigger tooltips; any that are
+            dynamically added will not.
+          </p>
+        </div>
+        <p>
+          Toggle the checkbox below and click the 'add new popover' button to
+          observe the behavioral differences between using the selector option,
+          and not using it.
+        </p>
+        <hr />
+        <div class="checkbox">
+          <label id="use-selector-label" class="d-flex align-items-center mb-3">
+            <input id="use-selector" type="checkbox" />
+            <span
+              class="ml-2"
+              data-title="you must refresh this page to change the selector option once you've started the demo"
+              >Use selector option</span
+            >
+          </label>
+        </div>
+        <button class="btn btn-primary" id="add-button">Add new popover</button>
+        <div class="js-buttons" style="display:none">
+          <hr />
+          <button
+            class="btn btn-block btn-success has-popover"
+            data-title="Static"
+            popover="This button was specified in the initial HTML document"
+            placement="top"
+          >
+            Working popover
+          </button>
+        </div>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-10"
+      #panel10
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Triggers</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          How popover is triggered - click | hover | focus | manual. You may
+          pass multiple triggers; separate them with a space.
+          <code>manual</code> cannot be combined with any other trigger.
+        </div>
+        <div class="demo">
+          <button
+            type="button"
+            class="btn btn-outline-success btn-lg"
+            data-toggle="popover"
+            popover
+            data-trigger="hover"
+            placement="top"
+            title
+            popover="And here's some amazing content. It's very engaging. Right?"
+            data-original-title="Display on hover"
+          >
+            Hover
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-warning btn-lg"
+            data-toggle="popover"
+            popover
+            data-trigger="click"
+            placement="top"
+            title
+            popover="And here's some amazing content. It's very engaging. Right?"
+            data-original-title="Display on click"
+          >
+            Click
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-info btn-lg"
+            data-toggle="popover"
+            popover
+            data-trigger="focus"
+            placement="top"
+            title
+            popover="And here's some amazing content. It's very engaging. Right?"
+            data-original-title="Display on focus"
+          >
+            Focus
+          </button>
+        </div>
+      </div>
+    </smart-panel>
+
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-12"
+      #panel12
+    >
+      <h2 panelTitle>
+        Offset <span class="fw-300"><i>Popover</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Offset of the popover relative to its target. For more information
+          refer to Popper.js's
+          <a
+            href="https://popper.js.org/popper-documentation.html#modifiers..offset.offset"
+            target="_blank"
+            >offset docs</a
+          >
+        </div>
+        <div class="demo">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="popover"
+            popover
+            data-offset="0,30"
+            data-trigger="focus"
+            placement="top"
+            title
+            popover="And here's some amazing content. It's very engaging. Right?"
+          >
+            Offset Top
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="popover"
+            popover
+            data-offset="-10,20"
+            data-trigger="focus"
+            placement="auto"
+            title
+            popover="And here's some amazing content. It's very engaging. Right?"
+          >
+            Offset Auto
+          </button>
+        </div>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-13"
+      #panel13
+    >
+      <h2 panelTitle>
+        Popover <span class="fw-300"><i>Boundary</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Overflow constraint boundary of the popover. Accepts the values of
+          <code>'viewport'</code>, <code>'window'</code>,
+          <code>'scrollParent'</code>, or an HTMLElement reference (JavaScript
+          only). For more information refer to Popper.js's
+          <a
+            href="https://popper.js.org/popper-documentation.html#modifiers..preventOverflow.boundariesElement"
+            target="_blank"
+            >preventOverflow docs</a
+          >
+        </div>
+      </div>
+    </smart-panel>
+  </div>
+</div>

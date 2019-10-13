@@ -1,0 +1,130 @@
+<div class="page-wrapper">
+    <div class="page-inner bg-brand-gradient">
+      <div class="page-content-wrapper bg-transparent m-0">
+        <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+          <div class="d-flex align-items-center container p-0">
+            <div
+              class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+              <a [routerLink]="['/']" class="page-logo-link press-scale-down d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+                <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
+              </a>
+            </div>
+            <span class="text-white opacity-50 ml-auto mr-2 hidden-sm-down">
+              Already a member?
+            </span>
+            <a [routerLink]="['/auth/login']" class="btn-link text-white ml-auto ml-sm-0">
+              Secure Login
+            </a>
+          </div>
+        </div>
+        <div class="flex-1"
+          style="background: url(assets/img/backgrounds/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+          <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+            <div class="row">
+              <div class="col-xl-12">
+                <h2 class="fs-xxl fw-500 mt-4 text-white text-center">
+                  "My dog ate my password"
+                  <small class="h3 fw-300 mt-3 mb-5 text-white opacity-60 hidden-sm-down">
+                    Not a problem, happens to the best of us. Just use the form below to reset it!
+                  </small>
+                </h2>
+              </div>
+              <div class="col-xl-6 ml-auto mr-auto">
+                <div class="card p-4 rounded-plus bg-faded">
+                  <wizard #wizard class="arc-wizard" navBarLayout="large-empty-symbols">
+                    <wizard-step stepTitle="Email" navigationSymbol="1">
+                      <form #emailForm="ngForm">
+                        <div class="form-group">
+                          <label for="">Email address</label>
+                          <div class="input-group mb-3">
+                            <input #email="ngModel" required type="text" email placeholder="Enter Email Address" name="Email"
+                              class="form-control"
+                              [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isEmailFormSubmitted)}"
+                              [(ngModel)]="resetModel.Email">
+                            <label *ngIf="email.invalid && (email.dirty || email.touched || isEmailFormSubmitted)"
+                              class="error jquery-validation-error small form-text invalid-feedback">
+                              Email - is a required field
+                            </label>
+                          </div>
+                        </div>
+                        <button (click)="onEmailFormSubmitted(emailForm)" [disabled]="!emailForm.valid"
+                          class="btn btn-primary shadow-2 mb-4 mt-1 mr-0" nextStep>Continue</button>
+                      </form>
+                      <p class="mb-2 text-muted">Go back to <a [routerLink]="['/auth/login']">Login</a></p>
+                    </wizard-step>
+                    <wizard-step stepTitle="Security" navigationSymbol="2">
+                      <form #securityForm="ngForm">
+                        <p>A code was sent to your mobile number:</p>
+                        <div class="phone-number-container shadow-2">07XX XXX XX60</div>
+                        <div class="form-group">
+                          <label for="">SMS Code</label>
+                          <div class="input-group mb-3">
+                            <input [(ngModel)]="resetModel.SMSCode"
+                              [ngClass]="{'is-invalid': !smsCode.valid && isSecurityFormSubmitted && (smsCode.dirty || smsCode.touched || isSecurityFormSubmitted)}"
+                              type="text" (blur)="isSecurityFormSubmitted = true;" #smsCode="ngModel" name="smsCode" required
+                              pattern="^[0-9]{6}$" class="form-control">
+                            <label *ngIf="smsCode.invalid && isSecurityFormSubmitted && (smsCode.dirty || smsCode.touched)"
+                              class="error jquery-validation-error small form-text invalid-feedback">
+                              Enter valid 6 digit code
+                            </label>
+                          </div>
+                        </div>
+                        <div class="btn-group mt-10 mb-4 ">
+                          <button class="btn btn-primary btn-sm  mt-1" [disabled]="!securityForm.valid" nextStep
+                            type="button">Continue</button>
+                        </div>
+                      </form>
+                      <p class="mb-2 text-muted">Go back to <a [routerLink]="['/auth/login']">Login</a></p>
+                    </wizard-step>
+                    <wizard-step stepTitle="Reset" navigationSymbol="3">
+                      <form #confirmPassForm="ngForm">
+                        <div class="form-group">
+                          <label for="">Enter your password</label>
+                          <div class="input-group mb-3">
+                            <input [(ngModel)]="resetModel.Password" (blur)="isConfirmPasswordFormSubmitted = true;"
+                              [ngClass]="{'is-invalid': !Password.valid && isConfirmPasswordFormSubmitted && (Password.dirty || Password.touched)}"
+                              #Password="ngModel" name="Password" required
+                              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" type="password" class="form-control">
+                            <label
+                              *ngIf="Password.invalid && isConfirmPasswordFormSubmitted && (Password.dirty || Password.touched)"
+                              class="error jquery-validation-error small form-text invalid-feedback">
+                              Enter valid Password
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Repeat password</label>
+                          <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                              <input [(ngModel)]="resetModel.RepeatPassword" [ngClass]="{'is-invalid': !RepeatPassword.valid && 
+                                (RepeatPassword.dirty || RepeatPassword.touched)}" #RepeatPassword="ngModel" name="RepeatPassword"
+                                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" type="password"
+                                class="form-control">
+                              <label *ngIf="RepeatPassword.invalid && (RepeatPassword.dirty || RepeatPassword.touched)"
+                                class="error jquery-validation-error small form-text invalid-feedback">
+                                Enter valid Repeat Password
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="btn-group mt-10 mb-4 ">
+                          <button class="btn btn-primary btn-sm  mt-1" [disabled]="!confirmPassForm.valid || resetModel.RepeatPassword!=resetModel.Password" nextStep type="button">Reset</button>
+                        </div>
+                      </form>
+                      <p class="mb-2 text-muted">Go back to <a [routerLink]="['/auth/login']">Login</a></p>
+                    </wizard-step>
+
+                  </wizard>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+            2019 © SmartAdmin by&nbsp;<a href="https://www.gotbootstrap.com" class="text-white opacity-40 fw-500"
+              title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

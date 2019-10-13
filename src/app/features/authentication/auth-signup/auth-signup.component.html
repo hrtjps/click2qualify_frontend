@@ -1,0 +1,201 @@
+<div class="page-wrapper">
+  <div class="page-inner bg-brand-gradient">
+    <div class="page-content-wrapper bg-transparent m-0">
+      <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+        <div class="d-flex align-items-center container p-0">
+          <div
+            class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+            <a [routerLink]="['/']" class="page-logo-link press-scale-down d-flex align-items-center">
+              <img src="assets/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+              <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
+            </a>
+          </div>
+          <span class="text-white opacity-50 ml-auto mr-2 hidden-sm-down">
+            Already a member?
+          </span>
+          <a [routerLink]="['/auth/login']" class="btn-link text-white ml-auto ml-sm-0">
+            Secure Login
+          </a>
+        </div>
+      </div>
+      <div class="flex-1"
+        style="background: url(assets/img/backgrounds/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+        <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+          <div class="row">
+            <div class="col-xl-12">
+              <h2 class="fs-xxl fw-500 mt-4 text-white text-center">
+                Register now, its free!
+                <small class="h3 fw-300 mt-3 mb-5 text-white opacity-60 hidden-sm-down">
+                  Your registration is free for a limited time. Enjoy SmartAdmin on your mobile, desktop or tablet.
+                  <br>It is ready to go wherever you go!
+                </small>
+              </h2>
+            </div>
+            <div class="col-xl-6 ml-auto mr-auto">
+              <div class="card p-4 rounded-plus bg-faded">
+                <wizard #wizard class="arc-wizard" navBarLayout="large-empty-symbols" [defaultStepIndex]="0">
+                  <wizard-step stepTitle="Personal" navigationSymbol="1">
+                    <form #personalForm="ngForm">
+                      <div class="form-group">
+                        <label for="">First name</label>
+                        <div class="input-group mb-3">
+                          <input name="firstName" #firstName="ngModel" placeholder="Enter First Name"
+                            [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="signupModel.FirstName" required type="text" class="form-control">
+                          <label
+                            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            First Name - is a required field
+                          </label>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group">
+                        <label for="">Last name</label>
+                        <div class="input-group mb-3">
+                          <input name="lastName" #lastName="ngModel" placeholder="Enter Last Name"
+                            [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="signupModel.LastName" required type="text" class="form-control">
+                          <label
+                            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Last Name - is a required field
+                          </label>
+                        </div>
+
+                      </div>
+                      <div class="form-group">
+                        <label for="">Email address</label>
+                        <div class="input-group mb-3">
+                          <input name="email" #email="ngModel" required type="text" email placeholder="Enter Email"
+                            [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="signupModel.Email" class="form-control">
+                          <label *ngIf="email.invalid && (email.dirty || email.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Email - is a required field
+                          </label>
+                        </div>
+
+                      </div>
+
+                      <button class="btn btn-primary shadow-2 mb-4 mt-2" (click)="onPersonalFormSubmit(personalForm)"
+                        [goToStep]="personalForm && personalForm.valid == true ? 1 : 0">Continue</button>
+                      <p class="mb-0 text-muted">Already have an account? <a [routerLink]="['/auth/login']"> Log in</a>
+                      </p>
+                    </form>
+                  </wizard-step>
+                  <wizard-step stepTitle="Industry" navigationSymbol="2">
+                    <form #IndustryForm="ngForm">
+                      <div class="form-group">
+                        <label for="">Job title</label>
+                        <select [(ngModel)]="signupModel.Title"
+                          [ngClass]="{'is-invalid': !cmbTitle.valid && (cmbTitle.dirty || cmbTitle.touched || isIndustyFormSubmitted)}"
+                          #cmbTitle="ngModel" required name="cmbTitle" class="form-control form-control-default">
+                          <option value="">Select your job title</option>
+                          <option *ngFor="let jobTitle of jobTitles" value="opt2">{{jobTitle.title}}</option>
+                        </select>
+                        <label *ngIf="!cmbTitle.valid && (cmbTitle.dirty || cmbTitle.touched || isIndustyFormSubmitted)"
+                          class="error jquery-validation-error small form-text invalid-feedback">Title - is required
+                          field.</label>
+                      </div>
+                      <div class="form-group">
+                        <label for="">Industry</label>
+                        <select [(ngModel)]="signupModel.Industry"
+                          [ngClass]="{'is-invalid': !cmbIndustry.valid && (cmbIndustry.dirty || cmbIndustry.touched || isIndustyFormSubmitted)}"
+                          #cmbIndustry="ngModel" required name="cmbIndustry" class="form-control form-control-default">
+                          <option value="">Select your industry</option>
+                          <option *ngFor="let industry of industries" value="opt2">{{industry.name}}</option>
+
+                        </select>
+                        <label
+                          *ngIf="!cmbIndustry.valid && (cmbIndustry.dirty || cmbIndustry.touched || isIndustyFormSubmitted)"
+                          class="error jquery-validation-error small form-text invalid-feedback">Industry - is required
+                          field.</label>
+                      </div>
+                      <div class="form-group">
+                        <label for="">Usage</label>
+                        <select [(ngModel)]="signupModel.Usage"
+                          [ngClass]="{'is-invalid': !cmbUsage.valid && (cmbUsage.dirty || cmbUsage.touched || isIndustyFormSubmitted)}"
+                          #cmbUsage="ngModel" required name="cmbUsage" class="form-control form-control-default">
+                          <option value="">Select the usage reason</option>
+                          <option value="opensource">Opensource</option>
+                          <option value="enterprise">Enterprise</option>
+                        </select>
+                        <label *ngIf="!cmbUsage.valid && (cmbUsage.dirty || cmbUsage.touched || isIndustyFormSubmitted)"
+                          class="error jquery-validation-error small form-text invalid-feedback">Usage - is required
+                          field.</label>
+                      </div>
+                      <div class="col-sm-12 mb-4 centered-content">
+                        <div class="btn-group mt-10">
+                          <button type="button" class="btn btn-secondary shadow-2 mt-2" previousStep>Back</button>
+                          <button class="btn btn-primary shadow-2 mt-2"
+                            [goToStep]="IndustryForm && IndustryForm.valid == true ? 2 : 1"
+                            (click)="onIndustryFormSubmit(IndustryForm)">Continue</button>
+                        </div>
+                      </div>
+                      <p class="mb-0 text-muted">Already have an account? <a [routerLink]="['/auth/login']"> Log in</a>
+                      </p>
+                    </form>
+
+                  </wizard-step>
+                  <wizard-step stepTitle="Security" navigationSymbol="3">
+                    <form>
+                      <div class="form-group">
+                        <label for="">Phone number</label>
+
+                        <div class="input-group mb-3 signupDropdown">
+                          <div class="input-group-prepend">
+                            <button class="btn btn-primary dropdown-toggle" (click)="toggleDropdown()"
+                              type="button">+{{selectedCountry}}</button>
+                            <div class="dropdown-menu" [ngClass]="{'show': showCountryCodeDropdown}">
+                              <div class="scroll">
+                                <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                                  (click)="selectCountryCode(countryCode.dialCode)">+{{countryCode.dialCode+": "+countryCode.name}}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <input [(ngModel)]="signupModel.Mobile" name="mobile" type="text" class="form-control"
+                            aria-label="Text input with dropdown button">
+                          <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" [disabled]="testTelNumber()"
+                              (click)="this.isSMSSent = true;">Send</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="">SMS Code</label>
+                        <div class="input-group mb-3">
+                          <input [(ngModel)]="signupModel.SMSCode" name="SMSCode" aria-describedby="basic-addon2"
+                            aria-label="SMS Code" class="form-control" type="text">
+                          <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" (click)="this.isSMSVerified = true;"
+                              [disabled]="!isSMSSent">Verify</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 mb-4 centered-content">
+                        <div class="btn-group mt-10">
+                          <button type="button" class="btn btn-secondary shadow-2 mt-3" previousStep>Back</button>
+                          <button class="btn btn-primary shadow-2 mt-3"
+                            [disabled]="!isSMSVerified">Register</button>
+                        </div>
+                      </div>
+                      <p class="mb-0 text-muted">Already have an account? <a [routerLink]="['/auth/login']"> Log in</a>
+                      </p>
+                    </form>
+
+                  </wizard-step>
+                </wizard>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+          2019 © SmartAdmin by&nbsp;<a href="https://www.gotbootstrap.com" class="text-white opacity-40 fw-500"
+            title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

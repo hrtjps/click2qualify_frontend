@@ -1,0 +1,50 @@
+
+<!-- input group search box -->
+<div class="input-group input-group-lg mb-3" [class.has-length]="hasSearchFocus">
+  <input
+    type="text"
+    class="form-control shadow-inset-2"    
+    id="filter-icon"
+    [placeholder]="'Search ' + icons.length + ' icons for'"
+    aria-label="type 2 or more letters"
+    (input)="onSearchInput($event)"
+    (focus)="hasSearchFocus = true"
+    (blur)="hasSearchFocus = false"
+  />
+  <div class="input-group-append">
+    <span class="input-group-text"><i class="fal fa-search"></i></span>
+  </div>
+</div>
+<!-- end input group search box -->
+
+<!-- icon list -->
+<div class="card pt-3 pr-3 pb-0 pl-3">
+  <div id="icon-list" class="row">
+    <div *ngFor="let icon of filteredIcons"
+      class="col-4 col-sm-3 col-md-3 col-lg-2 col-xl-1 d-flex justify-content-center align-items-center mb-g"
+    >
+      <a
+        href="#"
+        class="rounded bg-white p-0 m-0 d-flex flex-column w-100 h-100 js-showcase-icon shadow-hover-2"
+        (click)="onIconClick($event, icon)"
+        
+      >
+        <div class="rounded-top color-fusion-300 w-100 bg-primary-300">
+          <div
+            class="rounded-top d-flex align-items-center justify-content-center w-100 pt-3 pb-3 pr-2 pl-2 fa-3x hover-bg"
+          >
+            <i class="{{icon.class}}"></i>
+          </div>
+        </div>
+        <div
+          class="rounded-bottom p-1 w-100 d-flex justify-content-center align-items-center text-center"
+        >
+          <span class="d-block text-truncate text-muted"
+            >{{icon.title}}</span
+          >
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- end icon list -->

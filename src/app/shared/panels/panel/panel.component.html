@@ -1,0 +1,42 @@
+<div class="panel" [ngClass]="pannelClasses">
+  <div class="panel-hdr {{ headerClass }}">
+    <ng-content select="[panelTitle]" #panelTitle></ng-content>
+    <ng-content select="[panelToolbar]"> </ng-content>
+    <div class="panel-toolbar">
+      <button
+        *ngIf="collapsible"
+        class="btn btn-panel"
+        data-action="panel-collapse"
+        (click)="toggleCollapse($event)"
+        tooltip="Collapse"
+      ></button>
+      <button
+        class="btn btn-panel"
+        *ngIf="fullscreenable"
+        data-action="panel-fullscreen"
+        (click)="toggleFullscreen($event)"
+        tooltip="Fullscreen"
+      ></button>
+      <button
+        class="btn btn-panel"
+        *ngIf="clossable"
+        data-action="panel-close"
+        (click)="closePanel($event)"
+        tooltip="Close"
+      ></button>      
+    </div>    
+  </div>
+
+  <div class="panel-container" [ngClass]="pannelContainerClasses">
+    <div
+      class="panel-content"
+      [ngClass]="pannelContentClasses"
+      *ngIf="!collapsed"
+      [@slideInOut]
+    >
+      <ng-content select="[panelContent]"> </ng-content>
+    </div>
+
+    <ng-content select="[panelFooter]"> </ng-content>
+  </div>
+</div>

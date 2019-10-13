@@ -1,0 +1,18 @@
+<div class="page-logo">
+  <a
+    href="#"
+    class="page-logo-link press-scale-down d-flex align-items-center"
+    data-toggle="modal"
+    (click)="openShortcut($event)"
+  >
+    <img
+      src="/assets/img/{{ logo }}"
+      alt="{{ appName }}"
+      aria-roledescription="logo"
+    />
+    <span class="page-logo-text mr-1">{{ appName }}</span>
+    <i
+      class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"
+    ></i>
+  </a>
+</div>

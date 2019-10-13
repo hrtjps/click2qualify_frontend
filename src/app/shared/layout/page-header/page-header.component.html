@@ -1,0 +1,51 @@
+<header class="page-header" role="banner">
+
+    <!-- we need this logo when user switches to nav-function-top -->
+    <smart-logo></smart-logo>
+
+
+    <smart-settings-shortcut></smart-settings-shortcut>
+
+    <!-- DOC: mobile button appears during mobile width -->
+    <div class="hidden-lg-up">
+      <a href="#" (click)="openMobileNav($event)" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+        <i class="ni ni-menu"></i>
+      </a>
+    </div>
+
+    <div class="search">
+      <form class="app-forms hidden-xs-down" role="search" action="search-results.html" autocomplete="off">
+         <!-- <i class="fal fa-search position-absolute fs-xl m-2 p-1 text-muted pos-left"></i>  -->
+        <input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">
+        <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
+          <i class="fal fa-times"></i>
+        </a>
+      </form>
+    </div>
+
+    <div class="ml-auto d-flex">
+
+      <!-- activate app search icon (mobile) -->
+      <div class="hidden-sm-up">
+        <a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
+          <i class="fal fa-search"></i>
+        </a>
+      </div>
+
+      <!-- app settings -->
+      <smart-settings-modal></smart-settings-modal>
+
+      <!-- app shortcuts -->
+      <smart-dropdown-apps></smart-dropdown-apps>
+
+      <!-- app message -->
+      <smart-chat-modal></smart-chat-modal>
+
+      <!-- app notification -->
+      <smart-dropdown-notifications></smart-dropdown-notifications>
+
+      <!-- app user menu -->
+      <smart-dropdown-user></smart-dropdown-user>
+    </div>
+
+  </header>

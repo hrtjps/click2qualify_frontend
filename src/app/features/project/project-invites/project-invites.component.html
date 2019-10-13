@@ -1,0 +1,55 @@
+<smart-panel #panel3 [clossable]="true" [collapsible]="true" [fullscreenable]="true" id="panel-3">
+  <h2 panelTitle>
+    Projects
+    <span class="fw-300"><i>Invites</i></span>
+  </h2>
+  <div panelContent>
+    <div class="border bg-light rounded-top">
+      <div class="form-group p-2 m-0 rounded-top">
+        <input [(ngModel)]="filterString" class="form-control form-control-lg shadow-inset-2 m-0" placeholder="Filter Project Invites" type="text">
+      </div>
+      <div class="frame-wrap w-100">
+        <div class="accordion" id="accordionExample">
+          <div *ngFor="let project of projectList | projectFilter:filterString ; let i = index" class="card">
+            <div class="multi-collapse">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6 d-flex justify-content-center flex-column">
+                    <div>
+                      <span container="body" [popover]="template" (click)="showDetails(project)" class="cur-p">{{project.title}}</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 d-flex justify-content-space-evenly">
+                    <button class="btn btn-outline-success">Accept</button>
+                    <button class="btn btn-outline-danger">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="filter-message js-filter-message"></span>
+    </div>
+  </div>
+</smart-panel>
+
+<ng-template #template>
+  <div class="modal-body p-0">
+    <tabset class="nav-tabs-clean">
+      <tab heading="Project" id="project">
+        <div class="card-body">
+          <h5 class="card-title">{{selectedProject.title}}</h5>
+          <p class="card-text">{{selectedProject.description}}</p>
+        </div>
+      </tab>
+      <tab heading="Owner" id="owner">
+        <div class="card-body">
+          <h5 class="card-title">{{selectedProject.author.name}}</h5>
+          <p class="card-text">{{selectedProject.author.email}}</p>
+          <p class="card-text">{{selectedProject.author.contact}}</p>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</ng-template>

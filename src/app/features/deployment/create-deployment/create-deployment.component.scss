@@ -1,0 +1,69 @@
+@import '../../../../scss/_modules/variables.scss';
+
+.floatRight {
+  float: right;
+  margin: 0;
+}
+
+.editService {
+  border-radius: 5px;
+}
+
+
+
+.btn-left{
+  display: flex;
+  margin-right: auto;
+  justify-content: center;
+  align-content: center;
+  font-size: 18px;
+  width: 130px;
+  height: 40px;
+  background-color:rgb(61,169,245);
+  border-color: rgb(61,169,245);
+
+}
+.progress-bar.progress-c-theme2 {
+  background: linear-gradient(-135deg, #899FD4 0%, #A389D4 100%);
+}
+.project-main .row {
+  padding: 0;
+}
+
+.loction-user .loction-progress .progress {
+  justify-content: left;
+  background-color: $color-danger;
+}
+
+.card.loction-user{
+  position: relative;
+}
+
+.card-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: $color-warning;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 40px;
+  height:40px;
+  box-sizing: border-box;
+  line-height: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.error {
+    background: $color-danger;
+  }
+  i {
+    opacity: 1;
+  }
+}
+
+.project-main {
+  i {
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,199 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="alert alert-primary">
+			<div class="d-table w-100">
+				<div class="d-table-cell align-top width-6">
+					<span class="icon-stack icon-stack-lg">
+						<i class="base base-6 icon-stack-3x opacity-100 color-primary-500"></i> 
+						<i class="base base-10 icon-stack-2x opacity-100 color-primary-300 fa-flip-vertical"></i> 
+						<i class="fal fa-info icon-stack-1x opacity-100 color-white"></i>
+					</span>
+				</div>
+				<div class="d-table-cell pl-1">
+					<span class="h5">Ensure correct <code>role</code> and provide a label</span>
+					
+					<p class="mb-0">The <code>.btn</code> styles can be applied to other elements, such as <code>&lt;label&gt;</code>s, to provide checkbox or radio style button toggling. Add <code>data-toggle="buttons"</code> to a <code>.btn-group</code> containing those modified buttons to enable toggling in their respective styles. The checked state for these buttons is <strong>only updated via</strong> click <strong>event</strong> on the button. If you use another method to update the input—e.g., with <code><input type="reset"></code> or by manually applying the input’s checked property—you’ll need to toggle <code>.active</code> on the <code>&lt;label&gt;</code> manually.</p>					
+				</div>
+			</div>
+		</div>
+    </div>
+	<div class="col-xl-6">
+		<!--Sizes-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-1" #panel1>
+			<h2 panelTitle>
+					Sizes <span class="fw-300"><i>example</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="demo demo-v-spacing-lg">
+						<div btnRadioGroup [(ngModel)]="radioModel1" class="btn-group btn-group-lg">
+							<button btnRadio="Left" type="button" class="btn btn-secondary">Left</button>
+							<button btnRadio="Middle" type="button" class="btn btn-secondary">Middle</button>
+							<button btnRadio="Right" type="button" class="btn btn-secondary">Right</button>
+						</div>
+						<br>
+						<div btnRadioGroup [(ngModel)]="radioModel2" class="btn-group">
+							<button btnRadio="Left" type="button" class="btn btn-secondary">Left</button>
+							<button btnRadio="Middle" type="button" class="btn btn-secondary">Middle</button>
+							<button btnRadio="Right" type="button" class="btn btn-secondary">Right</button>
+						</div>
+						<br>
+						<div btnRadioGroup [(ngModel)]="radioModel3" class="btn-group btn-group-sm">
+							<button btnRadio="Left" type="button" class="btn btn-secondary">Left</button>
+							<button btnRadio="Middle" type="button" class="btn btn-secondary">Middle</button>
+							<button btnRadio="Right" type="button" class="btn btn-secondary">Right</button>
+						</div>
+						<br>
+						<div btnRadioGroup [(ngModel)]="radioModel4" class="btn-group btn-group-xs">
+							<button btnRadio="Left" type="button" class="btn btn-secondary">Left</button>
+							<button btnRadio="Middle" type="button" class="btn btn-secondary">Middle</button>
+							<button btnRadio="Right" type="button" class="btn btn-secondary">Right</button>
+						</div>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--Toolbar-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-2" #panel2>
+			<h2 panelTitle>
+					Toolbar <span class="fw-300"><i>example</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="panel-tag">
+						Fuse button groups into toolbars for a comprehensize component. Utility classes is needed to set margins to groups and buttons. 
+					</div>
+					<div></div>
+					<div class="d-flex justify-content-start flex-wrap demo">
+						<div btnRadioGroup [(ngModel)]="radioModel5"  class="btn-group mr-2" role="group" aria-label="Group A">
+							<button btnRadio="1" type="button" class="btn btn-secondary">1</button>
+							<button btnRadio="2" type="button" class="btn btn-secondary">2</button>
+							<button btnRadio="3" type="button" class="btn btn-secondary">3</button>
+							<button btnRadio="4" type="button" class="btn btn-secondary">4</button>
+						</div>
+						<div btnRadioGroup [(ngModel)]="radioModel6"  class="btn-group mr-2" role="group" aria-label="Group B">
+							<button btnRadio="5" type="button" class="btn btn-secondary">5</button>
+							<button btnRadio="6" type="button" class="btn btn-secondary">6</button>
+							<button btnRadio="7" type="button" class="btn btn-secondary">7</button>
+							<button btnRadio="8" type="button" class="btn btn-secondary">8</button>
+						</div>
+						<div btnRadioGroup [(ngModel)]="radioModel7"  class="btn-group" role="group" aria-label="Group C">
+							<button btnRadio="9" type="button" class="btn btn-secondary">9</button>
+							<button btnRadio="10" type="button" class="btn btn-secondary">10</button>
+							<button btnRadio="11" type="button" class="btn btn-danger">11</button>
+							<button btnRadio="12" type="button" class="btn btn-secondary">12</button>
+						</div>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--Verticle-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-3" #panel3>
+			<h2 panelTitle>
+					Verticle <span class="fw-300"><i>example</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="panel-tag">
+						Make a set of buttons appear vertically stacked rather than horizontally using class <code>.btn-group-vertical</code>. <strong>Split button dropdowns are not supported here.</strong>
+					</div>
+					<div class="btn-group-vertical" btnRadioGroup [(ngModel)]="radioModel8" role="group" aria-label="Vertical button group">
+						<button btnRadio="1" type="button" class="btn btn-secondary">Button</button>
+						<button btnRadio="2" type="button" class="btn btn-secondary">Button</button>
+						<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel9" role="group" dropdown>
+							<button btnRadio="3" id="btnGroupVerticalDrop1" type="button" class="btn btn-secondary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Dropdown
+							</button>
+							<div class="dropdown-menu" *dropdownMenu aria-labelledby="btnGroupVerticalDrop1">
+								<a class="dropdown-item">Dropdown link</a>
+								<a class="dropdown-item">Dropdown link</a>
+							</div>
+						</div>
+						<button btnRadio="4" type="button" class="btn btn-secondary">Button</button>
+						<button btnRadio="5" type="button" class="btn btn-secondary">Button</button>
+						<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel10" role="group" dropdown>
+							<button btnRadio="6" id="btnGroupVerticalDrop2" type="button" class="btn btn-secondary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Dropdown
+							</button>
+							<div class="dropdown-menu" *dropdownMenu aria-labelledby="btnGroupVerticalDrop2">
+								<a class="dropdown-item">Dropdown link</a>
+								<a class="dropdown-item">Dropdown link</a>
+							</div>
+						</div>
+						<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel11" role="group" dropdown>
+							<button btnRadio="7" id="btnGroupVerticalDrop3" type="button" class="btn btn-secondary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Dropdown
+							</button>
+							<div class="dropdown-menu" *dropdownMenu aria-labelledby="btnGroupVerticalDrop3">
+								<a class="dropdown-item">Dropdown link</a>
+								<a class="dropdown-item">Dropdown link</a>
+							</div>
+						</div>
+						<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel12" role="group" dropdown>
+							<button btnRadio="8" id="btnGroupVerticalDrop4" type="button" class="btn btn-secondary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Dropdown
+							</button>
+							<div class="dropdown-menu" *dropdownMenu aria-labelledby="btnGroupVerticalDrop4">
+								<a class="dropdown-item">Dropdown link</a>
+								<a class="dropdown-item">Dropdown link</a>
+							</div>
+						</div>
+					</div>
+				</div>
+		</smart-panel>		
+	</div>
+	<div class="col-xl-6">	
+		<!--Nesting-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-4" #panel4>
+			<h2 panelTitle>
+					Nesting <span class="fw-300"><i>example</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="panel-tag">
+						Place a <code>.btn-group</code> within another <code>.btn-group</code> when you want dropdown menus mixed with a series of buttons
+					</div>
+					<div btnRadioGroup [(ngModel)]="radioModel13" class="btn-group" id="js-demo-nesting" role="group" aria-label="Button group with nested dropdown">
+						<button btnRadio="1" type="button" class="btn btn-secondary">1</button>
+						<button btnRadio="2" type="button" class="btn btn-secondary">2</button>
+
+						<div btnRadio="3" dropdown class="btn-group" role="group">
+							<button type="button" dropdownToggle class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Dropdown</button>
+							<div class="dropdown-menu" *dropdownMenu>
+								<a class="dropdown-item" href="#" smartStubClick>Dropdown link</a>
+								<a class="dropdown-item" href="#" smartStubClick>Dropdown link</a>
+							</div>
+						</div>
+					</div>
+				</div>
+		</smart-panel>			
+		<!--Checkbox and radio-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-5" #panel5>
+			<h2 panelTitle>
+					Input <span class="fw-300"><i>checkbox & radio</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="panel-tag">
+						<code>.button</code> styles can be applied to other elements, such as <code>&lt;label&gt;</code>s, to provide checkbox or radio style button toggling. Add <code>data-toggle="buttons"</code> to a <code>.btn-group</code> containing those modified buttons to enable their toggling behavior via JavaScript and add <code>.btn-group-toggle</code> to style the <code>&lt;input&gt;</code>s within your buttons. <strong>Note that you can create single input-powered buttons or groups of them.</strong>
+					</div>
+					<div class="alert alert-info">
+						The checked state for these buttons is <strong>only updated via <code>click</code> event</strong> on the button. If you use another method to update the input—e.g., with <code>&lt;input type="reset"&gt;</code> or by manually applying the input’s <code>checked</code> property—you’ll need to toggle <code>.active</code> on the <code>&lt;label&gt;</code> manually.
+					</div>
+					<h5 class="frame-heading">
+						Checkbox
+					</h5>
+					<div class="frame-wrap">
+						<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-primary" btnCheckbox [(ngModel)]="checkboxDemo.check1">{{checkboxDemo.check1 ? 'Checked' : 'Unchecked'}}</label>
+							<label class="btn btn-primary" btnCheckbox [(ngModel)]="checkboxDemo.check2">{{checkboxDemo.check2 ? 'Checked' : 'Unchecked'}}</label>
+							<label class="btn btn-primary" btnCheckbox [(ngModel)]="checkboxDemo.check3">{{checkboxDemo.check3 ? 'Checked' : 'Unchecked'}}</label>
+						</div>
+					</div>
+					<h5 class="frame-heading">
+						Radio
+					</h5>
+					<div class="frame-wrap mb-0">
+						<div btnRadioGroup [(ngModel)]="radioDemo" class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-info" btnRadio="option1">{{radioDemo==='option1' ? 'Active' : 'Radio'}}</label>
+							<label class="btn btn-info" btnRadio="option2">{{radioDemo==='option2' ? 'Active' : 'Radio'}}</label>
+							<label class="btn btn-info" btnRadio="option3">{{radioDemo==='option3' ? 'Active' : 'Radio'}}</label>
+						</div>
+					</div>
+				</div>
+		</smart-panel>		
+	</div>
+</div>

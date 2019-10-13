@@ -1,0 +1,40 @@
+<div [insideClick]="true" class="position-relative" dropdown>
+    <a
+            aria-controls="dropdown-basic"
+            class="header-icon"
+            data-toggle="dropdown"
+            dropdownToggle
+            id="button-basic"
+    >
+        <i class="fal fa-cube"></i>
+    </a>
+    <div
+            *dropdownMenu
+            aria-labelledby="button-basic"
+            class="dropdown-menu dropdown-menu-animated-center w-auto h-auto"
+            id="dropdown-basic"
+            role="menu"
+    >
+        <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top">
+            <h4 class="m-0 text-center color-white">
+                Quick Shortcut
+                <small class="mb-0 opacity-80">User Applications & Addons</small>
+            </h4>
+        </div>
+        <div class="custom-scroll h-100">
+            <ul class="app-list">
+                <li *ngFor="let app of apps" [routerLink]="app.showInApps.routerLink">
+                    <a class="app-list-item hover-white">
+                        <span class="icon-stack">
+                          <i [ngClass]="app.showInApps.stack1Classes" class="base-4 icon-stack-3x"></i>
+                          <i [ngClass]="app.showInApps.stack2Classes" class="base-4 icon-stack-1x"></i>
+                          <i [ngClass]="app.showInApps.iconClasses" class="icon-stack-1x"></i>
+                        </span>
+                        <span class="app-list-name">{{app.title}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

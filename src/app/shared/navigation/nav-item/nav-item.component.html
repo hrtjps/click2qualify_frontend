@@ -1,0 +1,31 @@
+<ng-container *ngIf="item.items">
+  <a (click)="toggleSection($event)" title="{{ item.title }}" [routerLink]="item.routerLink?[item.routerLink]:[]">
+    <i *ngIf="item.icon" class="{{ item.icon }}"></i>
+    <span class="nav-link-text">{{ item.title }}</span>
+    <span *ngIf="item.badge" class="{{item.badge.class}}">{{item.badge.label}}</span>
+    <b class="collapse-sign">
+      <em class="{{ item.open ? 'fal fa-angle-up' : 'fal fa-angle-down' }}"></em>
+    </b>
+  </a>
+  <ul
+    *ngIf="item.open || minified || item.matched !== null"
+    class="d-block ov-h"
+    [@slideInOut]
+  >
+    <li
+      smart-nav-item
+      *ngFor="let child of item.items; trackBy: trackByFn"
+      [item]="child"
+      [minified]="minified"
+    ></li>
+  </ul>
+</ng-container>
+<ng-container *ngIf="!item.items && item.routerLink">
+  <a routerLink="{{ item.routerLink }}" title="{{ item.title }}">
+    <span class="nav-link-text">{{ item.title }}</span>
+    <span *ngIf="item.badge" class="{{item.badge.class}}">{{item.badge.label}}</span>
+  </a>
+</ng-container>
+<ng-container *ngIf="item.navTitle">
+  {{ item.title }}
+</ng-container>

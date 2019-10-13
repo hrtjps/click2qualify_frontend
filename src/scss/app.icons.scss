@@ -1,0 +1,16 @@
+/* #GLOBAL IMPORTS
+========================================================================== */
+
+$fa-font-path:                "../assets/webfonts" !default;
+
+$webfontsURL:							"../assets/webfonts" !default;
+
+@import '_imports/_global-import';
+
+/* #WEBFONT ICONS IMPORTS
+========================================================================== */
+
+
+@import '_webfonts/fontawesome-pro-master/scss/fontawesome.scss';
+@import '_webfonts/fontawesome-pro-master/scss/fa-light.scss';
+@import '_webfonts/nextgen-fonts-master/scss/ng-icons.scss';

@@ -1,0 +1,476 @@
+<div class="subheader">
+  <h1 class="subheader-title">
+      <i class="subheader-icon fal fa-window"></i> Breadcrumbs
+      <small>
+          Indicate the current page’s location within a navigational hierarchy. Separators are automatically added in CSS through <code>::before</code> and content.
+      </small>
+  </h1>
+</div>
+
+<div class="row">
+
+	<div class="col-xl-6">
+		<!--Default-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-1" #panel1>
+			<h2 panelTitle>
+					Default <span class="fw-300"><i>Breadcrumb</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item active">Home</li>
+						</ol>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>This is a big text</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Hovering reveals the text</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Can be big as you like</a>
+							</li>
+							<li class="breadcrumb-item active">Cool right?</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--Different sizes-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-2" #panel2>
+			<h2 panelTitle>
+					Different <span class="fw-300"><i>Sizes</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb breadcrumb-sm">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb breadcrumb-lg">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>				
+		<!--Different Separators-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-3" #panel3>
+			<h2 panelTitle>
+					Different <span class="fw-300"><i>Separators</i></span> 
+				</h2>
+			<div panelContent>								
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item" data-breadcrumb-seperator="-">
+								<a href="#" smartStubClick>Home</a>
+							</li>
+							<li class="breadcrumb-item" data-breadcrumb-seperator="-">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item" data-breadcrumb-seperator="-">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active" data-breadcrumb-seperator="-">Seperators using data attributes</li>
+						</ol>
+						<ol class="breadcrumb breadcrumb-seperator-1">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-primary">Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-primary">Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-primary">Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb breadcrumb-seperator-3 mb-0">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-info">Home</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-info">Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-info">Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--With dropdown-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-4" #panel4>
+			<h2 panelTitle>
+					With <span class="fw-300"><i>Dropdown</i></span> 
+				</h2>
+			<div panelContent>									
+					<ol class="breadcrumb m-0">
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home
+							<i class="fal fa-angle-down"></i>
+							</a>
+							<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 114px; left: 40px;">
+								<a class="dropdown-item" href="#" smartStubClick>Action</a>
+								<a class="dropdown-item" href="#" smartStubClick>Another action</a>
+								<a class="dropdown-item" href="#" smartStubClick>Something else here</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" smartStubClick>Separated link</a>
+							</div>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Library
+							<i class="fal fa-angle-down"></i>
+							</a>
+							<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 114px; left: 110px;">
+								<a class="dropdown-item" href="#" smartStubClick>Action</a>
+								<a class="dropdown-item" href="#" smartStubClick>Another action</a>
+								<a class="dropdown-item" href="#" smartStubClick>Something else here</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" smartStubClick>Separated link</a>
+							</div>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick>Web</a>
+						</li>
+						<li class="breadcrumb-item active">Data</li>
+					</ol>
+				</div>
+		</smart-panel>		
+		<!--With Icons-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-5" #panel5>
+			<h2 panelTitle>
+					With <span class="fw-300"><i>Icons</i></span> 
+				</h2>
+			<div panelContent>									
+					<ol class="breadcrumb m-0">
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick>
+							<i class="fal fa-home mr-1 fs-md"></i>
+							Home
+							</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick>
+							<i class="fal fa-book mr-1 fs-md"></i>
+							Library
+							</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" smartStubClick>
+							<i class="fal fa-toggle-on mr-1 fs-md"></i>
+							Web
+							</a>
+						</li>
+						<li class="breadcrumb-item active">
+							<i class="fal fa-database mr-1 fs-md"></i>
+							Data
+						</li>
+					</ol>
+				</div>
+		</smart-panel>		
+	</div>
+	
+	<div class="col-xl-6">
+		<!--Backgrounds-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-6" #panel6>
+			<h2 panelTitle>
+					Backgrounds <span class="fw-300"><i>Outlines</i></span> 
+				</h2>
+			<div panelContent>							
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb bg-fusion-300">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-white">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-primary-300">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick class="text-white">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-white">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-info-400">
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">Library</a>
+							</li>
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-white">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-danger-300">
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">Library</a>
+							</li>
+							<li class="breadcrumb-item text-white">
+								<a href="#" smartStubClick class="text-white">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-white">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent border border-primary">
+							<li class="breadcrumb-item text-primary">
+								<a href="#" smartStubClick>
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-primary">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item text-primary">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active text-primary">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent border border-success">
+							<li class="breadcrumb-item text-success">
+								<a href="#" smartStubClick class="text-success">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-success">
+								<a href="#" smartStubClick class="text-success">Library</a>
+							</li>
+							<li class="breadcrumb-item text-success">
+								<a href="#" smartStubClick class="text-success">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-success">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent border border-info">
+							<li class="breadcrumb-item text-info">
+								<a href="#" smartStubClick class="text-info">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-info">
+								<a href="#" smartStubClick class="text-info">Library</a>
+							</li>
+							<li class="breadcrumb-item text-info">
+								<a href="#" smartStubClick class="text-info">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-info">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent border border-danger mb-0">
+							<li class="breadcrumb-item text-danger">
+								<a href="#" smartStubClick class="text-danger">
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item text-danger">
+								<a href="#" smartStubClick class="text-danger">Library</a>
+							</li>
+							<li class="breadcrumb-item text-danger">
+								<a href="#" smartStubClick class="text-danger">Web</a>
+							</li>
+							<li class="breadcrumb-item active text-danger">Data</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--Clean-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-7" #panel7>
+			<h2 panelTitle>
+					Clean <span class="fw-300"><i>Style</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb bg-transparent breadcrumb-sm pl-0 pr-0">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent pl-0 pr-0">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+						<ol class="breadcrumb bg-transparent breadcrumb-lg pl-0 pr-0 m-0">
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>
+								<i class="fal fa-home mr-1"></i> Home
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Library</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#" smartStubClick>Web</a>
+							</li>
+							<li class="breadcrumb-item active">Data</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>		
+		<!--Other styles-->
+		<smart-panel [collapsible]="true" [fullscreenable]="true" [clossable]="true" id="panel-8" #panel8>
+			<h2 panelTitle>
+					Other <span class="fw-300"><i>Styles</i></span> 
+				</h2>
+			<div panelContent>									
+					<div class="demo-v-spacing">
+						<ol class="breadcrumb breadcrumb-sm breadcrumb-arrow">
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-home"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-chart-pie"></i>
+								<span class="hidden-md-down">Projects</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-angle-right"></i>
+								<span class="hidden-md-down">Library</span>
+								</a>
+							</li>
+							<li class="active">
+								<a href="#" smartStubClick>
+								<i class="fal fa-arrow-down"></i>
+								<span class="hidden-md-down">Data</span>
+								</a>
+							</li>
+						</ol>
+						<ol class="breadcrumb breadcrumb-arrow">
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-home"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-chart-pie"></i>
+								<span class="hidden-lg-down">Projects</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-angle-right"></i>
+								<span class="hidden-lg-down">Library</span>
+								</a>
+							</li>
+							<li class="active">
+								<a href="#" smartStubClick>
+								<i class="fal fa-arrow-down"></i>
+								<span class="hidden-lg-down">Data</span>
+								</a>
+							</li>
+						</ol>
+						<ol class="breadcrumb breadcrumb-lg breadcrumb-arrow mb-0">
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-home"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-chart-pie"></i>
+								<span class="hidden-lg-down">Projects</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" smartStubClick>
+								<i class="fal fa-angle-right"></i>
+								<span class="hidden-lg-down">Library</span>
+								</a>
+							</li>
+							<li class="active">
+								<a href="#" smartStubClick>
+								<i class="fal fa-arrow-down"></i>
+								<span class="hidden-lg-down">Data</span>
+								</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+		</smart-panel>		
+	</div>
+
+</div>

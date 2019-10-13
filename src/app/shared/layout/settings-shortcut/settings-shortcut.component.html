@@ -1,0 +1,36 @@
+<!-- DOC: nav menu layout change shortcut -->
+<div class="hidden-md-down dropdown-icon-menu position-relative">
+  <a
+    href="#"
+    class="header-btn btn js-waves-off"
+    (click)="toggleHideNavigation($event)"
+    title="Hide Navigation"
+    data-class="nav-function-hidden"
+  >
+    <i class="ni ni-menu"></i>
+  </a>
+  <ul>
+    <li>
+      <a
+        href="#"
+        class="btn js-waves-off"
+        (click)="toggleMinifyNavigation($event)"
+        title="Minify Navigation"
+        data-class="nav-function-minify"
+      >
+        <i class="ni ni-minify-nav"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        class="btn js-waves-off"
+        (click)="toggleFixedNavigation($event)"
+        title="Lock Navigation"
+        data-class="nav-function-fixed"
+      >
+        <i class="ni ni-lock-nav"></i>
+      </a>
+    </li>
+  </ul>
+</div>

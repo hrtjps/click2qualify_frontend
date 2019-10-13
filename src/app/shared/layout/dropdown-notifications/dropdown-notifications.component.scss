@@ -1,0 +1,11 @@
+@import "../../../../scss/_modules/variables";
+
+.notification-list {
+  width: $header-applist-rows-width !important;
+  height: $header-applist-rows-height !important;
+}
+
+
+.cal-notification {
+  height: $header-applist-calendar-height;
+}

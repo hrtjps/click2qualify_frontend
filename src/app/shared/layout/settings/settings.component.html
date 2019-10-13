@@ -1,0 +1,266 @@
+<div class="settings-panel" *ngIf="vm$ | async as vm">
+  <div class="mt-4 d-table w-100 px-5">
+    <div class="d-table-cell align-middle">
+      <h5 class="p-0">
+        App Layout
+      </h5>
+    </div>
+  </div>
+
+  <div class="list" id="fh">
+    <smart-on-off
+      [checked]="vm.fixedHeader"
+      (checkedChange)="toggleFixedHedaer($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Fixed Header</span>
+    <span class="onoffswitch-title-desc"
+      >header is in a fixed at all times</span
+    >
+  </div>
+
+  <div class="list" id="nff">
+    <smart-on-off
+      [checked]="vm.fixedNavigation"
+      (checkedChange)="toggleFixedNavigation($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Fixed Navigation</span>
+    <span class="onoffswitch-title-desc">left panel is fixed</span>
+  </div>
+
+  <div class="list" id="nfm">
+    <smart-on-off
+      [checked]="vm.minifyNavigation"
+      (checkedChange)="toggleMinifyNavigation($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Minify Navigation</span>
+    <span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+  </div>
+
+  <div class="list" id="nfh">
+    <smart-on-off
+      [checked]="vm.hideNavigation"
+      (checkedChange)="toggleHideNavigation($event)"
+    ></smart-on-off>
+
+    <span class="onoffswitch-title">Hide Navigation</span>
+    <span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+  </div>
+
+  <div class="list" id="nft">
+    <smart-on-off
+      [checked]="vm.topNavigation"
+      (checkedChange)="toggleTopNavigation($event)"
+    ></smart-on-off>
+
+    <span class="onoffswitch-title">Top Navigation</span>
+    <span class="onoffswitch-title-desc">Relocate left pane to top</span>
+  </div>
+
+  <div class="list" id="mmb">
+    <smart-on-off
+      [checked]="vm.boxedLayout"
+      (checkedChange)="toggleBoxedLayout($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Boxed Layout</span>
+    <span class="onoffswitch-title-desc">Encapsulates to a container</span>
+  </div>
+
+  <!-- <div class="expanded">
+		<ul class="">
+			<li><div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div></li>
+			<li><div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div></li>
+			<li><div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div></li>
+			<li><div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div></li>
+		</ul>
+		<div class="list" id="mbgf">
+			<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-fixed-bg"></a>
+			<span class="onoffswitch-title">Fixed Background</span>
+		</div>
+	</div> -->
+
+  <div class="mt-4 d-table w-100 px-5">
+    <div class="d-table-cell align-middle">
+      <h5 class="p-0">
+        Mobile Menu
+      </h5>
+    </div>
+  </div>
+
+  <div class="list" id="nmp">
+    <smart-on-off
+      [checked]="vm.pushContent"
+      (checkedChange)="togglePushContent($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Push Content</span>
+    <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+  </div>
+
+  <div class="list" id="nmno">
+    <smart-on-off
+      [checked]="vm.noOverlay"
+      (checkedChange)="toggleNoOverlay($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">No Overlay</span>
+    <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+  </div>
+
+  <div class="list" id="sldo">
+    <smart-on-off
+      [checked]="vm.offCanvas"
+      (checkedChange)="toggleOffCanvas($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+    <span class="onoffswitch-title-desc">Content overlaps menu</span>
+  </div>
+
+  <div class="mt-4 d-table w-100 px-5">
+    <div class="d-table-cell align-middle">
+      <h5 class="p-0">
+        Accessibility
+      </h5>
+    </div>
+  </div>
+
+  <div class="list" id="mbf">
+    <smart-on-off
+      [checked]="vm.biggerContentFont"
+      (checkedChange)="toggleBiggerContentFont($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Bigger Content Font</span>
+    <span class="onoffswitch-title-desc"
+      >content fonts are bigger for readability</span
+    >
+  </div>
+  <div class="list" id="mhc">
+    <smart-on-off
+      [checked]="vm.highContrastText"
+      (checkedChange)="toggleHighContrastText($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+    <span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+  </div>
+  <div class="list" id="mcb">
+    <smart-on-off
+      [checked]="vm.daltonism"
+      (checkedChange)="toggleDaltonism($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+    <span class="onoffswitch-title-desc">color vision deficiency</span>
+  </div>
+  <div class="list" id="mpc">
+    <smart-on-off
+      [checked]="vm.preloaderInside"
+      (checkedChange)="togglePreloaderInsise($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Preloader Inside</span>
+    <span class="onoffswitch-title-desc">preloader will be inside content</span>
+  </div>
+
+  <div class="mt-4 d-table w-100 px-5">
+    <div class="d-table-cell align-middle">
+      <h5 class="p-0">
+        Global Modifications
+      </h5>
+    </div>
+  </div>
+  <div class="list" id="mcbg">
+    <smart-on-off
+      [checked]="vm.cleanPageBackground"
+      (checkedChange)="toggleCleanPageBackground($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Clean Page Background</span>
+    <span class="onoffswitch-title-desc">adds more whitespace</span>
+  </div>
+  <div class="list" id="mhni">
+    <smart-on-off
+      [checked]="vm.hideNavigationIcons"
+      (checkedChange)="toggleHideNavigationIcons($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Hide Navigation Icons</span>
+    <span class="onoffswitch-title-desc">invisible navigation icons</span>
+  </div>
+  <div class="list" id="dan">
+    <smart-on-off
+      [checked]="vm.disableCSSAnimation"
+      (checkedChange)="toggleDisableCSSAnimation($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Disable CSS Animation</span>
+    <span class="onoffswitch-title-desc">Disables CSS based animations</span>
+  </div>
+  <div class="list" id="mhic">
+    <smart-on-off
+      [checked]="vm.hideInfoCard"
+      (checkedChange)="toggleHideInfoCard($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Hide Info Card</span>
+    <span class="onoffswitch-title-desc">Hides info card from left panel</span>
+  </div>
+  <div class="list" id="mlph">
+    <smart-on-off
+      [checked]="vm.leanSubheader"
+      (checkedChange)="toggleLeanSubheader($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Lean Subheader</span>
+    <span class="onoffswitch-title-desc">distinguished page header</span>
+  </div>
+  <div class="list" id="mnl">
+    <smart-on-off
+      [checked]="vm.hierarchicalNavigation"
+      (checkedChange)="toggleHierarchicalNavigation($event)"
+    ></smart-on-off>
+    <span class="onoffswitch-title">Hierarchical Navigation</span>
+    <span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+  </div>
+
+  <div class="list mt-3">
+    <span class="onoffswitch-title"
+      >Global Font Size <small>(RESETS ON REFRESH)</small>
+    </span>
+    <div
+      class="btn-group btn-group-sm btn-group-toggle my-2"
+      data-toggle="buttons"
+    >
+      <label
+        [class.active]="vm.globalFontSize === 'sm'" 
+        class="btn btn-default btn-sm"
+        (click)="setGlobalFontSize('sm')"
+      >
+        <input type="radio" name="changeFrontSize" /> SM
+      </label>
+      <label
+        [class.active]="vm.globalFontSize === 'md'" 
+        class="btn btn-default btn-sm"
+        (click)="setGlobalFontSize('md')"
+      >
+        <input type="radio" name="changeFrontSize" /> MD
+      </label>
+      <label
+        [class.active]="vm.globalFontSize === 'lg'" 
+        class="btn btn-default btn-sm"
+        (click)="setGlobalFontSize('lg')"
+      >
+        <input type="radio" name="changeFrontSize" /> LG
+      </label>
+      <label
+        [class.active]="vm.globalFontSize === 'xl'" 
+        class="btn btn-default btn-sm"
+        (click)="setGlobalFontSize('xl')"
+      >
+        <input type="radio" name="changeFrontSize" /> XL
+      </label>
+    </div>
+
+
+    <span class="onoffswitch-title-desc d-block mb-g"
+      >Change <strong>root</strong> font size to effect rem values</span
+    >
+  </div>
+
+  <hr class="m-0">
+	<div class="p-3 d-flex align-items-center justify-content-center bg-faded">
+		
+		<button class="btn btn-outline-danger fw-500 mr-2" (click)="appReset($event)">Reset Settings</button>
+		<button class="btn btn-danger fw-500" (click)="factoryReset($event)">Factory Reset</button>
+	</div>
+</div>
+<span id="saving"></span>

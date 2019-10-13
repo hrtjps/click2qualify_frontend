@@ -1,0 +1,8 @@
+<ul id="js-nav-menu" class="nav-menu" *ngIf="vm$ | async as vm">
+  <li
+    smart-nav-item
+    *ngFor="let item of vm.items; trackBy: trackByFn"
+    [item]="item"
+    [minified]="vm.minified"
+  ></li>
+</ul>

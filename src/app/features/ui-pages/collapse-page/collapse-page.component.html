@@ -1,0 +1,321 @@
+<div class="alert alert-primary alert-dismissible" #alert1>
+  <button type="button" class="close" aria-label="Close" (click)="alert1.close()">
+    <span aria-hidden="true">
+      <i class="fal fa-times"></i>
+    </span>
+  </button>
+  <div class="d-flex flex-start w-100">
+    <div class="mr-2">
+      <span class="icon-stack icon-stack-lg">
+        <i class="base base-6 icon-stack-3x opacity-100 color-primary-500"></i>
+        <i
+          class="base base-10 icon-stack-2x opacity-100 color-primary-300 fa-flip-vertical"
+        ></i>
+        <i class="fal fa-info icon-stack-1x opacity-100 color-white"></i>
+      </span>
+    </div>
+    <div class="d-flex flex-fill">
+      <div class="flex-fill">
+        <span class="h5">How it works</span>
+        <br />
+        The collapse JavaScript plugin is used to show and hide content. Buttons
+        or anchors are used as triggers that are mapped to specific elements you
+        toggle. Collapsing an element will animate the height from its current
+        value to 0. Given how CSS handles animations, you cannot use padding on
+        a .collapse element. Instead, use the class as an independent wrapping
+        element. Find more facts and uses at the bootstrap
+        <a
+          href="https://getbootstrap.com/docs/4.3/components/collapse/"
+          target="_blank"
+          >official documentation</a
+        >.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-6">
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-1"
+      #panel1
+    >
+      <h2 panelTitle>
+        Basic <span class="fw-300"><i>example</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          The most basic example of cards with enforced width
+        </div>
+        Click the buttons below to show and hide another element via class
+        changes:
+        <ul class="list-spaced mt-3">
+          <li><code>[collapse]="true"</code> hides content</li>
+          <li><code>[collapse]="false"</code> shows content</li>
+        </ul>
+        You can use button wich controls collapsing state<br>
+        <code>&lt;button (click)="isCollapsed = !isCollapsed"&gt;Button&lt;/button&gt;</code>
+        <div class="frame-wrap mt-3 mb-0 w-100">
+          <p class="demo">
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="isCollapsed1 = !isCollapsed1"
+            >
+              Button (click to toggle)
+            </button>
+          </p>
+          <div [collapse]="!isCollapsed1" [isAnimated]="true">
+            <div class="card card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+            </div>
+          </div>
+        </div>
+      </div>
+    </smart-panel>
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-2"
+      #panel2
+    >
+      <h2 panelTitle>
+        Multiple <span class="fw-300"><i>Targets</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          A <code><button></button></code> or <code><a></a></code> can show and
+          hide multiple elements by referencing them with a JQuery selector in
+          its <code>href</code> or <code>data-target</code> attribute. Multiple
+          <code><button></button></code> or <code><a></a></code> can show and
+          hide an element if they each reference it with their
+          <code>href</code> or <code>data-target</code> attribute
+        </div>
+        <div class="frame-wrap mb-0 w-100">
+          <p class="demo">
+            <button
+              class="btn btn-primary"
+              (click)="isCollapsed2 = !isCollapsed2"
+              >Toggle first element</button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="isCollapsed3 = !isCollapsed3"
+            >
+              Toggle second element
+            </button>
+            <button
+              class="btn btn-primary"
+              (click)="isCollapsed2 = !isCollapsed2; isCollapsed3 = !isCollapsed3"
+            >
+              Toggle both elements
+            </button>
+          </p>
+          <div class="row">
+            <div class="col">
+              <div [collapse]="!isCollapsed2" [isAnimated]="true" class="multi-collapse">
+                <div class="card card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. Nihil anim keffiyeh
+                  helvetica, craft beer labore wes anderson cred nesciunt
+                  sapiente ea proident.
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div [collapse]="!isCollapsed3" [isAnimated]="true" class="multi-collapse">
+                <div class="card card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. Nihil anim keffiyeh
+                  helvetica, craft beer labore wes anderson cred nesciunt
+                  sapiente ea proident.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </smart-panel>
+  </div>
+  <div class="col-xl-6">
+    <smart-panel
+      [collapsible]="true"
+      [fullscreenable]="true"
+      [clossable]="true"
+      id="panel-3"
+      #panel3
+    >
+      <h2 panelTitle>
+        Accordion <span class="fw-300"><i>example</i></span>
+      </h2>
+      <div panelContent>
+        <div class="panel-tag">
+          Add some navigation to a card’s header (or block) with built-in nav
+          components. You can reveal or hide elements during
+          <code>.collapse</code> state using the classes
+          <code>.collapsed-reveal</code> and <code>.collapsed-hidden</code>
+          <br /><br />
+          <strong
+            >Make sure the <code>.collapsed-*</code> classes are inside the
+            <code>data-toggle="collapse"</code> element or adjacent to
+            it</strong
+          >
+        </div>
+        <div class="frame-wrap w-100">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <a
+                  
+                  (click)="accordionExample = 1"
+                  [class.collapsed]="accordionExample !== 1"
+                  [attr.aria-expanded]="accordionExample === 1"
+                  class="card-title"
+                >
+                  Collapsible Group Item #1
+                  <span class="ml-auto">
+                    <span class="collapsed-reveal">
+                      <i class="fal fa-minus-circle text-danger"></i>
+                    </span>
+                    <span class="collapsed-hidden">
+                      <i class="fal fa-plus-circle text-success"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div [collapse]="accordionExample !== 1" [isAnimated]="true">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                  aliqua put a bird on it squid single-origin coffee nulla
+                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                  beer labore wes anderson cred nesciunt sapiente ea proident.
+                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                  beer farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore sustainable
+                  VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <a
+                  
+                  (click)="accordionExample = 2"
+                  [class.collapsed]="accordionExample !== 2"
+                  [attr.aria-expanded]="accordionExample === 2"
+                  class="card-title"
+                >
+                  Collapsible Group Item #2
+                  <span class="ml-auto">
+                    <span class="collapsed-reveal">
+                      <i class="fal fa-minus-circle text-danger"></i>
+                    </span>
+                    <span class="collapsed-hidden">
+                      <i class="fal fa-plus-circle text-success"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div [collapse]="accordionExample !== 2" [isAnimated]="true">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                  aliqua put a bird on it squid single-origin coffee nulla
+                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                  beer labore wes anderson cred nesciunt sapiente ea proident.
+                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                  beer farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore sustainable
+                  VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <a
+                  
+                  (click)="accordionExample = 3"
+                  [class.collapsed]="accordionExample !== 3"
+                  [attr.aria-expanded]="accordionExample === 3"
+                  class="card-title"
+                >
+                  Collapsible Group Item #3
+                  <span class="ml-auto">
+                    <span class="collapsed-reveal">
+                      <i class="fal fa-minus-circle text-danger"></i>
+                    </span>
+                    <span class="collapsed-hidden">
+                      <i class="fal fa-plus-circle text-success"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div [collapse]="accordionExample !== 3" [isAnimated]="true">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                  aliqua put a bird on it squid single-origin coffee nulla
+                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                  beer labore wes anderson cred nesciunt sapiente ea proident.
+                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                  beer farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore sustainable
+                  VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingFour">
+                <a
+                  
+                  (click)="accordionExample = 4"
+                  [class.collapsed]="accordionExample !== 4"
+                  [attr.aria-expanded]="accordionExample === 4"
+                  class="card-title"
+                >
+                  Collapsible Group Item #4
+                  <span class="ml-auto">
+                    <span class="collapsed-reveal">
+                      <i class="fal fa-minus-circle text-danger"></i>
+                    </span>
+                    <span class="collapsed-hidden">
+                      <i class="fal fa-plus-circle text-success"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div [collapse]="accordionExample !== 4" [isAnimated]="true">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                  aliqua put a bird on it squid single-origin coffee nulla
+                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                  beer labore wes anderson cred nesciunt sapiente ea proident.
+                  Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                  beer farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore sustainable
+                  VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </smart-panel>
+  </div>
+</div>

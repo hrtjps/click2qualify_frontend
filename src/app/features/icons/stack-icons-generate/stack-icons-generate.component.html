@@ -1,0 +1,246 @@
+<div class="subheader">
+  <h1 class="subheader-title">
+    Stack Icons: <span class="fw-300">Generate Stack</span>
+    <sup class="badge badge-success fw-500">ADDON</sup>
+    <small>
+      Generate your unique stack Icon
+    </small>
+  </h1>
+</div>
+
+<div class="container">
+  <smart-panel id="unique-icon" [fullscreenIn]="false">
+    <h2 panelTitle>
+      Unique <span class="fw-300"><i>Icon</i></span>
+    </h2>
+    <div panelToolbar class="panel-toolbar mr-2">
+      <select
+        [ngModel]="layers"e
+        (ngModelChange)="onLayerChange($event)"
+        id="js-select-layers"
+        class="custom-select form-control custom-select-sm"
+        style="width:8rem"
+      >
+        <option
+          *ngFor="let option of layersOptions"
+          [ngValue]="option.value"
+          >{{ option.title }}</option
+        >
+      </select>
+    </div>
+    <div panelContent>
+      <div class="row">
+        <div class="col-12 col-xl-auto">
+          <div
+            class="d-flex align-items-center justify-content-center position-relative w-100 mb-g mb-xl-0"
+            style="font-size: 250px; min-width: 301px; height: 351px; background: url(assets/img/backgrounds/bg-5.png) #fff; border-left:0; border-top:0; "
+          >
+            <h6
+              class="fw-300 position-absolute pos-top pos-left m-2 bg-fusion-100 p-2 rounded fs-sm opacity-70"
+            >
+              Preview
+            </h6>
+            <div id="icon-construct" class="icon-stack m-0 p-0">
+              <i
+                *ngFor="let item of currentIcon.items.slice().reverse()"
+                [class]="item | stackIconClasses"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 col-12 col-xl-auto">
+          <div
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            class="mb-2 p-0"
+            id="construct-wrap"
+          >
+            <div
+              *ngFor="let item of currentIcon.items; let idx = index"
+              [id]="idx"
+              class="pl-4 pr-0 bg-subtlelight-fade mb-3 rounded border-faded shadow-1"
+              cdkDrag
+            >
+              <div class="d-flex flex-row position-relative">
+                <div
+                  class="badge badge-icon"
+                  style="left: -33px; top: -5px; background: #fff; color: #333; border-color: #c9d9e0;"
+                >
+                  {{ idx }}
+                </div>
+                <div class="flex-1 row no-gutters pb-2 pt-2">
+                  <div class="col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group mr-2 mb-md-2">
+                      <label>Icon prefix</label>
+                      <select
+                        [(ngModel)]="item.prefix"
+                        class="custom-select w-100"
+                        ><option
+                          *ngFor="let prefix of prefixes"
+                          [value]="prefix"
+                          >{{ prefix }}</option
+                        ></select
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="form-group mr-2 mb-md-2">
+                      <label>Choose Icon</label>
+                      <select
+                        [(ngModel)]="item.icon"
+                        class="custom-select w-100"
+                      >
+                        <ng-container *ngIf="item.prefix === 'fab'">
+                          <option
+                            *ngFor="let icon of icons.fab"
+                            [value]="icon.value"
+                            >{{ icon.title }}</option
+                          >
+                        </ng-container>
+                        <ng-container
+                          *ngIf="['fal', 'fas', 'far'].includes(item.prefix)"
+                        >
+                          <option
+                            *ngFor="let icon of icons.fa"
+                            [value]="icon.value"
+                            >{{ icon.title }}</option
+                          >
+                        </ng-container>
+                        <ng-container *ngIf="item.prefix === 'base'">
+                          <option
+                            *ngFor="let icon of icons.base"
+                            [value]="icon.value"
+                            >{{ icon.title }}</option
+                          >
+                        </ng-container>
+                        <ng-container *ngIf="item.prefix === 'ni'">
+                          <option
+                            *ngFor="let icon of icons.ni"
+                            [value]="icon.value"
+                            >{{ icon.title }}</option
+                          >
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="form-group mr-2 mb-md-2">
+                      <label>Select Color</label>
+                      <select
+                        [(ngModel)]="item.color"
+                        class="custom-select w-100 bg-{{ item.color }}"
+                        ><option
+                          *ngFor="let color of nextGenColors"
+                          [value]="color"
+                          class="bg-{{ color }}"
+                          >{{ color }}</option
+                        ></select
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-2">
+                    <div class="form-group mr-2 mb-md-2">
+                      <label>Stack Size</label>
+                      <select
+                        [(ngModel)]="item.size"
+                        class="custom-select w-100"
+                        ><option *ngFor="let size of iconSizes" [ngValue]="size"
+                          >size-{{ size }}x</option
+                        ></select
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-2">
+                    <div class="form-group mb-md-2">
+                      <label>Opacity</label>
+                      <input
+                        [(ngModel)]="item.opacity"
+                        type="range"
+                        min="5"
+                        max="100"
+                        step="5"
+                        class="w-100"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 position-relative">
+                    <a
+                      class="fs-nano cur-p"
+                      (click)="item.collapsed = !item.collapsed"
+                      [attr.aria-expanded]="!item.collapsed"
+                    >
+                      More Options
+                    </a>
+                  </div>
+                  <div
+                    class="collapse col-12"
+                    id="advance-{{ idx }}"
+                    [isAnimated]="true"
+                    [collapse]="item.collapsed"
+                  >
+                    <div class="row no-gutters">
+                      <div class="col-sm-3">
+                        <div class="form-group mr-2 mb-0">
+                          <select
+                            [(ngModel)]="item.animated"
+                            class="custom-select w-100"
+                          >
+                            <option [ngValue]="false">Un-animated</option>
+                            <option [ngValue]="true">Animated</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group mr-2 mb-0">
+                          <select
+                            [(ngModel)]="item.rotation"
+                            class="custom-select w-100"
+                          >
+                            <option
+                              *ngFor="let rotation of rotations"
+                              [value]="rotation.value"
+                              >{{ rotation.title }}</option
+                            >
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="width-5 js-move-trigger ml-2 ui-sortable-handle"
+                  cdkDragHandle
+                >
+                  <span
+                    class="h-100 w-100 d-flex align-items-center justify-content-center text-dark cursor-move bg-faded"
+                  >
+                    <i class="fal fa-ellipsis-v fs-lg btn-m-s mb-2"></i>
+                    <i class="fal fa-ellipsis-v fs-lg btn-m-s mb-2"></i>
+                    <i class="fal fa-ellipsis-v fs-lg btn-m-s mb-2"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 text-right">
+              <button class="btn btn-success" (click)="onCopyIcon()">
+                Copy Icon
+              </button>
+            </div>
+          </div>
+        </div>
+        <textarea
+          #generatedStackOutput
+          class="position-absolute"
+          style="height:0px; width:0px; opacity:0;"
+        ></textarea>
+      </div>
+    </div>
+  </smart-panel>
+</div>
+
+<!-- <div class="p-5">
+	{{currentIcon | json}}
+</div>  -->
