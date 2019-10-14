@@ -15,8 +15,12 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(public http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(CUR_USER)));
-    this.currentUser = this.currentUserSubject.asObservable();
+    let store = localStorage.getItem(CUR_USER);
+    console.log(store);
+    if(store){
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(store));
+      this.currentUser = this.currentUserSubject.asObservable();
+    }
   }
 
   public get currentUserValue(): User {
@@ -27,7 +31,7 @@ export class AuthService {
     return this.http.post<any>('auth/login', {email, password})
       .pipe(map(user => {
         if(user && user.token) {
-          localStorage.setItem(CUR_USER, JSON.stringify(user.result));
+          localStorage.setItem(CUR_USER, JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
         return user;
@@ -40,11 +44,8 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem(CUR_USER));
-    return (user !== null)? true: false;
+    const user = localStorage.getItem(CUR_USER);
+    return (user && JSON.parse(user))? true: false;
     // return (user !== null && user.emailVerified !== false)? true: false;
   }
-  
-
-
 }

@@ -31,12 +31,14 @@ export class AuthSignupComponent implements OnInit {
       return;
     }
     this.loading = true;
+    console.log(form.value);
     this.userService.register(form.value).subscribe(
       data => {
         this.toastr.success('User Registered successfully!', 'Success');
         this.router.navigate(['auth/login']);
       },
       error => {
+        console.log(error);
         this.toastr.error(error.error.message, 'Error');
         this.loading = false;
       }

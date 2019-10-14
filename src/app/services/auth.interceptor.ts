@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class InterceptorService implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     let reqUrl = environment.apiBaseUrl;
+    console.log(environment);
+    console.log(req);
     req = req.clone({
       headers: req.headers.set(
         "Authorization",

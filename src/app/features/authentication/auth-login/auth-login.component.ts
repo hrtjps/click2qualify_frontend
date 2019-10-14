@@ -45,12 +45,12 @@ export class AuthLoginComponent implements OnInit {
 
     this.loading = true;
 
-    this.authService.login(form.email, form.password)
+    this.authService.login(form.value.email, form.value.password)
       .subscribe(data => {
         this.router.navigate(['/']);
       },
       error => {
-        this.toastr.error(error.error.message, 'Error');
+        this.toastr.error(error.message, 'Error');
         this.loading = false;
       })
   }

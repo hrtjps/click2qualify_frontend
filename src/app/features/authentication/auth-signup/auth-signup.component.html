@@ -34,30 +34,36 @@
             <div class="col-xl-6 ml-auto mr-auto">
               <div class="card p-4 rounded-plus bg-faded">
                 <form #personalForm="ngForm">
-                  <div class="form-group">
-                    <label for="">First name</label>
-                    <div class="input-group mb-3">
-                      <input name="firstName" #firstName="ngModel" placeholder="Enter First Name"
-                        [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)}"
-                        [(ngModel)]="signupModel.FirstName" required type="text" class="form-control">
-                      <label
-                        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)"
-                        class="error jquery-validation-error small form-text invalid-feedback">
-                        First Name - is a required field
-                      </label>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">First name</label>
+                        <div class="input-group mb-3">
+                          <input name="firstName" #firstName="ngModel" placeholder="Enter First Name"
+                            [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="signupModel.FirstName" required type="text" class="form-control">
+                          <label
+                            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            First Name - is a required field
+                          </label>
+                        </div>
+                      </div>                      
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="">Last name</label>
-                    <div class="input-group mb-3">
-                      <input name="lastName" #lastName="ngModel" placeholder="Enter Last Name"
-                        [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)}"
-                        [(ngModel)]="signupModel.LastName" required type="text" class="form-control">
-                      <label
-                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)"
-                        class="error jquery-validation-error small form-text invalid-feedback">
-                        Last Name - is a required field
-                      </label>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">Last name</label>
+                        <div class="input-group mb-3">
+                          <input name="lastName" #lastName="ngModel" placeholder="Enter Last Name"
+                            [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)}"
+                            [(ngModel)]="signupModel.LastName" required type="text" class="form-control">
+                          <label
+                            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Last Name - is a required field
+                          </label>
+                        </div>
+                      </div>                      
                     </div>
                   </div>
                   <div class="form-group">
@@ -70,6 +76,41 @@
                         class="error jquery-validation-error small form-text invalid-feedback">
                         Email - is a required field
                       </label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">Password</label>
+                        <div class="input-group mb-3">
+                          <input type="password" #password="ngModel" required
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" placeholder="Enter Password"
+                            name="password" class="form-control" [ngClass]="{'is-invalid': !password.valid && (password.dirty || password.touched 
+                          || isSubmitted)}" [(ngModel)]="signupModel.password">
+                          <label
+                            *ngIf="password.invalid && (password.dirty || password.touched || isSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Valid Password - is a required field
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="">Confirm Password</label>
+                        <div class="input-group mb-3">
+                          <input type="password" #passwordConfirm="ngModel" required
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" placeholder="Enter Confirm Password"
+                            name="passwordConfirm" class="form-control" [ngClass]="{'is-invalid': !passwordConfirm.valid && (passwordConfirm.dirty || passwordConfirm.touched 
+                          || isSubmitted)}" [(ngModel)]="signupModel.passwordConfirm">
+                          <label
+                            *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched || isSubmitted)"
+                            class="error jquery-validation-error small form-text invalid-feedback">
+                            Valid Confirm Password - is a required field
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -89,8 +130,10 @@
                         aria-label="Text input with dropdown button">
                     </div>
                   </div>
-                  <button class="btn btn-primary shadow-2 mb-4 mt-2" 
-                    (click)="onPersonalFormSubmit(personalForm)">Continue</button>
+                  <div class="text-center">
+                    <button class="btn btn-primary shadow-2 mb-4 mt-2" 
+                      (click)="onSignUp(personalForm)">Sign up</button>
+                  </div>
                   <p class="mb-0 text-muted">
                     Already have an account? <a [routerLink]="['/auth/login']"> Log in</a>
                   </p>
