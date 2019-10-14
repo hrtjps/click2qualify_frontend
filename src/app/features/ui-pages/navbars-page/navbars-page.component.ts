@@ -7,7 +7,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NavbarsPageComponent {
   user = {
-    app: 'SmartAdmin',
+    app: 'Click2Qualify',
     name: 'Dr. Codex Lantern',
     email: 'drlantern@gotbootstrap.com',
     avatar: 'avatar-admin.png',

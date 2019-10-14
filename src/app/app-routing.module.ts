@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './shared/layout/main/main.component';
 import { LayoutModule } from './shared/layout/layout.module';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'project', pathMatch: 'full' },
       
-      { path: 'project', loadChildren: () => import('./features/project/project.module').then(m => m.ProjectModule) },
+      { path: 'project', loadChildren: () => import('./features/project/project.module').then(m => m.ProjectModule)},
       { path: 'cluster', loadChildren: () => import('./features/cluster/cluster.module').then(m => m.ClusterModule) },
       { path: 'gateway', loadChildren: () => import('./features/gateway/gateway.module').then(m => m.GatewayModule) },
       { path: 'deployment', loadChildren: () => import('./features/deployment/deployment.module').then(m => m.DeploymentModule) },

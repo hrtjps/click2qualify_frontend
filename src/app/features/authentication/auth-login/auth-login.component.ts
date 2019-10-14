@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-login',
@@ -8,10 +11,18 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AuthLoginComponent implements OnInit {
 
-  isProfileFormSubmitted = false;
-  isSecurityFormSubmitted = false;
+  isSubmitted = false;
+  loading = false;
+  returnUrl: string;
+
   loginModel: any = new Object();
-  constructor(private _cookieService: CookieService) { }
+  constructor(
+    private _cookieService: CookieService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
@@ -24,12 +35,23 @@ export class AuthLoginComponent implements OnInit {
 
   onProfileFormSubmit(form) {
     if (!form.valid) {
-      this.isProfileFormSubmitted = true;
+      this.isSubmitted = true;
       return;
     }
 
     if (this.loginModel.IsRemember) {
       this._cookieService.put("emailId", this.loginModel.Email);
     }
+
+    this.loading = true;
+
+    this.authService.login(form.email, form.password)
+      .subscribe(data => {
+        this.router.navigate(['/']);
+      },
+      error => {
+        this.toastr.error(error.error.message, 'Error');
+        this.loading = false;
+      })
   }
 }

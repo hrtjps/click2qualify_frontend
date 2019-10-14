@@ -24,7 +24,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     TabsModule,
     CollapseModule.forRoot(),
     TabsModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
   ],
   exports: [
     FormsModule,
@@ -39,7 +39,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
     TabsModule,
     PopoverModule,
-    CollapseModule
+    CollapseModule,
   ]
 })
 export class SharedModule {

@@ -1,7 +1,7 @@
 export const APP_CONFIG = {
 
-  app: 'SmartAdmin',
-  appName: 'SmartAdmin WebApp',
+  app: 'Click2Qualify',
+  appName: 'Click2Qualify',
   user: 'Dr. Codex Lantern',
   email: 'drlantern@gotbootstrap.com',
   twitter: 'codexlantern',
@@ -11,7 +11,7 @@ export const APP_CONFIG = {
   logo: 'logo.png',
   logoM: 'logo.png',
   // tslint:disable-next-line:max-line-length
-  copyright: '2019 © SmartAdmin by&nbsp;<a href="https://www.gotbootstrap.com" class="text-primary fw-500" title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>',
+  copyright: '2019 © Click2Qualify by&nbsp;<a href="https://www.gotbootstrap.com" class="text-primary fw-500" title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>',
   // tslint:disable-next-line:max-line-length
-  // copyrightInverse: '2019 © SmartAdmin by&nbsp;<a href="https://www.gotbootstrap.com" class="text-white opacity-40 fw-500" title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>'
+  // copyrightInverse: '2019 © Click2Qualify by&nbsp;<a href="https://www.gotbootstrap.com" class="text-white opacity-40 fw-500" title="gotbootstrap.com" target="_blank">gotbootstrap.com</a>'
 };

@@ -1,52 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import industriesList from '../../../resources/industries.js'
-import jobTitlesList from '../../../resources/jobTitles.js'
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service.js';
 import { allCountries } from 'country-telephone-data'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-auth-signup',
   templateUrl: './auth-signup.component.html',
   styleUrls: ['./auth-signup.component.scss']
 })
 export class AuthSignupComponent implements OnInit {
-  industries: any[] = industriesList
-  jobTitles: any[] = jobTitlesList
-  countryCodes: any[] = allCountries
-  showCountryCodeDropdown: boolean = false
-  selectedCountry: string = '44'
+  loading = false;
   signupModel: any = new Object();
-  isProfileFormSubmitted = false;
-  isIndustyFormSubmitted = false;
-  isSMSVerified = false;
-  isSMSSent = false;
-  constructor() { }
+  isSubmitted = false;
+  showCountry: boolean = false
+  countryCodes: any[] = allCountries
+  selectedCountry: string = '1'
+  
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
   }
 
-  toggleDropdown() {
-    this.showCountryCodeDropdown = !this.showCountryCodeDropdown
+  onSignUp(form){
+    this.isSubmitted = true;
+    if (!form.valid) {
+      return;
+    }
+    this.loading = true;
+    this.userService.register(form.value).subscribe(
+      data => {
+        this.toastr.success('User Registered successfully!', 'Success');
+        this.router.navigate(['auth/login']);
+      },
+      error => {
+        this.toastr.error(error.error.message, 'Error');
+        this.loading = false;
+      }
+    )
   }
 
+  toggleDropdown() {
+    this.showCountry = !this.showCountry
+  }
+  
   selectCountryCode(code) {
     this.selectedCountry = code
-    this.showCountryCodeDropdown = false
+    this.showCountry = false
   }
-
-  onPersonalFormSubmit(form){
-    if (!form.valid) {
-      this.isProfileFormSubmitted = true;
-      return;
-    }
-  }
-
-  onIndustryFormSubmit(form)
-  {
-    if (!form.valid) {
-      this.isIndustyFormSubmitted = true;
-      return;
-    }
-  }
-
   testTelNumber () {
     var myTelNo = this.signupModel.Mobile;
     // If invalid number, report back error

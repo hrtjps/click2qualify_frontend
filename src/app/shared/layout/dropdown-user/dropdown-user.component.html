@@ -48,7 +48,7 @@
       </div>
     </div> -->
     <div class="dropdown-divider m-0"></div>
-    <a class="dropdown-item fw-500 pt-3 pb-3" href="page_login-alt.html">
+    <a class="dropdown-item fw-500 pt-3 pb-3" (click)="logout()"  *ngIf="currentUser" >
       <span >Logout</span> 
       <span class="float-right fw-n">{{user.twitter}}</span>
     </a>
