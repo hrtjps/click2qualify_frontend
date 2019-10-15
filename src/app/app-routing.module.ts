@@ -11,8 +11,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: () => import('./features/admin/dashboard/dashboard.module').then(m => m.DashboardModule)  },
-      { path: 'users', loadChildren: () => import('./features/admin/users/users.module').then(m => m.UsersModule)  },
+      { path: 'dashboard', loadChildren: () => import('./features/admin/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'questions', loadChildren: () => import('./features/questions/questions.module').then(m => m.QuestionsModule) },
+      { path: 'users', loadChildren: () => import('./features/admin/users/users.module').then(m => m.UsersModule) },
     ],
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },

@@ -31,6 +31,20 @@ export const NavigationItems = [
     tags: 'question management',
     icon: 'fal fa-list',
     routerLink: '/admin/questions',
+    items: [
+      {
+        title: 'Question List',
+        tags: 'question list',
+        icon: "fal fa-list-alt",
+        routerLink: '/admin/questions'
+      },
+      {
+        title: 'Add Question',
+        tags: 'add Question',
+        icon: "fal fa-file-plus",
+        routerLink: '/admin/questions/add'
+      },
+    ]
   },
   {
     title: "Customer Form",

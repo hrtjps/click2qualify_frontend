@@ -1,0 +1,54 @@
+@import "../../../../scss/_modules/variables.scss";
+
+::ng-deep {
+  .datatable-header {
+    background-color: $color-primary;
+    font-weight: bold;
+    color: $white;
+  }
+
+  .empty-row {
+    text-align: center;
+  }
+
+  .btn-icon {
+    margin: 0px 4px;
+
+    &:hover {
+      color: $white !important;
+    }
+  }
+
+  .dropdown-menu-animated-right-listing {
+    left: 0px !important;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .progress-linear {
+    display: block;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+
+    .bar {
+      margin: auto;
+      border: 2px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 2px solid $color-primary;
+      width: 50px;
+      height: 50px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+
+    }
+  }
+}

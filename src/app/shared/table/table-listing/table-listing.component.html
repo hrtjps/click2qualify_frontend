@@ -1,0 +1,87 @@
+<smart-panel [fullscreenable]="true" id="panel-1">
+  <h2 panelTitle>
+    {{title}}
+  </h2>
+  <div panelContent>
+    <div class="row">
+      <div class="col-md-4">
+        <label class="d-flex">
+          <div class="input-group-text d-inline-flex width-3 align-items-center justify-content-center border-bottom-right-radius-0 border-top-right-radius-0 border-right-0">
+            <i class="fal fa-search"></i>
+          </div>
+          <input (input)="updateFilter($event)" class="form-control border-top-left-radius-0 border-bottom-left-radius-0 ml-0 width-lg shadow-inset-1" placeholder="Search" type="search">
+        </label>
+      </div>
+    </div>
+
+    <ngx-datatable
+            (page)="setPageFn($event)"
+            (sort)="onSortFn($event)"
+            [columnMode]="ColumnMode.force"
+            [columns]="columns"
+            [count]="page.totalElements"
+            [externalPaging]="externalPaging"
+            [externalSorting]="externalSorting"
+            [footerHeight]="50"
+            [limit]="limit"
+            [loadingIndicator]="loading"
+            [offset]="page.pageNumber"
+            [rows]="filteredData"
+            class="bootstrap"
+            rowHeight="auto"
+    >
+      <ngx-datatable-column *ngFor="let col of columns" [name]="col.name"></ngx-datatable-column>
+      <ngx-datatable-column
+              *ngIf="showDropDownOptions || showDeleteButtons"
+              [canAutoResize]="false"
+              [draggable]="false"
+              [resizeable]="false"
+              [sortable]="false"
+      >
+        <ng-template
+                let-row="row"
+                let-value="value"
+                ngx-datatable-cell-template
+        >
+          <div *ngIf="showDropDownOptions && dropDownMenu.length > 0 && !row.hideDropDownOptions" [insideClick]="true" class="btn-group" container="body"
+               dropdown
+               #dropdown="bs-dropdown"
+          >
+            <button
+                    aria-controls="dropdown-list"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="btn btn-outline-primary btn-icon rounded-circle waves-effect waves-themed"
+                    data-toggle="dropdown"
+                    dropdownToggle
+                    type="button"
+            >
+              <i class="fal fa-ellipsis-v"></i>
+            </button>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-animated-right dropdown-menu-animated-right-listing" id="dropdown-list" role="menu">
+              <a (click)="buttonClickedFn(item.name, row, dropdown)" *ngFor="let item of dropDownMenu" class="dropdown-item" smartStubClick>{{item.label}}</a>
+            </div>
+          </div>
+          <div *ngIf="!showDropDownOptions || dropDownMenu.length <= 0 || row.hideDropDownOptions" class="btn-group hidden">
+            <button
+                    class="btn btn-outline-primary btn-icon rounded-circle waves-effect waves-themed"
+                    type="button">
+              <i class="fal fa-ellipsis-v"></i>
+            </button>
+          </div>
+
+
+          <a (click)="buttonClickedFn('delete', row)" *ngIf="showDeleteButtons && !row.hideDeleteButton" class="btn btn-outline-danger btn-icon rounded-circle waves-effect waves-themed">
+            <i class="fal fa-times"></i>
+          </a>
+
+          <a *ngIf="!showDeleteButtons || row.hideDeleteButton" class="btn btn-outline-danger btn-icon rounded-circle waves-effect waves-themed hidden">
+            <i class="fal fa-times"></i>
+          </a>
+
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</smart-panel>

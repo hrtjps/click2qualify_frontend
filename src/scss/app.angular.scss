@@ -1,3 +1,6 @@
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 
 .page-content {
   accordion-group.panel {
@@ -129,4 +132,12 @@ carousel {
   100% {
     transform: translateX(0);
   }
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.dropdown-menu {
+  width: fit-content;
 }

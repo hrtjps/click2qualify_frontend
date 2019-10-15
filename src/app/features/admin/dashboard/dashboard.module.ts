@@ -16,7 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
       {
         path: '',
         component: DashboardComponent,
-        data: {breadcrumbs: ['Dashboard']}
+        data: {breadcrumbs: ['Admin', 'Dashboard']}
       },
     ]),    
   ],

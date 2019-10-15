@@ -1,0 +1,25 @@
+<div class="card p-4 rounded-plus bg-faded">
+    <form #dataForm="ngForm">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="">Question Title</label>
+            <div class="input-group mb-3">
+              <textarea name="title" #title="ngModel" placeholder="Enter question title." rows="5"
+                [ngClass]="{'is-invalid': !title.valid && (title.dirty || title.touched || isSubmitted)}"
+                [(ngModel)]="dataModel.title" required type="text" class="form-control"></textarea>
+              <label
+                *ngIf="title.invalid && (title.dirty || title.touched || isSubmitted)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Qestion Title - is a required field
+              </label>
+            </div>
+          </div>                      
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary shadow-2 mb-4 mt-2" 
+          (click)="onAddItem(dataForm)">Add Question</button>
+      </div>
+    </form>
+  </div>

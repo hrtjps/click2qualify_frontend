@@ -7,6 +7,8 @@ import { AlertModule, CollapseModule, PopoverModule, TabsModule, PaginationModul
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PanelsModule } from './panels/panels.module';
 import { FilterPipe } from './pipes/filter.pipe';
+import { AgGridModule } from 'ag-grid-angular';
+import { TableModule } from './table/table.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     TabsModule.forRoot(),
     PaginationModule,
     PopoverModule.forRoot(),
+    AgGridModule.withComponents([]),
+    TableModule
   ],
   exports: [
     CommonModule,
@@ -37,6 +41,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
     TabsModule,
     PopoverModule,
+    AgGridModule,
+    TableModule
   ]
 })
 export class SharedModule {
