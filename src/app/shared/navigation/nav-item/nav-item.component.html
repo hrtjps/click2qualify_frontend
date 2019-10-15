@@ -22,6 +22,7 @@
 </ng-container>
 <ng-container *ngIf="!item.items && item.routerLink">
   <a routerLink="{{ item.routerLink }}" title="{{ item.title }}">
+    <i *ngIf="item.icon" class="{{ item.icon }}"></i>
     <span class="nav-link-text">{{ item.title }}</span>
     <span *ngIf="item.badge" class="{{item.badge.class}}">{{item.badge.label}}</span>
   </a>
