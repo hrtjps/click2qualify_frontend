@@ -6,25 +6,16 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'project', pathMatch: 'full' },
-      
-      { path: 'project', loadChildren: () => import('./features/project/project.module').then(m => m.ProjectModule)},
-      { path: 'cluster', loadChildren: () => import('./features/cluster/cluster.module').then(m => m.ClusterModule) },
-      { path: 'gateway', loadChildren: () => import('./features/gateway/gateway.module').then(m => m.GatewayModule) },
-      { path: 'deployment', loadChildren: () => import('./features/deployment/deployment.module').then(m => m.DeploymentModule) },
-      { path: 'collection', loadChildren: () => import('./features/collection/collection.module').then(m => m.CollectionModule) },
-
-      { path: 'intel', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule) },
-      { path: 'settings', loadChildren: () => import('./features/settings/settings.module').then(m => m.SettingsModule) },
-      { path: 'info', loadChildren: () => import('./features/info/info.module').then(m => m.InfoModule) },
-      { path: 'ui', loadChildren: () => import('./features/ui-pages/ui-pages.module').then(m => m.UiPagesModule) },
-      { path: 'icons', loadChildren: () => import('./features/icons/icons.module').then(m => m.IconsModule) },
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: 'dashboard', loadChildren: () => import('./features/admin/dashboard/dashboard.module').then(m => m.DashboardModule)  },
+      { path: 'users', loadChildren: () => import('./features/admin/users/users.module').then(m => m.UsersModule)  },
     ],
   },
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
   {
     path: 'auth', loadChildren: () => import('./features/authentication/auth.module').then(m => m.AuthModule)
   },

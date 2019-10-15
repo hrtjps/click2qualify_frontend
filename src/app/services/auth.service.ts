@@ -16,7 +16,6 @@ export class AuthService {
 
   constructor(public http: HttpClient) { 
     let store = localStorage.getItem(CUR_USER);
-    console.log(store);
     if(store){
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(store));
       this.currentUser = this.currentUserSubject.asObservable();

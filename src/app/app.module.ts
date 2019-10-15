@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { CommonService } from './services/common.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,6 +23,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
   providers: [
     UserService,
     AuthService,
+    CommonService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
