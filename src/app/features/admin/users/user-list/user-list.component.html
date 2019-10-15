@@ -1,15 +1,4 @@
-
-  <!-- {{users.length}}
-  {{userList[0].firstName}} -->
-  <!-- <div *ngFor="let item of users | async">123</div> -->
-  userlist: {{userList.length}}
-  <div *ngFor="let item of userList">123</div>
-  <!-- <div>
-      <li ng-repeat="item in userlist">
-         {{item}}
-        </li>
-    </div> -->
-<!-- <div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+<div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4">
   <div class="row mb-3">
     <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-start">
       <div id="dt-basic-example_filter" class="dataTables_filter">
@@ -18,7 +7,7 @@
             <i class="fal fa-search"></i>
           </div>
           <input class="form-control border-top-left-radius-0 border-bottom-left-radius-0 ml-0 width-lg shadow-inset-1"
-            type="search" placeholder="Search" aria-controls="dt-basic-example">
+            type="search" placeholder="Search" aria-controls="dt-basic-example" [(ngModel)]="filterString">
         </label>
       </div>
     </div>
@@ -38,44 +27,47 @@
         </label>
       </div>
     </div>
-  </div> -->
-  <!-- <div class="row">
+  </div>
+  <div class="row">
     <div class="col-sm-12">
       <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline"
         role="grid" aria-describedby="dt-basic-example_info" style="width: 1480px;">
         <thead>
           <tr role="row">
             <th >No</th>
-            <th >Name</th>
+            <th >User</th>
             <th >Email</th>
+            <th >Role</th>
             <th ></th>
           </tr>
         </thead>
         <tbody >
-          <tr role="row" [ngClass]="{'even': i%2==0, 'odd': i%2==1}" *ngFor="let item of userList; let i = index">
-            <td><img [src]="item.avatar" [alt]="item.firstName">{{item.firstName}} {{item.lastName}}</td>
+          <tr role="row" [ngClass]="{'even': i%2==0, 'odd': i%2==1}" *ngFor="let item of userList | filter:filterString; let i = index">
+            <td>{{i+1}}</td>
+            <td><img [src]="item.avatar" [alt]="" class="profile-image rounded-circle mr-2 ">{{item.firstName}} {{item.lastName}}</td>
             <td>{{item.email}}</td>
+            <td>{{UserRole[item.role]}}</td>
             <td>
-              <button class="btn btn-outline-primary">View</button>
-              <button class="btn btn-outline-success">Edit</button>
+              <button class="btn btn-outline-primary mr-2">View</button>
+              <button class="btn btn-outline-success mr-2">Edit</button>
               <button class="btn btn-outline-danger">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div> -->
-  <!-- <div class="row" *ngIf="userList">
+  </div>
+  <div class="row" *ngIf="userList">
     <div class="col-sm-12 col-md-5">
       <div class="dataTables_info" id="dt-basic-example_info" role="status" aria-live="polite">
         Showing {{(currentPage-1)*countPerPage+1}} to {{currentPage*countPerPage}}
-        of {{totalItems}} entries
+        of {{userList.length}} entries
       </div>
     </div>
     <div class="col-sm-12 col-md-7">
       <div class="dataTables_paginate paging_simple_numbers" id="dt-basic-example_paginate">
-        <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+        <!-- <pagination [totalItems]="userList.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination> -->
       </div>
     </div>
-  </div> -->
-<!-- </div> -->
+  </div>
+</div>

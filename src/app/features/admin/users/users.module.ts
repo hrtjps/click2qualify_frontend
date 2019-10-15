@@ -13,7 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     RouterModule.forChild([
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: UserListComponent, data: {breadcrumbs: ['Users']}},
-      // { path: 'add', component: AddUserComponent, data: {breadcrumbs: ['Users', 'Add A New User']}},
+      { path: 'add', component: AddUserComponent, data: {breadcrumbs: ['Users', 'Add A New User']}},
     ])
   ]
 })

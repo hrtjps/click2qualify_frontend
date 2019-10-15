@@ -52,10 +52,7 @@
             <label for="">User Role</label>
             <div class="input-group mb-3">
               <select [(ngModel)]="userModel.role" class="form-control" name="role">
-                <option value="1">Super Admin</option>
-                <option value="2">Artist</option>
-                <option value="3">Customer</option>
-                <option value="4">Guest</option>
+                <option *ngFor="let item of UserRole; let i=index" [value]="i">{{item}}</option>
               </select>
             </div>
           </div>

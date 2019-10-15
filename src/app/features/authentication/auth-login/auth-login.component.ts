@@ -47,6 +47,7 @@ export class AuthLoginComponent implements OnInit {
 
     this.authService.login(form.value.email, form.value.password)
       .subscribe(data => {
+        this.toastr.success("Successfully logged in!", 'Congratulation!');
         this.router.navigate(['/']);
       },
       error => {

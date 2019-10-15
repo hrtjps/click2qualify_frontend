@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { CommonService } from 'src/app/services/common.service';
+import { USER_ROLE } from 'src/app/consts/consts';
 
 @Component({
   selector: 'app-add-user',
@@ -18,7 +19,7 @@ export class AddUserComponent implements OnInit {
   showCountry: boolean = false
   countryCodes: any[] = allCountries
   selectedCountry: string = '1'
-  
+  UserRole = USER_ROLE;
   constructor(
     private router: Router,
     private userService: UserService,
