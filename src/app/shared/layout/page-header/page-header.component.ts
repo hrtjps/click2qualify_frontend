@@ -11,8 +11,6 @@ import { APP_CONFIG } from 'src/app/app.config';
 export class PageHeaderComponent {
 
   avatar = APP_CONFIG.avatar;
-  email = APP_CONFIG.email;
-  user = APP_CONFIG.user;
 
   constructor(private store: Store<any>) { }
 
