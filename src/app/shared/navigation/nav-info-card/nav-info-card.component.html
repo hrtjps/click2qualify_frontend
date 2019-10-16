@@ -1,17 +1,17 @@
 <div class="info-card">
   <img
-    src="assets/img/demo/avatars/{{ avatar }}"
+    src="{{ user.avatar }}"
     class="profile-image rounded-circle"
-    alt="{{ user }}"
+    alt="{{ user.firstName }}"
   />
   <div class="info-card-text">
     <a href="#" class="d-flex align-items-center text-white">
       <span class="text-truncate text-truncate-sm d-inline-block">
-        {{ user }}
+        {{ user.firstName }}
       </span>
     </a>
     <span class="d-inline-block text-truncate text-truncate-sm"
-      >Toronto, Canada</span
+      >{{user.email}}</span
     >
   </div>
   <img

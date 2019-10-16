@@ -22,7 +22,7 @@ export class AuthService {
     }
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
