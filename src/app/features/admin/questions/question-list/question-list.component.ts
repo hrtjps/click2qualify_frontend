@@ -15,20 +15,8 @@ export class QuestionListComponent implements OnInit {
 
   tableList;
   countPerPage = 10;
-
-  columns = [
-    {name: 'Title'},
-  ];
-
-  dropDownMenu = [
-    {
-      name: 'edit',
-      label: 'Edit'
-    }
-  ];
-
-  pageInfo: Page= new Page();
-
+  currentPage = 1;
+  
   constructor(
     private questionService: QuestionsService,
     private cdr: ChangeDetectorRef
@@ -43,15 +31,10 @@ export class QuestionListComponent implements OnInit {
   getAllData() {
     this.questionService.getAllQuestions().subscribe(data => {
       this.tableList = data.data.questions;
-      this.pageInfo.pageNumber = 1;
-      this.pageInfo.totalElements = this.tableList.length;
       setTimeout(()=>{
         this.cdr.detectChanges();
       }, 100)
     })
   }
 
-  buttonClicked(data){
-    console.log(data)
-  }
 }

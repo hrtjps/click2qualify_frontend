@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     CustomerFormListComponent
   ],
-  imports: [
+imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([

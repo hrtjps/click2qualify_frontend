@@ -1,21 +1,21 @@
 export const NavigationItems = [
   {
-    title: 'Home',
-    tags: 'home',
+    title: 'Home - Tax List',
+    tags: 'home tax list',
     icon: 'fal fa-home',
-    routerLink: '/home'
+    routerLink: '/user-tax-list'
   },
   {
-    title: "User Answer Status",
-    tags: "user answer status",
-    icon: "fal fa-question-circle",
-    routerLink: "/user-answer",
-  },
-  {
-    title: "User Forms",
-    tags: "user forms",
+    title: "User Tax QA",
+    tags: "user tax qa",
     icon: "fal fa-info-circle",
-    routerLink: "/user-forms",
+    routerLink: "/user-tax-qa",
+  },
+  {
+    title: "User Tax Form",
+    tags: "user tax forms",
+    icon: "fal fa-info-circle",
+    routerLink: "/user-tax-form",
   },
   {
     title: "Administrator"

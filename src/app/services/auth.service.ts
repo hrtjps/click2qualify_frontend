@@ -47,4 +47,8 @@ export class AuthService {
     return (user && JSON.parse(user))? true: false;
     // return (user !== null && user.emailVerified !== false)? true: false;
   }
+  get userId() {
+    const user =JSON.parse(localStorage.getItem(CUR_USER));
+    return (user && user.id)?user.id:'';
+  }
 }

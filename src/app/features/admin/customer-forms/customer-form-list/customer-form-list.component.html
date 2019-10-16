@@ -1,0 +1,73 @@
+<div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+  <div class="row mb-3">
+    <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-start">
+      <div id="dt-basic-example_filter" class="dataTables_filter">
+        <label class="d-flex">
+          <div class="input-group-text d-inline-flex width-3 align-items-center justify-content-center border-bottom-right-radius-0 border-top-right-radius-0 border-right-0">
+            <i class="fal fa-search"></i>
+          </div>
+          <input class="form-control border-top-left-radius-0 border-bottom-left-radius-0 ml-0 width-lg shadow-inset-1"
+            type="search" placeholder="Search" aria-controls="dt-basic-example" [(ngModel)]="filterString">
+        </label>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-end">
+      <div class="dataTables_length" id="dt-basic-example_length">
+        <label class="d-flex align-items-center">Show 
+          <select name="dt-basic-example_length" [(ngModel)]="countPerPage"
+            aria-controls="dt-basic-example" class="form-control custom-select mx-2">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="-1">All</option>
+          </select>
+          entries
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline"
+        role="grid" aria-describedby="dt-basic-example_info" style="width: 1480px;">
+        <thead>
+          <tr role="row">
+            <th >No</th>
+            <th >Form Title</th>
+            <th >User Name</th>
+            <th >Status</th>
+            <th  width="255">Actions</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr role="row" [ngClass]="{'even': i%2==0, 'odd': i%2==1}" *ngFor="let item of tableList | filter:filterString; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.last_slug}}</td>
+            <td>{{item.user_id}}</td>
+            <td>{{item.status}}</td>
+            <td>
+              <button class="btn btn-outline-primary mr-2">View</button>
+              <button class="btn btn-outline-success mr-2">Edit</button>
+              <button class="btn btn-outline-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" *ngIf="tableList">
+    <div class="col-sm-12 col-md-5">
+      <div class="dataTables_info" id="dt-basic-example_info" role="status" aria-live="polite">
+        Showing {{(currentPage-1)*countPerPage+1}} to {{currentPage*countPerPage}}
+        of {{tableList.length}} entries
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+      <div class="dataTables_paginate paging_simple_numbers" id="dt-basic-example_paginate">
+        <!-- <pagination [totalItems]="tableList.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination> -->
+      </div>
+    </div>
+  </div>
+</div>
