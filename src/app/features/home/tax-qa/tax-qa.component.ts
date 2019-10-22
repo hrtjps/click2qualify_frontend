@@ -83,7 +83,6 @@ export class TaxQAComponent implements OnInit {
   route(formName, formValue) {
     let qid =this.questions.find(it => it.step === this.curStep).id;
     let taxId=1;
-    console.log(formValue);
     this.formsService.addQA(qid, taxId, formValue.value).subscribe((data: any) => {
       if(data.status =="success") {
         this.toastr.success(data.message, 'Success');

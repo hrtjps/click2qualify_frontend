@@ -45,6 +45,5 @@ export class TaxListComponent implements OnInit {
     })
   }
   buttonClicked($event) {
-    console.log($event);
   }
 }

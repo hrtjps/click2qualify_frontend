@@ -1,46 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service.js';
-import { allCountries } from 'country-telephone-data'
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { allCountries } from 'country-telephone-data';
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { CommonService } from 'src/app/services/common.service';
+import { USER_ROLE } from 'src/app/consts/consts';
+
 @Component({
-  selector: 'app-auth-signup',
-  templateUrl: './auth-signup.component.html',
-  styleUrls: ['./auth-signup.component.scss']
+  selector: 'smart-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss']
 })
-export class AuthSignupComponent implements OnInit {
+export class EditUserComponent implements OnInit {
+
   loading = false;
-  signupModel: any = new Object();
+  userModel: any = new Object();
   isSubmitted = false;
   showCountry: boolean = false
   countryCodes: any[] = allCountries
   selectedCountry: string = '1'
-  
+  UserRole = USER_ROLE;
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private commonService: CommonService,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.userService.getUser(id).subscribe((data: any) => {
+      this.userModel = {...data.data};
+      this.cdr.markForCheck();
+    })
   }
 
-  onSignUp(form){
+  onUpdateUser(form){
     this.isSubmitted = true;
     if (!form.valid) {
       return;
     }
     this.loading = true;
-    this.userService.register(form.value).subscribe(
+    this.userService.updateUser(this.userModel._id, form.value).subscribe(
       data => {
-        this.toastr.success('User Registered successfully!', 'Success');
-        this.router.navigate(['auth/login']);
+        this.toastr.success('Updated user Info successfully!', 'Success');
+        this.router.navigate(['/admin/users']);
       },
       error => {
-        this.toastr.error(error.error.message, 'Error');
+        this.toastr.error(this.commonService.convertReqErr2String(error.error), 'Error');
         this.loading = false;
       }
     )
+  }
+
+  resetForm() {
+    this.userModel = new Object();
+    this.isSubmitted = false;
   }
 
   toggleDropdown() {
@@ -52,7 +69,7 @@ export class AuthSignupComponent implements OnInit {
     this.showCountry = false
   }
   testTelNumber () {
-    var myTelNo = this.signupModel.Mobile;
+    var myTelNo = this.userModel.Mobile;
     // If invalid number, report back error
     if (!this.checkUKTelephone (myTelNo)) {
       return true;
@@ -130,6 +147,5 @@ export class AuthSignupComponent implements OnInit {
     // Telephone number seems to be valid - return the stripped telehone number  
     return telnum;
   }
+
 }
-
-

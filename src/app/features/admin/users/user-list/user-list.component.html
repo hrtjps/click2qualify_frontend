@@ -38,6 +38,7 @@
             <th >User</th>
             <th >Email</th>
             <th >Role</th>
+            <th >Phone</th>
             <th  width="255">Actions</th>
           </tr>
         </thead>
@@ -47,10 +48,11 @@
             <td><img [src]="item.avatar" [alt]="" class="profile-image rounded-circle mr-2 ">{{item.firstName}} {{item.lastName}}</td>
             <td>{{item.email}}</td>
             <td>{{UserRole[item.role]}}</td>
+            <td>{{item.phone}}</td>
             <td>
-              <button class="btn btn-outline-primary mr-2">View</button>
-              <button class="btn btn-outline-success mr-2">Edit</button>
-              <button class="btn btn-outline-danger">Delete</button>
+              <!-- <button class="btn btn-outline-primary mr-2" (click)="viewUserInfo(item.id)">View</button> -->
+              <button class="btn btn-outline-success mr-2" (click)="editUserInfo(item.id)">Edit</button>
+              <button class="btn btn-outline-danger" (click)="deleteUserInfo(item.id)">Delete</button>
             </td>
           </tr>
         </tbody>

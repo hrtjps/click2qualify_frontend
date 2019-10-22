@@ -19,7 +19,6 @@ export class NavInfoCardComponent {
     private authService: AuthService,
   ) {
     this.user = authService.currentUserValue;
-    console.log(this.user);
 
   }
 

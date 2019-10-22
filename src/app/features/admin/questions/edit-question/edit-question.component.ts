@@ -26,11 +26,8 @@ export class EditQuestionComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.questionsService.getQuestion(id).subscribe((data: any) => {
-      console.log(data);
       this.dataModel = {...data.data};
-      console.log(this.dataModel);
       this.cdr.markForCheck();
     })
   }

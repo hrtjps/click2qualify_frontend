@@ -36,8 +36,6 @@ export class FormsService {
       question_id: questionId,
       answer: {...data}
     } 
-    
-    console.log(qaData);
     return this.http.post('api/answers', qaData);
   }
 }

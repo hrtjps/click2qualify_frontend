@@ -27,7 +27,25 @@ export class UserService {
   getAllUsers(): Observable<any> {
     return this.http.get('api/users/')
     .pipe(
-      catchError(this.handleError.handleError<any>('designer', ''))  
+      catchError(this.handleError.handleError<any>('', ''))  
+    );
+  }
+  getUser(id): Observable<any> {
+    return this.http.get(`api/users/${id}`)
+    .pipe(
+      catchError(this.handleError.handleError<any>('', ''))  
+    );
+  }
+  deleteUser(id) {
+    return this.http.delete(`api/users/${id}`)
+    .pipe(
+      catchError(this.handleError.handleError<any>('', ''))  
+    );
+  }
+  updateUser(id, data) {
+    return this.http.put(`api/users/${id}`, data)
+    .pipe(
+      catchError(this.handleError.handleError<any>('', ''))  
     );
   }
 }

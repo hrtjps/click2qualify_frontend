@@ -50,8 +50,8 @@ export class QuestionListComponent implements OnInit {
       }, 100)
     })
   }
+  
   buttonClicked($event) {
-    console.log($event);
     this.router.navigate([`/admin/questions/edit/${$event.data._id}`]);
   }
 }

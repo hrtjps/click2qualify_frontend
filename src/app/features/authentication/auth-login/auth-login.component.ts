@@ -49,12 +49,10 @@ export class AuthLoginComponent implements OnInit {
 
     this.authService.login(form.value.email, form.value.password)
       .subscribe(user => {
-        console.log(user);
         this.toastr.success("Successfully logged in!", 'Congratulation!');
         this.router.navigate(['/']);
       },
       error => {
-        console.log(error);
         this.toastr.error(this.commonService.convertReqErr2String(error.error), 'Error');
         this.loading = false;
       })
