@@ -41,7 +41,7 @@
       [loadingIndicator]="loading"
       [offset]="page.pageNumber" [rows]="filteredData" class="bootstrap" rowHeight="auto">
       <ngx-datatable-column [name]="'No'" [canAutoResize]="false" [draggable]="false"
-      [resizeable]="false" [sortable]="false">
+      [resizeable]="false" [sortable]="false" >
         <ng-template let-rowIndex="rowIndex" let-row="row" let-value="value" ngx-datatable-cell-template>{{rowIndex+1}}</ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column *ngFor="let col of filteredColumns" [name]="col.title">

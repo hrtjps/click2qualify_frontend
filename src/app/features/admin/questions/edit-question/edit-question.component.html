@@ -1,0 +1,53 @@
+<div class="card p-4 rounded-plus bg-faded">
+    <form #dataForm="ngForm">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="">Question Title</label>
+            <div class="input-group mb-3">
+              <textarea name="title" #title="ngModel" placeholder="Enter question title" rows="5"
+                [ngClass]="{'is-invalid': !title.valid && (title.dirty || title.touched || isSubmitted)}"
+                [(ngModel)]="dataModel.title" required type="text" class="form-control"></textarea>
+              <label *ngIf="title.invalid && (title.dirty || title.touched || isSubmitted)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Qestion Title - is a required field
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Question Step</label>
+            <div class="input-group mb-3">
+              <input name="step" #step="ngModel" placeholder="Enter question step"
+                [ngClass]="{'is-invalid': !step.valid && (step.dirty || step.touched || isSubmitted)}"
+                [(ngModel)]="dataModel.step" required type="text" class="form-control"/>
+              <label *ngIf="step.invalid && (step.dirty || step.touched || isSubmitted)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Qestion Step - is a required field
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Question Step Number</label>
+            <div class="input-group mb-3">
+              <input name="id" #id="ngModel" placeholder="Enter question step number" rows="5"
+                [ngClass]="{'is-invalid': !id.valid && (id.dirty || id.touched || isSubmitted)}"
+                [(ngModel)]="dataModel.id" required type="text" class="form-control"/>
+              <label *ngIf="id.invalid && (id.dirty || id.touched || isSubmitted)"
+                class="error jquery-validation-error small form-text invalid-feedback">
+                Qestion Step Number - is a required field
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary shadow-2 mb-4 mt-2" (click)="onEditItem(dataForm)">Update Question</button>
+      </div>
+    </form>
+  </div>

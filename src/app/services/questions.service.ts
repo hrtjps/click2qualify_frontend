@@ -17,9 +17,17 @@ export class QuestionsService {
   addQuestion(data) {
     return this.http.post('api/questions', data);
   }
-
+  updateQuestion(id, data){
+    return this.http.put(`api/questions/${id}`, data);
+  }
   getAllQuestions(): Observable<any> {
     return this.http.get('api/questions/')
+    .pipe(
+      catchError(this.handleError.handleError<any>('', ''))  
+    );
+  }
+  getQuestion(id): Observable<any> {
+    return this.http.get(`api/questions/${id}`)
     .pipe(
       catchError(this.handleError.handleError<any>('', ''))  
     );

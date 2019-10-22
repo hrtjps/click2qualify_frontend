@@ -5,6 +5,7 @@ import { USER_ROLE } from 'src/app/consts/consts';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { GridOptions } from 'ag-grid-community';
 import { Page } from 'src/app/shared/table/page.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'smart-question-list',
@@ -17,13 +18,11 @@ export class QuestionListComponent implements OnInit {
   
   columns = [
     {name: 'title', title: 'Title'},
+    {name: 'step', title: 'Question/Answer Step'},
+    {name: 'id', title: 'Step Number'},
   ];
   
   dropDownMenu = [
-    {
-      name: 'view',
-      label: 'View'
-    },
     {
       name: 'edit',
       label: 'Edit'
@@ -33,6 +32,7 @@ export class QuestionListComponent implements OnInit {
   
   constructor(
     private questionService: QuestionsService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) { 
     this.tableList = [];
@@ -52,5 +52,6 @@ export class QuestionListComponent implements OnInit {
   }
   buttonClicked($event) {
     console.log($event);
+    this.router.navigate([`/admin/questions/edit/${$event.data._id}`]);
   }
 }
