@@ -13,6 +13,12 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
   },
   {
+    path: 'common-info',
+    component: MainComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/common-info/common-info.module').then(m => m.CommonInfoModule),
+  },
+  {
     path: 'admin',
     component: MainComponent,
     canActivate: [AuthGuard],

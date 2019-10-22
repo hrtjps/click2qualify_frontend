@@ -16,6 +16,14 @@ export class UserService {
     return this.http.post('auth/register', user);
   }
 
+  update(id, user) {
+    return this.http.put(`auth/update/${id}`, user);
+  }
+
+  changePassword(id, data) {
+    return this.http.put(`auth/change-password/${id}`, data);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get('api/users/')
     .pipe(

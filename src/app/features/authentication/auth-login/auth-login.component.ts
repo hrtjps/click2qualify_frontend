@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -21,6 +22,7 @@ export class AuthLoginComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
+    private commonService: CommonService,
     private router: Router
   ) { }
 
@@ -53,7 +55,7 @@ export class AuthLoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.toastr.error(error.message, 'Error');
+        this.toastr.error(this.commonService.convertReqErr2String(error.error), 'Error');
         this.loading = false;
       })
   }

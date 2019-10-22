@@ -18,30 +18,50 @@ export const NavigationItems = [
     routerLink: "/user-tax-form",
   },
   {
-    title: "Administrator"
+    title: "Common Info"
+  },
+  {
+    title: "Profile",
+    tags: "",
+    icon: "fal fa-cogs",
+    routerLink: "/common-info/profile",
+  },
+  {
+    title: "Contact US",
+    tags: "contact us",
+    icon: "fal fa-phone",
+    routerLink: "/common-info/contact-us",
+  },
+  {
+    title: "Administrator",
+    role: "admin",
   },
   {
     title: "Admin Dashboard",
     tags: "admin dashboard",
     icon: "fal fa-chart-area",
     routerLink: "/admin/dashboard",
+    role: "admin",
   },
   {
     title: "Question Management",
     tags: 'question management',
     icon: 'fal fa-list',
     routerLink: '/admin/questions',
+    role: "admin",
     items: [
       {
         title: 'Question List',
         tags: 'question list',
         icon: "fal fa-list-alt",
-        routerLink: '/admin/questions'
+        routerLink: '/admin/questions',
+        role: "admin",
       },
       {
         title: 'Add Question',
         tags: 'add Question',
         icon: "fal fa-file-plus",
+        role: "admin",
         routerLink: '/admin/questions/add'
       },
     ]
@@ -50,6 +70,7 @@ export const NavigationItems = [
     title: "Customer Form",
     tags: "customer form",
     icon: "fal fa-book",
+    role: "admin",
     routerLink: "/admin/customer-form",
   },
   {
@@ -57,49 +78,22 @@ export const NavigationItems = [
     tags: 'user',
     icon: 'fal fa-user-secret',
     routerLink: '/admin/users',
+    role: "admin",
     items: [
       {
         title: 'User List',
         tags: 'user list',
         icon: "fal fa-users",
+        role: "admin",
         routerLink: '/admin/users/list'
       },
       {
         title: 'Add User',
         tags: 'add user',
         icon: "fal fa-user-plus",
+        role: "admin",
         routerLink: '/admin/users/add'
       },
     ]
-  },
-  {
-    title: "Profile",
-    tags: "",
-    icon: "fal fa-cogs",
-    routerLink: "/profile",
-  },
-  {
-    title: "",
-    tags: "",
-    icon: "fal fa-",
-    routerLink: "",
-  },
-  {
-    title: "",
-    tags: "",
-    icon: "fal fa-",
-    routerLink: "",
-  },
-  {
-    title: "Contact US",
-    tags: "contact us",
-    icon: "fal fa-phone",
-    routerLink: "/contact-us",
-  },
-  {
-    title: "Logout",
-    tags: "",
-    icon: "fal fa-sign-out-alt",
-    routerLink: "",
   },
 ];

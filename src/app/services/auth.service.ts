@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 const CUR_USER = "currentUser";
@@ -11,16 +12,19 @@ const CUR_USER = "currentUser";
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
-  constructor(public http: HttpClient) { 
+  constructor(
+    public http: HttpClient,
+    private router: Router
+  ) { 
     let store = localStorage.getItem(CUR_USER);
     if(store){
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(store));
+      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(store));
       this.currentUser = this.currentUserSubject.asObservable();
     } else {
-      this.currentUserSubject = new BehaviorSubject<User>(new User());
+      this.currentUserSubject = new BehaviorSubject<any>(new User());
     }
   }
 
@@ -42,6 +46,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem(CUR_USER);
     this.currentUserSubject.next(null);
+    this.router.navigate(['/auth/login']);
   }
 
   get isLoggedIn(): boolean {

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArchwizardModule } from 'ng2-archwizard/dist';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
-import { AlertModule, CollapseModule, PopoverModule, TabsModule, PaginationModule, ProgressbarModule } from 'ngx-bootstrap';
+import { AlertModule, CollapseModule, PopoverModule, TabsModule, PaginationModule, ProgressbarModule, BsDropdownModule } from 'ngx-bootstrap';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PanelsModule } from './panels/panels.module';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -25,6 +25,7 @@ import { TableModule } from './table/table.module';
     CollapseModule.forRoot(),
     NgxDropzoneModule,   
     TabsModule.forRoot(),
+    BsDropdownModule.forRoot(),
     PaginationModule,
     PopoverModule.forRoot(),
     AgGridModule.withComponents([]),
@@ -47,6 +48,7 @@ import { TableModule } from './table/table.module';
     AgGridModule,
     TableModule,
     ProgressbarModule,
+    BsDropdownModule
   ]
 })
 export class SharedModule {

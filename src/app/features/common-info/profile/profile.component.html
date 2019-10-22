@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-xl-6 mb-4">
+    <div class="card p-4 rounded-plus bg-faded">
+      <form #personalForm="ngForm">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">First name</label>
+              <div class="input-group mb-3">
+                <input name="firstName" #firstName="ngModel" placeholder="Enter First Name"
+                  [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isSubmitted)}"
+                  [(ngModel)]="userModel.firstName" required type="text" class="form-control">
+                <label *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  First Name - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">Last name</label>
+              <div class="input-group mb-3">
+                <input name="lastName" #lastName="ngModel" placeholder="Enter Last Name"
+                  [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isSubmitted)}"
+                  [(ngModel)]="userModel.lastName" required type="text" class="form-control">
+                <label *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  Last Name - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">Email address</label>
+              <div class="input-group mb-3">
+                <input name="email" #email="ngModel" required type="text" email placeholder="Enter Email"
+                  [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isSubmitted)}"
+                  [(ngModel)]="userModel.email" class="form-control">
+                <label *ngIf="email.invalid && (email.dirty || email.touched || isSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  Email - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">Phone number</label>
+              <div class="input-group mb-3 signupDropdown">
+                <div class="input-group-prepend">
+                  <button class="btn btn-primary dropdown-toggle" (click)="toggleDropdown()"
+                    type="button">+{{selectedCountry}}</button>
+                  <div class="dropdown-menu" [ngClass]="{'show': showCountry}">
+                    <div class="scroll">
+                      <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                        (click)="selectCountryCode(countryCode.dialCode)">
+                        +{{countryCode.dialCode+": "+countryCode.name}}</div>
+                    </div>
+                  </div>
+                </div>
+                <input [(ngModel)]="userModel.Mobile" name="mobile" type="text" class="form-control"
+                  aria-label="Text input with dropdown button">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary shadow-2 mb-4 mt-2" (click)="updateInfo(personalForm)">Update Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-xl-6 mb-4">
+    <div class="card p-4 rounded-plus bg-faded">
+      <form #pwdForm="ngForm">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">Old Password</label>
+              <div class="input-group mb-3">
+                <input type="password" #oldPassword="ngModel" required
+                  pattern=".{6,}" placeholder="Enter Password"
+                  name="oldPassword" class="form-control" [ngClass]="{'is-invalid': !oldPassword.valid && (oldPassword.dirty || oldPassword.touched 
+              || isPwdSubmitted)}" [(ngModel)]="pwdModel.oldPassword">
+                <label *ngIf="oldPassword.invalid && (oldPassword.dirty || oldPassword.touched || isPwdSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  Valid Old Password - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">New Password</label>
+              <div class="input-group mb-3">
+                <input type="password" #password="ngModel" required
+                  pattern=".{6,}" placeholder="Enter Password"
+                  name="password" class="form-control" [ngClass]="{'is-invalid': !password.valid && (password.dirty || password.touched 
+              || isPwdSubmitted)}" [(ngModel)]="pwdModel.password">
+                <label *ngIf="password.invalid && (password.dirty || password.touched || isPwdSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  Valid New Password - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="form-group">
+              <label for="">Confirm New Password</label>
+              <div class="input-group mb-3">
+                <input type="password" #passwordConfirm="ngModel" required
+                  pattern=".{6,}" placeholder="Enter Confirm Password"
+                  name="passwordConfirm" class="form-control" [ngClass]="{'is-invalid': !passwordConfirm.valid && (passwordConfirm.dirty || passwordConfirm.touched 
+              || isPwdSubmitted)}" [(ngModel)]="pwdModel.passwordConfirm">
+                <label
+                  *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched || isPwdSubmitted)"
+                  class="error jquery-validation-error small form-text invalid-feedback">
+                  Valid Confirm New Password - is a required field
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary shadow-2 mb-4 mt-2" (click)="updatePassword(pwdForm)">Update Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
