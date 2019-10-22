@@ -6,6 +6,7 @@ export interface NavigationItem {
   title: string;
   icon?: string;
   tags?: string;
+  role: string;
   routerLink?: string;
   active?: boolean;
   open?: boolean;

@@ -12,8 +12,9 @@
           <img src="{{currentUser.avatar}}" class="rounded-circle profile-image" alt="{{currentUser.firstName}}">
         </span>
         <div class="info-card-text">
-          <div class="fs-lg text-truncate text-truncate-lg">{{currentUser.firstName}}</div>
+          <div class="fs-lg text-truncate text-truncate-lg">{{currentUser.firstName + ' ' + currentUser.lastName}}</div>
           <span class="text-truncate text-truncate-md opacity-80">{{currentUser.email}}</span>
+          <span class="text-truncate text-truncate-md opacity-80">{{Roles[currentUser.role]}}</span>          
         </div>
       </div>
     </div>

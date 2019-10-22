@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './shared/layout/main/main.component';
 import { LayoutModule } from './shared/layout/layout.module';
 import { AuthGuard } from './services/auth.guard';
+import { AdminGuard } from './services/admin.guard';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -21,7 +22,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: MainComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: () => import('./features/admin/dashboard/dashboard.module').then(m => m.DashboardModule) },

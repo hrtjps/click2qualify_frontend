@@ -4,6 +4,7 @@ import { NavigationItem, toggleNavSection } from 'src/app/store/navigation';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 import { Store } from '@ngrx/store';
 import { makeSlideInOut } from '../../utils/animations';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -23,10 +24,14 @@ export class NavItemComponent {
   @HostBinding('class.js-filter-show]') get shown() { return this.item.matched !== null && this.item.matched; }
   @HostBinding('class.nav-title]') get navTitle() { return this.item.navTitle; }
 
+  user;
 
   constructor(
-    private store: Store<any>
-  ) { }
+    private store: Store<any>,
+    private authService: AuthService
+  ) { 
+    this.user = this.authService.currentUserValue;
+  }
 
   toggleSection($event: MouseEvent) {
     $event.preventDefault();

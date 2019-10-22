@@ -3,34 +3,40 @@ export const NavigationItems = [
     title: 'Home - Tax List',
     tags: 'home tax list',
     icon: 'fal fa-home',
-    routerLink: '/user-tax-list'
+    routerLink: '/user-tax-list',
+    role: 'user'
   },
   {
     title: "User Tax QA",
     tags: "user tax qa",
     icon: "fal fa-info-circle",
     routerLink: "/user-tax-qa",
+    role: 'user'
   },
   {
     title: "User Tax Form",
     tags: "user tax forms",
-    icon: "fal fa-info-circle",
+    icon: "fal fa-credit-card-front",
     routerLink: "/user-tax-form",
+    role: 'user'
   },
   {
-    title: "Common Info"
+    title: "Common Info",
+    role: 'user'
   },
   {
     title: "Profile",
     tags: "",
     icon: "fal fa-cogs",
     routerLink: "/common-info/profile",
+    role: 'user'
   },
   {
     title: "Contact US",
     tags: "contact us",
     icon: "fal fa-phone",
     routerLink: "/common-info/contact-us",
+    role: 'user'
   },
   {
     title: "Administrator",

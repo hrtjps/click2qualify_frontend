@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { USER_ROLE } from 'src/app/consts/consts';
 
 @Component({
   selector: 'smart-dropdown-user',
@@ -16,6 +17,7 @@ export class DropdownUserComponent {
     email: 'drlantern@gotbootstrap.com',
     avatar: 'avatar-admin.png',
   };
+  Roles = USER_ROLE;
   constructor(
     private authService: AuthService
   ) {
