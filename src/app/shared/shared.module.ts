@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArchwizardModule } from 'ng2-archwizard/dist';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
-import { AlertModule, CollapseModule, PopoverModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { AlertModule, CollapseModule, PopoverModule, TabsModule, PaginationModule, ProgressbarModule } from 'ngx-bootstrap';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PanelsModule } from './panels/panels.module';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -12,11 +12,12 @@ import { TableModule } from './table/table.module';
 
 @NgModule({
   declarations: [
-    FilterPipe,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ArchwizardModule,
     AngularDualListBoxModule,
     PanelsModule,
@@ -27,11 +28,13 @@ import { TableModule } from './table/table.module';
     PaginationModule,
     PopoverModule.forRoot(),
     AgGridModule.withComponents([]),
+    ProgressbarModule.forRoot(),
     TableModule
   ],
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ArchwizardModule,
     AngularDualListBoxModule,
     PanelsModule,
@@ -42,7 +45,8 @@ import { TableModule } from './table/table.module';
     TabsModule,
     PopoverModule,
     AgGridModule,
-    TableModule
+    TableModule,
+    ProgressbarModule,
   ]
 })
 export class SharedModule {

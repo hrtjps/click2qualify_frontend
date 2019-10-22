@@ -4,6 +4,7 @@ import { TableListingComponent } from './table-listing/table-listing.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PanelsModule } from '../panels/panels.module';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     CommonModule,
     NgxDatatableModule,
     PanelsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot()
   ]
 })
 export class TableModule {

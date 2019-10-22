@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { CommonService } from './services/common.service';
 import { QuestionsService } from './services/questions.service';
+import { FormsService } from './services/forms.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +26,7 @@ import { QuestionsService } from './services/questions.service';
     QuestionsService,
     UserService,
     AuthService,
-    
+    FormsService,
     CommonService,
 
 

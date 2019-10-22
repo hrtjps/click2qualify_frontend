@@ -11,6 +11,7 @@ export class CustomerFormListComponent implements OnInit {
   tableList;
   countPerPage = 10;
   currentPage = 1;
+  filterString = "";
   
   constructor(
     private formsService: FormsService,

@@ -40,10 +40,10 @@
                         <label for="">First name</label>
                         <div class="input-group mb-3">
                           <input name="firstName" #firstName="ngModel" placeholder="Enter First Name"
-                            [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)}"
+                            [ngClass]="{'is-invalid': !firstName.valid && (firstName.dirty || firstName.touched || isSubmitted)}"
                             [(ngModel)]="signupModel.FirstName" required type="text" class="form-control">
                           <label
-                            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isProfileFormSubmitted)"
+                            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmitted)"
                             class="error jquery-validation-error small form-text invalid-feedback">
                             First Name - is a required field
                           </label>
@@ -55,10 +55,10 @@
                         <label for="">Last name</label>
                         <div class="input-group mb-3">
                           <input name="lastName" #lastName="ngModel" placeholder="Enter Last Name"
-                            [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)}"
+                            [ngClass]="{'is-invalid': !lastName.valid && (lastName.dirty || lastName.touched || isSubmitted)}"
                             [(ngModel)]="signupModel.LastName" required type="text" class="form-control">
                           <label
-                            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isProfileFormSubmitted)"
+                            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmitted)"
                             class="error jquery-validation-error small form-text invalid-feedback">
                             Last Name - is a required field
                           </label>
@@ -70,9 +70,9 @@
                     <label for="">Email address</label>
                     <div class="input-group mb-3">
                       <input name="email" #email="ngModel" required type="text" email placeholder="Enter Email"
-                        [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isProfileFormSubmitted)}"
+                        [ngClass]="{'is-invalid': !email.valid && (email.dirty || email.touched || isSubmitted)}"
                         [(ngModel)]="signupModel.Email" class="form-control">
-                      <label *ngIf="email.invalid && (email.dirty || email.touched || isProfileFormSubmitted)"
+                      <label *ngIf="email.invalid && (email.dirty || email.touched || isSubmitted)"
                         class="error jquery-validation-error small form-text invalid-feedback">
                         Email - is a required field
                       </label>
@@ -85,7 +85,7 @@
                         <label for="">Password</label>
                         <div class="input-group mb-3">
                           <input type="password" #password="ngModel" required
-                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" placeholder="Enter Password"
+                            pattern=".{6,}" placeholder="Enter Password"
                             name="password" class="form-control" [ngClass]="{'is-invalid': !password.valid && (password.dirty || password.touched 
                           || isSubmitted)}" [(ngModel)]="signupModel.password">
                           <label
@@ -101,7 +101,7 @@
                         <label for="">Confirm Password</label>
                         <div class="input-group mb-3">
                           <input type="password" #passwordConfirm="ngModel" required
-                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$" placeholder="Enter Confirm Password"
+                          pattern=".{6,}" placeholder="Enter Confirm Password"
                             name="passwordConfirm" class="form-control" [ngClass]="{'is-invalid': !passwordConfirm.valid && (passwordConfirm.dirty || passwordConfirm.touched 
                           || isSubmitted)}" [(ngModel)]="signupModel.passwordConfirm">
                           <label

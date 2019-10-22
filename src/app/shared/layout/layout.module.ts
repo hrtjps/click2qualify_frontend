@@ -50,7 +50,7 @@ import { ChatModalComponent } from './chat-modal/chat-modal.component';
     UiModule
 
   ],
-  exports: [MainComponent, AuthComponent, SidebarComponent],
+  exports: [MainComponent, AuthComponent, SidebarComponent, ChatModalComponent],
   entryComponents: [ShortcutModalComponent]
 })
 export class LayoutModule { }

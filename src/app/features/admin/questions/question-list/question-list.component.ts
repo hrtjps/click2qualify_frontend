@@ -14,8 +14,22 @@ import { Page } from 'src/app/shared/table/page.model';
 export class QuestionListComponent implements OnInit {
 
   tableList;
-  countPerPage = 10;
-  currentPage = 1;
+  
+  columns = [
+    {name: 'title', title: 'Title'},
+  ];
+  
+  dropDownMenu = [
+    {
+      name: 'view',
+      label: 'View'
+    },
+    {
+      name: 'edit',
+      label: 'Edit'
+    },
+  ];
+
   
   constructor(
     private questionService: QuestionsService,
@@ -36,5 +50,7 @@ export class QuestionListComponent implements OnInit {
       }, 100)
     })
   }
-
+  buttonClicked($event) {
+    console.log($event);
+  }
 }

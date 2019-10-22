@@ -21,7 +21,7 @@ export class QuestionsService {
   getAllQuestions(): Observable<any> {
     return this.http.get('api/questions/')
     .pipe(
-      catchError(this.handleError.handleError<any>('designer', ''))  
+      catchError(this.handleError.handleError<any>('', ''))  
     );
   }
 }

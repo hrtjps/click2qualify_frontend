@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { TaxListComponent } from './tax-list/tax-list.component';
 import { TaxQAComponent } from './tax-qa/tax-qa.component';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 
 
@@ -17,6 +18,7 @@ import { TaxQAComponent } from './tax-qa/tax-qa.component';
   imports: [
     CommonModule,
     SharedModule,
+    BsDropdownModule.forRoot(),
     RouterModule.forChild([
       { path: '', redirectTo: 'user-tax-list', pathMatch: 'full' },
       {

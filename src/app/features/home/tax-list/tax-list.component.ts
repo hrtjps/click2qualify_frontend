@@ -10,8 +10,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class TaxListComponent implements OnInit {
 
   tableList;
-  countPerPage = 10;
-  currentPage = 1;
+  
+  columns = [
+    {name: 'last_slug', title: 'Form Title'},
+    {name: 'status', title: 'Status'},
+  ];
+  
+  dropDownMenu = [
+    {
+      name: 'edit',
+      label: 'Edit'
+    }
+  ];
 
   constructor(
     private formsService: FormsService,
@@ -33,5 +43,8 @@ export class TaxListComponent implements OnInit {
         this.cdr.detectChanges();
       }, 100)
     })
+  }
+  buttonClicked($event) {
+    console.log($event);
   }
 }

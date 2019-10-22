@@ -1,12 +1,37 @@
-@import "../../../../scss/_modules/variables.scss";
+@import "../../../../scss/_modules/variables";
 
 ::ng-deep {
   .datatable-header {
-    background-color: $color-primary;
+    // background-color: $color-primary;
     font-weight: bold;
-    color: $white;
+    // color: $white;
   }
 
+  .datatable-footer {
+    margin-top: 1rem !important;
+    border-top: solid 1px gainsboro;
+    background: transparent !important;
+    color: black !important;
+  }
+  .ngx-datatable .datatable-body,
+  .ngx-datatable .datatable-header {
+    border: 1px solid #e9e9e9;
+  }
+  .ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+    color: $color-primary;
+  }
+  .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, 
+  .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+    background-color: $color-primary !important;
+    color: $white;
+  }
+  .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
+    // cursor: pointer;
+    &:hover {
+      box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+      z-index: 1;
+    }
+  }
   .empty-row {
     text-align: center;
   }
@@ -49,6 +74,23 @@
       -webkit-animation: spin 2s linear infinite; /* Safari */
       animation: spin 2s linear infinite;
 
+    }
+  }
+
+  .dropdown-item {
+    &.selected {
+      background: $gray-300;
+    }
+  }
+
+  .listing-header-buttons {
+    > * {
+      margin: 0px 4px;
+      margin-bottom: 0.3rem;
+    }
+
+    :last-child {
+      margin-right: 0px;
     }
   }
 }

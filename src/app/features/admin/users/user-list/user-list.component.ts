@@ -15,6 +15,7 @@ export class UserListComponent implements OnInit {
   countPerPage = 10;
   totalItems = 0;
   UserRole = USER_ROLE;
+  filterString = "";
   
   constructor(
     private userService: UserService,

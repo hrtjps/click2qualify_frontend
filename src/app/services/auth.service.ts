@@ -19,6 +19,8 @@ export class AuthService {
     if(store){
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(store));
       this.currentUser = this.currentUserSubject.asObservable();
+    } else {
+      this.currentUserSubject = new BehaviorSubject<User>(new User());
     }
   }
 
