@@ -1,25 +1,25 @@
 export const NavigationItems = [
   {
-    title: 'Home - Tax List',
+    title: 'Home - User Dashboard',
     tags: 'home tax list',
     icon: 'fal fa-home',
     routerLink: '/user-tax-list',
     role: 'user'
   },
-  {
-    title: "User Tax QA",
-    tags: "user tax qa",
-    icon: "fal fa-info-circle",
-    routerLink: "/user-tax-qa",
-    role: 'user'
-  },
-  {
-    title: "User Tax Form",
-    tags: "user tax forms",
-    icon: "fal fa-credit-card-front",
-    routerLink: "/user-tax-form",
-    role: 'user'
-  },
+  // {
+  //   title: "User Tax QA",
+  //   tags: "user tax qa",
+  //   icon: "fal fa-info-circle",
+  //   routerLink: "/user-tax-qa",
+  //   role: 'user'
+  // },
+  // {
+  //   title: "User Tax Form",
+  //   tags: "user tax forms",
+  //   icon: "fal fa-credit-card-front",
+  //   routerLink: "/user-tax-form",
+  //   role: 'user'
+  // },
   {
     title: "Common Info",
     role: 'user'

@@ -22,8 +22,8 @@ export class FormsService {
       catchError(this.handleError.handleError<any>('', ''))  
     );
   }
-  getUserAllTaxForms(id): Observable<any> {
-    return this.http.get(`api/forms/user/${id}`)
+  getUserAllTaxForms(userId): Observable<any> {
+    return this.http.get(`api/forms/user/${userId}`)
     .pipe(
       catchError(this.handleError.handleError<any>('', ''))  
     );
@@ -37,5 +37,8 @@ export class FormsService {
       answer: {...data}
     } 
     return this.http.post('api/answers', qaData);
+  }
+  newForm(userId) {
+    return this.http.post(`api/forms`, {last_slug: 'owe-container', user_id: userId});
   }
 }

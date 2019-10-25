@@ -12,7 +12,24 @@ export class CustomerFormListComponent implements OnInit {
   countPerPage = 10;
   currentPage = 1;
   filterString = "";
+  columns = [
+    {name: 'user', title: 'User Name'},
+    {name: 'email', title: 'User Email'},
+    {name: 'last_slug', title: 'Form Last Slug'},
+    {name: 'created', title: 'Created'},
+    {name: 'updated', title: 'Last Updated'},
+  ];
   
+  dropDownMenu = [
+    {
+      name: 'print',
+      label: 'Print'
+    },
+    {
+      name: 'download',
+      label: 'Download'
+    },
+  ];
   constructor(
     private formsService: FormsService,
     private cdr: ChangeDetectorRef
@@ -27,10 +44,10 @@ export class CustomerFormListComponent implements OnInit {
   getAllData() {
     this.formsService.getAllTaxForms().subscribe(data => {
       this.tableList = data.data.forms;
-      setTimeout(()=>{
-        this.cdr.detectChanges();
-      }, 100)
+      this.cdr.markForCheck();
     })
   }
-
+  buttonClicked($event) {
+    console.log($event);
+  }
 }

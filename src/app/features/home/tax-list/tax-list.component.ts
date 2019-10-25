@@ -12,15 +12,34 @@ export class TaxListComponent implements OnInit {
   tableList;
   
   columns = [
-    {name: 'last_slug', title: 'Form Title'},
-    {name: 'status', title: 'Status'},
+    {name: 'user', title: 'User Name'},
+    {name: 'email', title: 'User Email'},
+    {name: 'last_slug', title: 'Form Last Slug'},
+    {name: 'created', title: 'Created'},
+    {name: 'updated', title: 'Last Updated'},
   ];
   
   dropDownMenu = [
     {
+      name: 'start',
+      label: 'Start'
+    },
+    {
+      name: 'continue',
+      label: 'Continue'
+    },
+    {
       name: 'edit',
       label: 'Edit'
-    }
+    },
+    {
+      name: 'print',
+      label: 'Print'
+    },
+    {
+      name: 'download',
+      label: 'Download'
+    },
   ];
 
   constructor(
@@ -37,13 +56,20 @@ export class TaxListComponent implements OnInit {
 
   getAllData() {
     // this.formsService.getUserAllTaxForms(this.authService.userId).subscribe(data => {
-    this.formsService.getUserAllTaxForms("3").subscribe(data => {
+    const user = this.authService.currentUserValue;
+    this.formsService.getUserAllTaxForms(user.id).subscribe(data => {
       this.tableList = data.data.forms;
-      setTimeout(()=>{
-        this.cdr.detectChanges();
-      }, 100)
+      this.cdr.markForCheck();
     })
   }
   buttonClicked($event) {
+
+  }
+  newForm() {
+    const user = this.authService.currentUserValue;
+    this.formsService.newForm(user.id).subscribe((rtVal: any) => {
+      console.log(rtVal);
+    })
+
   }
 }
