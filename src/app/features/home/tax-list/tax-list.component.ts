@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsService } from 'src/app/services/forms.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'smart-tax-list',
@@ -46,6 +47,7 @@ export class TaxListComponent implements OnInit {
     private formsService: FormsService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
+    private router: Router,
   ) { 
     this.tableList = [];
   }
@@ -63,12 +65,26 @@ export class TaxListComponent implements OnInit {
     })
   }
   buttonClicked($event) {
+    console.log($event);
+    if($event.btn=="start") {
+      this.router.navigate(["/user-tax-qa", $event.data._id]);
+    } else if($event.btn=="continue") {
+      this.router.navigate(["/user-tax-qa", $event.data._id]);
+    } else if($event.btn=="edit") {
+      this.router.navigate(["/user-tax-qa", $event.data._id]);
+    } else if($event.btn=="print") {
+      this.router.navigate(["/user-tax-qa", $event.data._id]);
+    } else if($event.btn=="download") {
+      this.router.navigate(["/user-tax-qa", $event.data._id]);
+    } else {
 
+    }
   }
   newForm() {
     const user = this.authService.currentUserValue;
     this.formsService.newForm(user.id).subscribe((rtVal: any) => {
       console.log(rtVal);
+      this.router.navigate(["/user-tax-qa", rtVal.data._id]);
     })
 
   }

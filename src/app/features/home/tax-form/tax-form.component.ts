@@ -29,9 +29,7 @@ export class TaxFormComponent implements OnInit {
     // this.formsService.getUserAllTaxForms(this.authService.userId).subscribe(data => {
     this.formsService.getUserAllTaxForms("3").subscribe(data => {
       this.tableList = data.data.forms;
-      setTimeout(()=>{
-        this.cdr.detectChanges();
-      }, 100)
+      this.cdr.markForCheck();
     })
   }
 }

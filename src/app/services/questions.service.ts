@@ -20,6 +20,9 @@ export class QuestionsService {
   updateQuestion(id, data){
     return this.http.put(`api/questions/${id}`, data);
   }
+  deleteQuestion(id) {
+    return this.http.delete(`api/questions/${id}`);
+  }
   getAllQuestions(): Observable<any> {
     return this.http.get('api/questions/')
     .pipe(
@@ -31,5 +34,8 @@ export class QuestionsService {
     .pipe(
       catchError(this.handleError.handleError<any>('', ''))  
     );
+  }
+  getTotalCount() {
+    return this.http.get('api/questions/count')
   }
 }

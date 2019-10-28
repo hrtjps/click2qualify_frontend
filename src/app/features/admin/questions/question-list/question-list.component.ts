@@ -6,6 +6,8 @@ import { QuestionsService } from 'src/app/services/questions.service';
 import { GridOptions } from 'ag-grid-community';
 import { Page } from 'src/app/shared/table/page.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'smart-question-list',
@@ -33,7 +35,9 @@ export class QuestionListComponent implements OnInit {
   constructor(
     private questionService: QuestionsService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toastr: ToastrService,
+    private commonService: CommonService
   ) { 
     this.tableList = [];
   }
@@ -45,13 +49,24 @@ export class QuestionListComponent implements OnInit {
   getAllData() {
     this.questionService.getAllQuestions().subscribe(data => {
       this.tableList = data.data.questions;
-      setTimeout(()=>{
-        this.cdr.detectChanges();
-      }, 100)
+      this.cdr.markForCheck();
     })
   }
   
   buttonClicked($event) {
-    this.router.navigate([`/admin/questions/edit/${$event.data._id}`]);
+    console.log($event);
+    if( $event.btn == "delete") {
+      this.questionService.deleteQuestion($event.data._id).subscribe (
+        data => {
+          this.toastr.success('Updated a question successfully!', 'Success');
+          this.getAllData();
+        },
+        error => {
+          this.toastr.error(this.commonService.convertReqErr2String(error.error), 'Error');
+        }
+      )
+    } else if( $event.btn=="edit") {
+      this.router.navigate([`/admin/questions/edit/${$event.data._id}`]);
+    }
   }
 }

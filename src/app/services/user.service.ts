@@ -48,4 +48,7 @@ export class UserService {
       catchError(this.handleError.handleError<any>('', ''))  
     );
   }
+  getTotalCount() {
+    return this.http.get('api/users/count')
+  }
 }
