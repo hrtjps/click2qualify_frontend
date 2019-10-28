@@ -316,7 +316,9 @@ export class TaxQAComponent implements OnInit {
     this.initData();
   }
   addAnotherPropertyDetailsStep(){    
-    this.propertyDetailsStepForm.controls.property_details_step_arr.push(
+    let p: FormArray = new FormArray([]);
+    
+    (<FormArray>this.propertyDetailsStepForm.controls.property_details_step_arr).push(
       new FormGroup({
         property_address: new FormControl('', Validators.required),
         purchase_date: new FormControl('', Validators.required),
@@ -328,7 +330,7 @@ export class TaxQAComponent implements OnInit {
       }))
   }
   addAnotherAddressInsuranceCompany() {
-    this.addressInsuranceCompanyForm.controls.address_insurance_company_arr.push(
+    (<FormArray>this.addressInsuranceCompanyForm.controls.address_insurance_company_arr).push(
       new FormGroup({
         insurance_company_name: new FormControl('', Validators.required),
         insurance_company_address: new FormControl('', Validators.required),
@@ -339,7 +341,7 @@ export class TaxQAComponent implements OnInit {
       }))
   }
   addAnotherCardDetails() {
-    this.addCardDetailsForm.controls.card_details_arr.push(
+    (<FormArray>this.addCardDetailsForm.controls.card_details_arr).push(
       new FormGroup({
         card_name: new FormControl('', Validators.required),
         total_credit: new FormControl('', Validators.required),
@@ -353,7 +355,7 @@ export class TaxQAComponent implements OnInit {
       }))
   }
   addAnotherInvestment() {
-    this.typeOfInvestmentForm.controls.type_of_investment_arr.push(
+    (<FormArray>this.typeOfInvestmentForm.controls.type_of_investment_arr).push(
       new FormGroup({
         financial_interest: new FormControl('', Validators.required),
         name_of_institution: new FormControl('', Validators.required),
@@ -367,7 +369,7 @@ export class TaxQAComponent implements OnInit {
       }))
   }
   addAnotherPolicy() {
-    this.policyDetailsForm.controls.policy_details.push(
+    (<FormArray>this.policyDetailsForm.controls.policy_details).push(
       new FormGroup({
         policy_name: new FormControl('', Validators.required),
         amount_receive: new FormControl('', Validators.required),
@@ -375,7 +377,7 @@ export class TaxQAComponent implements OnInit {
       }))
   }
   addAnotherBankingAccount() {
-    this.bankingAccountForm.controls.banking_account_arr.push(
+    (<FormArray>this.bankingAccountForm.controls.banking_account_arr).push(
       new FormGroup({
         account_type: new FormControl('', Validators.required),
         bank_name: new FormControl('', Validators.required),
@@ -486,11 +488,11 @@ export class TaxQAComponent implements OnInit {
             this.addAnotherCardDetails();
           }
         } else if(step === 'addressInsuranceCompany'){
-          for(let i=0; i<data.data.answer.policy_details.length-1;i++){
+          for(let i=0; i<data.data.answer.address_insurance_company_arr.length-1;i++){
             this.addAnotherAddressInsuranceCompany();
           }
-        } else if(step === 'policyDetails'){
-          for(let i=0; i<data.data.answer.address_insurance_company_arr.length-1;i++){
+        } else if(step === 'propertyDetailsStep'){
+          for(let i=0; i<data.data.answer.property_details_step_arr.length-1;i++){
             this.addAnotherPolicy();
           }
         } else if(step === 'policyDetails'){
