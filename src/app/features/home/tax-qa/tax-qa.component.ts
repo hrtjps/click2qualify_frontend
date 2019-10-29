@@ -4,7 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { FormsService } from 'src/app/services/forms.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'smart-tax-qa',
@@ -285,6 +285,127 @@ export class TaxQAComponent implements OnInit {
       })
     ])
   });
+  vehiclesDetailsForm: FormGroup = new FormGroup({
+    vehicles_details: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepYearForm: FormGroup = new FormGroup({
+    vehicle_year: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepMakeModelForm: FormGroup = new FormGroup({
+    make_model: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepMileageForm: FormGroup = new FormGroup({
+    mileage: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepPurchaseDateForm: FormGroup = new FormGroup({
+    purchase_date: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepDateOfFinalPaymentForm: FormGroup = new FormGroup({
+    date_of_final_payment: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepMonthlyPaymentForm: FormGroup = new FormGroup({
+    monthly_payment: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepCurrentLoanBalanceForm: FormGroup = new FormGroup({
+    current_loan_balance: new FormControl('', Validators.required),
+  });
+  vehiclesDetailsStepFairMarketValueForm: FormGroup = new FormGroup({
+    fair_market_value: new FormControl('', Validators.required),
+  });
+  personalAssetForm: FormGroup = new FormGroup({
+    personal_asset: new FormControl('', Validators.required),
+  });
+  
+  lenderLessorNameForm: FormGroup = new FormGroup({
+    lender_lessor_details_arr: new FormArray([ 
+      new FormGroup({
+        lender_lessor_name: new FormControl('', Validators.required),
+        city: new FormControl('', Validators.required),
+        state: new FormControl('', Validators.required),
+        phone_no: new FormControl('', Validators.required),
+      })
+    ])
+  });
+  personalAssetStepForm: FormGroup = new FormGroup({
+    personal_asset_step_arr: new FormArray([ 
+      new FormGroup({
+        asset_description: new FormControl('', Validators.required),
+        purchase_date: new FormControl('', Validators.required),
+        fair_market_value: new FormControl('', Validators.required),
+        loan_balance: new FormControl('', Validators.required),
+        monthly_payment: new FormControl('', Validators.required),
+        final_payment_date: new FormControl('', Validators.required),
+      })
+    ])
+  });
+  continueAnsweringMonthIncomeForm: FormGroup = new FormGroup({});
+  continueAnsweringMonthIncomeStepForm: FormGroup = new FormGroup({
+    continue_answering_month_income_step_arr: new FormArray([ 
+      new FormGroup({
+        gross_monthly_wages_and_salaries: new FormControl('', Validators.required),
+        spouses_wages: new FormControl('', Validators.required),
+        earn_any_interest: new FormControl('', Validators.required),
+        net_business_income: new FormControl('', Validators.required),
+        net_rental_income: new FormControl('', Validators.required),
+        distribution_amount: new FormControl('', Validators.required),
+        pension_amount: new FormControl('', Validators.required),
+        spouse_pension_amount: new FormControl('', Validators.required),
+        social_security_amount: new FormControl('', Validators.required),
+        spouse_social_security_amount: new FormControl('', Validators.required),
+        child_support_amount: new FormControl('', Validators.required),
+        alimony_amount: new FormControl('', Validators.required),
+      })
+    ])
+  });
+  continueAnsweringLivingExpenseForm: FormGroup = new FormGroup({});
+  vehicleOperatingCostsForm: FormGroup = new FormGroup({
+    vehicle_operating_costs: new FormControl('', Validators.required),
+  });
+  vehicleOwnershipCostForm: FormGroup = new FormGroup({
+    vehicle_ownership_cost: new FormControl('', Validators.required),
+  });
+  housingUtilitiesForm: FormGroup = new FormGroup({
+    housing_utilities: new FormControl('', Validators.required),
+  });
+  foodClothingMiscForm: FormGroup = new FormGroup({
+    food_clothing_misc: new FormControl('', Validators.required),
+  });
+  outPocketHealthCostForm: FormGroup = new FormGroup({
+    health_care_cost: new FormControl('', Validators.required),
+  });
+  healthInsuranceForm: FormGroup = new FormGroup({
+    health_insurance: new FormControl('', Validators.required),
+  });
+  publicTransportationForm: FormGroup = new FormGroup({
+    public_transportation: new FormControl('', Validators.required),
+  });
+  courtOrderedPaymentForm: FormGroup = new FormGroup({
+    court_ordered_payment: new FormControl('', Validators.required),
+  });
+  childDependentCareForm: FormGroup = new FormGroup({
+    child_dependent_care: new FormControl('', Validators.required),
+  });
+  lifeInsuranceForm: FormGroup = new FormGroup({
+    life_insurance: new FormControl('', Validators.required),
+  });
+  otherExpensesForm: FormGroup = new FormGroup({
+    other_expenses: new FormControl('', Validators.required),
+  });
+  localTaxesForm: FormGroup = new FormGroup({
+    local_taxes: new FormControl('', Validators.required),
+  });
+  securedDebtsForm: FormGroup = new FormGroup({
+    secured_debts: new FormControl('', Validators.required),
+  });
+  currentYearTaxeForm: FormGroup = new FormGroup({
+    current_year_taxes: new FormControl('', Validators.required),
+  });
+  totalResultForm: FormGroup = new FormGroup({
+    total_living_expenses: new FormControl(0),
+    net_difference: new FormControl(0),
+  });
+  questCompleteForm: FormGroup = new FormGroup({});
+
   questions: any[];
   curStep="owe";
   curStepProgress=0;
@@ -296,6 +417,7 @@ export class TaxQAComponent implements OnInit {
 
   modalRef: BsModalRef;
   constructor(
+    private router: Router,
     private cdr: ChangeDetectorRef,
     private questionService: QuestionsService,
     private modalService: BsModalService,
@@ -315,9 +437,47 @@ export class TaxQAComponent implements OnInit {
   ngOnInit() {
     this.initData();
   }
+  addSelfEmployedInfo() {
+
+  }
+  addAnotherContinueAnsweringMonthIncomeStep(){
+    (<FormArray>this.continueAnsweringMonthIncomeStepForm.controls.continue_answering_month_income_step_arr).push(
+      new FormGroup({
+        gross_monthly_wages_and_salaries: new FormControl('', Validators.required),
+        spouses_wages: new FormControl('', Validators.required),
+        earn_any_interest: new FormControl('', Validators.required),
+        net_business_income: new FormControl('', Validators.required),
+        net_rental_income: new FormControl('', Validators.required),
+        distribution_amount: new FormControl('', Validators.required),
+        pension_amount: new FormControl('', Validators.required),
+        spouse_pension_amount: new FormControl('', Validators.required),
+        social_security_amount: new FormControl('', Validators.required),
+        spouse_social_security_amount: new FormControl('', Validators.required),
+        child_support_amount: new FormControl('', Validators.required),
+        alimony_amount: new FormControl('', Validators.required),
+      }))
+  }
+  addAnotherPersonalAssetStep() {
+    (<FormArray>this.personalAssetStepForm.controls.personal_asset_step_arr).push(
+      new FormGroup({
+        asset_description: new FormControl('', Validators.required),
+        purchase_date: new FormControl('', Validators.required),
+        fair_market_value: new FormControl('', Validators.required),
+        loan_balance: new FormControl('', Validators.required),
+        monthly_payment: new FormControl('', Validators.required),
+        final_payment_date: new FormControl('', Validators.required),
+      }))
+  }
+  addAnotherLenderLessorDetails() {
+    (<FormArray>this.lenderLessorNameForm.controls.lender_lessor_details_arr).push(
+      new FormGroup({
+        lender_lessor_name: new FormControl('', Validators.required),
+        city: new FormControl('', Validators.required),
+        state: new FormControl('', Validators.required),
+        phone_no: new FormControl('', Validators.required),
+      }))
+  }
   addAnotherPropertyDetailsStep(){    
-    let p: FormArray = new FormArray([]);
-    
     (<FormArray>this.propertyDetailsStepForm.controls.property_details_step_arr).push(
       new FormGroup({
         property_address: new FormControl('', Validators.required),
@@ -435,7 +595,11 @@ export class TaxQAComponent implements OnInit {
       console.log(data);
       if(data.status =="success") {
         this.toastr.success(data.message, 'Success');
-        this.moveNextStep(this.curStep);
+        if(this.curStep === "questComplete"){
+          this.router.navigate(['/user-tax-list']);
+        } else {
+          this.moveNextStep(this.curStep);
+        }
       } else {
         this.toastr.error(data.message, 'Error');
       }
@@ -472,32 +636,49 @@ export class TaxQAComponent implements OnInit {
       if(data && data.data){
         console.log(this[formName]);
         if(step === 'policyDetails'){
-          for(let i=0; i<data.data.answer.policy_details.length-1;i++){
+          (<FormArray>this.policyDetailsForm.controls.policy_details).clear();
+          for(let i=0; i<data.data.answer.policy_details.length;i++){
             this.addAnotherPolicy();
           }
         } else if(step === 'bankingAccount'){
-          for(let i=0; i<data.data.answer.banking_account_arr.length-1;i++){
+          (<FormArray>this.bankingAccountForm.controls.banking_account_arr).clear();
+          for(let i=0; i<data.data.answer.banking_account_arr.length;i++){
             this.addAnotherBankingAccount();
           }
         } else if(step === 'typeOfInvestment'){
-          for(let i=0; i<data.data.answer.type_of_investment_arr.length-1;i++){
+          (<FormArray>this.typeOfInvestmentForm.controls.type_of_investment_arr).clear();
+          for(let i=0; i<data.data.answer.type_of_investment_arr.length;i++){
             this.addAnotherInvestment();
           }
         } else if(step === 'addCardDetails'){
-          for(let i=0; i<data.data.answer.card_details_arr.length-1;i++){
+          (<FormArray>this.addCardDetailsForm.controls.card_details_arr).clear();
+          for(let i=0; i<data.data.answer.card_details_arr.length;i++){
             this.addAnotherCardDetails();
           }
         } else if(step === 'addressInsuranceCompany'){
-          for(let i=0; i<data.data.answer.address_insurance_company_arr.length-1;i++){
+          (<FormArray>this.addressInsuranceCompanyForm.controls.address_insurance_company_arr).clear();
+          for(let i=0; i<data.data.answer.address_insurance_company_arr.length;i++){
             this.addAnotherAddressInsuranceCompany();
           }
         } else if(step === 'propertyDetailsStep'){
-          for(let i=0; i<data.data.answer.property_details_step_arr.length-1;i++){
-            this.addAnotherPolicy();
+          (<FormArray>this.propertyDetailsStepForm.controls.property_details_step_arr).clear();
+          for(let i=0; i<data.data.answer.property_details_step_arr.length;i++){
+            this.addAnotherPropertyDetailsStep();
           }
-        } else if(step === 'policyDetails'){
-          for(let i=0; i<data.data.answer.policy_details.length-1;i++){
-            this.addAnotherPolicy();
+        } else if(step === 'lenderLessorName'){
+          (<FormArray>this.lenderLessorNameForm.controls.lender_lessor_details_arr).clear();
+          for(let i=0; i<data.data.answer.lender_lessor_details_arr.length;i++){
+            this.addAnotherLenderLessorDetails();
+          }
+        } else if(step === 'personalAssetStep'){
+          (<FormArray>this.personalAssetStepForm.controls.personal_asset_step_arr).clear();
+          for(let i=0; i<data.data.answer.personal_asset_step_arr.length;i++){
+            this.addAnotherPersonalAssetStep();
+          }
+        } else if(step === 'continueAnsweringMonthIncomeStep'){
+          (<FormArray>this.continueAnsweringMonthIncomeStepForm.controls.continue_answering_month_income_step_arr).clear();
+          for(let i=0; i<data.data.answer.continue_answering_month_income_step_arr.length;i++){
+            this.addAnotherContinueAnsweringMonthIncomeStep();
           }
         }
         this[formName].setValue({...data.data.answer});

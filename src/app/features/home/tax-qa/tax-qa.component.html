@@ -4,8 +4,8 @@
     <i class="fal fa-question"></i>
   </button>
 </div>
-<progressbar max="102" [value]="curStepProgress" type="success" [striped]="true" [animate]="true" class="mb-4">
-  <i>{{curStepProgress}} / {{102}}</i>
+<progressbar [max]="questions.length" [value]="curStepProgress+1" type="success" [striped]="true" [animate]="true" class="mb-4">
+  <i>{{curStepProgress+1}} / {{questions.length}}</i>
 </progressbar>
 <div class="form-body">
   <section class="form-inner" *ngIf="questions.length">
@@ -2158,7 +2158,6 @@
         </div>
       </div>
     </div>
-
     <div id="whole-life-insurance-container" [ngClass]="{'container hide':curStep!=='wholeLifeInsurance', 'container':curStep==='wholeLifeInsurance'}">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-sm-12">
@@ -2367,12 +2366,1089 @@
                 (click)="addAnotherPropertyDetailsStep();">Save and Add Another</button>
               <button id="property-details-step-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3 ">Save and Finish</button>
               <button id="property-details-step-Skip-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
-                (click)="skipSection('vehicles-details-container', 'property-details-step-container');">Skip</button>
+                (click)="skipThisStep(curStep);">Skip</button>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <div id="vehicles-details-container" [ngClass]="{'container hide':curStep!=='vehiclesDetails', 'container':curStep==='vehiclesDetails'}">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-12">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-12">
+          <form id="vehicles-details-form" [formGroup]="vehiclesDetailsForm" (ngSubmit)="addAnswer('submit-vehicles-details', vehiclesDetailsForm)">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="custom-control custom-radio">
+                    <input  class="check-tax-returns custom-control-input" type="radio"
+                      formControlName="vehicles_details" id="vehicles-details-Yes" value="Yes">
+                    <label class="custom-control-label" for="vehicles-details-Yes">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input  class="check-tax-returns custom-control-input" type="radio"
+                      formControlName="vehicles_details" id="vehicles-details-No" value="No">
+                    <label class="custom-control-label" for="vehicles-details-No">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a 
+                id="vehicles-details-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-year-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepYear', 'container':curStep==='vehiclesDetailsStepYear'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-year-form" [formGroup]="vehiclesDetailsStepYearForm" (ngSubmit)="addAnswer('submit-vehicles-details-step-year', vehiclesDetailsStepYearForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="What is the year"
+                    formControlName="vehicle_year" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-year-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-year-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div id="vehicles-details-step-make-model-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepMakeModel', 'container':curStep==='vehiclesDetailsStepMakeModel'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-make-model-form" [formGroup]="vehiclesDetailsStepMakeModelForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-make-model', vehiclesDetailsStepMakeModelForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Make/model" formControlName="make_model"
+                    type="text">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a 
+                id="vehicles-details-step-make-model-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-make-model-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-mileage-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepMileage', 'container':curStep==='vehiclesDetailsStepMileage'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-mileage-form" [formGroup]="vehiclesDetailsStepMileageForm" (ngSubmit)="addAnswer('submit-vehicles-details-step-mileage', vehiclesDetailsStepMileageForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="mileage" class="form-control" placeholder="Mileage" formControlName="mileage" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-mileage-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-mileage-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-purchase-date-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepPurchaseDate', 'container':curStep==='vehiclesDetailsStepPurchaseDate'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-purchase-date-form" [formGroup]="vehiclesDetailsStepPurchaseDateForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-purchase-date', vehiclesDetailsStepPurchaseDateForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control datepicker" placeholder="Purchase Date"
+                    formControlName="purchase_date" type="date">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-purchase-date-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-purchase-date-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div id="vehicles-details-step-fair-market-value-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepFairMarketValue', 'container':curStep==='vehiclesDetailsStepFairMarketValue'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-fair-market-value-form" [formGroup]="vehiclesDetailsStepFairMarketValueForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-fair-market-value', vehiclesDetailsStepFairMarketValueForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Fair Market Value"
+                    formControlName="fair_market_value" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-fair-market-value-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-fair-market-value-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-current-loan-balance-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepCurrentLoanBalance', 'container':curStep==='vehiclesDetailsStepCurrentLoanBalance'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-current-loan-balance-form" [formGroup]="vehiclesDetailsStepCurrentLoanBalanceForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-current-loan-balance', vehiclesDetailsStepCurrentLoanBalanceForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$current_loan_balance" class="form-control" placeholder="Current Loan Balance"
+                    formControlName="current_loan_balance" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-current-loan-balance-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-current-loan-balance-Next-btn" type="submit"
+                class="btn m-2 btn3 btn-warning btn-lg " >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-monthly-payment-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepMonthlyPayment', 'container':curStep==='vehiclesDetailsStepMonthlyPayment'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-monthly-payment-form" [formGroup]="vehiclesDetailsStepMonthlyPaymentForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-monthly-payment', vehiclesDetailsStepMonthlyPaymentForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Monthly Payment"
+                    formControlName="monthly_payment" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-monthly-payment-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-monthly-payment-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicles-details-step-date-of-final-payment-container" [ngClass]="{'container hide':curStep!=='vehiclesDetailsStepDateOfFinalPayment', 'container':curStep==='vehiclesDetailsStepDateOfFinalPayment'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicles-details-step-date-of-final-payment-form" [formGroup]="vehiclesDetailsStepDateOfFinalPaymentForm"
+            (ngSubmit)="addAnswer('submit-vehicles-details-step-date-of-final-payment', vehiclesDetailsStepDateOfFinalPaymentForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control datepicker"
+                    placeholder="Date of final payment" formControlName="date_of_final_payment" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicles-details-step-date-of-final-payment-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicles-details-step-date-of-final-payment-Next-btn" type="submit"
+                class="btn m-2 btn3 btn-warning btn-lg " >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="lender-lessor-name-container" [ngClass]="{'container hide':curStep!=='lenderLessorName', 'container':curStep==='lenderLessorName'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="lender-lessor-name-form" [formGroup]="lenderLessorNameForm" (ngSubmit)="addAnswer('submit-lender-lessor-name', lenderLessorNameForm)">
+            <div id="all-lender-lessor-details" formArrayName="lender_lessor_details_arr">
+              <div class="single-lender-lessor-details clearfix" [formGroupName]="i" 
+                *ngFor="let item of lenderLessorNameForm.controls.lender_lessor_details_arr.controls; let i=index;">
+                <a class="btn m-2 remove remove-btn btn-outline-danger"
+                  (click)="lenderLessorNameForm.controls.lender_lessor_details_arr.removeAt(i)">Remove</a>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Lender/Lessor name"
+                        formControlName="lender_lessor_name" type="text">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="City"
+                        formControlName="city" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="State"
+                        formControlName="state" type="text">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Phone number"
+                        formControlName="phone_no" type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="lender-lessor-name-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="lender-lessor-name-Add-Another-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
+                (click)="addAnotherLenderLessorDetails();">Save and Add Another</button>
+              <button id="lender-lessor-name-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3 ">Save and Finish</button>
+              <button id="lender-lessor-name-Skip-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
+                (click)="skipThisSection(curStep);">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="personal-asset-container" [ngClass]="{'container hide':curStep!=='personalAsset', 'container':curStep==='personalAsset'}">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-12">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-12">
+          <form id="personal-asset-form" [formGroup]="personalAssetForm" (ngSubmit)="addAnswer('submit-personal-asset', personalAssetForm)">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="custom-control custom-radio">
+                    <input class="check-personal-asset custom-control-input" type="radio"
+                      formControlName="personal_asset" id="personal-asset-Yes" value="Yes">
+                    <label class="custom-control-label" for="personal-asset-Yes">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input class="check-tax-returns custom-control-input" type="radio"
+                      formControlName="personal_asset" id="personal-asset-No" value="No">
+                    <label class="custom-control-label" for="personal-asset-No">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="personal-asset-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="personal-asset-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="personal-asset-step-container" [ngClass]="{'container hide':curStep!=='personalAssetStep', 'container':curStep==='personalAssetStep'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="personal-asset-step-form" [formGroup]="personalAssetStepForm" (ngSubmit)="addAnswer('submit-personal-asset-step', personalAssetStepForm)">
+            <div id="all-personal-asset-step" formArrayName="personal_asset_step_arr">
+              <div class="single-personal-asset-step clearfix"  [formGroupName]="i" 
+               *ngFor="let item of personalAssetStepForm.controls.personal_asset_step_arr.controls; let i=index;">
+                <a class="btn m-2 remove remove-btn btn-outline-danger"
+                  (click)="personalAssetStepForm.controls.personal_asset_step_arr.removeAt(i)">Remove</a>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Asset description"
+                        formControlName="asset_description" type="text">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <input class="form-control datepicker" placeholder="Purchase date"
+                        formControlName="purchase_date" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Fair market value"
+                        formControlName="fair_market_value" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Loan balance"
+                        formControlName="loan_balance" type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Monthly payment"
+                        formControlName="monthly_payment" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Final payment date"
+                        formControlName="final_payment_date" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="personal-asset-step-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="personal-asset-step-Add-Another-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
+                (click)="addAnotherPersonalAssetStep();">Save and Add Another</button>
+              <button id="personal-asset-step-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3">Save and Finish</button>
+              <button id="personal-asset-step-Skip-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
+                (click)="skipThisStep(curStep);">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="continue-answering-month-income-container" [ngClass]="{'container hide':curStep!=='continueAnsweringMonthIncome', 'container':curStep==='continueAnsweringMonthIncome'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="continue-answering-month-income-form" [formGroup]="continueAnsweringMonthIncomeForm" (ngSubmit)="addAnswer('submit-continue-answering-month-income', continueAnsweringMonthIncomeForm)">
+            <div class="btn-wrp text-center">
+              <a id="continue-answering-month-income-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="continue-answering-month-income-Next-btn" type="submit" value="skip"
+                class="continue-answering-month-income-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="continue-answering-month-income-Next-btn1" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="continue-answering-month-income-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Save, continue later</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="continue-answering-month-income-step-container" [ngClass]="{'container hide':curStep!=='continueAnsweringMonthIncomeStep', 'container':curStep==='continueAnsweringMonthIncomeStep'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="continue-answering-month-income-step-form" [formGroup]='continueAnsweringMonthIncomeStepForm'
+            (ngSubmit)="addAnswer('submit-continue-answering-month-income-step', continueAnsweringMonthIncomeStepForm)">
+            <div id="all-continue-answering-month-income-step" formArrayName="continue_answering_month_income_step_arr">
+              <div class="single-continue-answering-month-income-step clearfix" [formGroupName]="i" 
+              *ngFor="let item of continueAnsweringMonthIncomeStepForm.controls.continue_answering_month_income_step_arr.controls; let i=index;">
+                <a class="btn m-2 remove remove-btn btn-outline-danger"
+                  (click)="continueAnsweringMonthIncomeStepForm.controls.continue_answering_month_income_step_arr.removeAt(i)">Remove</a>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="Enter your gross monthly wages and/or salaries. Do not deduct tax withholding or allotments taken out of pay, such as insurance payments, credit union deductions, car payments, etc."
+                        formControlName="gross_monthly_wages_and_salaries"
+                        type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Enter your spouse’s wages"
+                        formControlName="spouses_wages" type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="Monthly do you earn any Interest or Dividends"
+                        formControlName="earn_any_interest" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="If business: What is your Net Business Income"
+                        formControlName="net_business_income" type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="If you have rental property, what is your Net Rental Income"
+                        formControlName="net_rental_income" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="If you have any distributions (K-1, IRA, etc.), what is the amount"
+                        formControlName="distribution_amount" type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="If you receive a pension, what is the amount monthly"
+                        formControlName="pension_amount" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="If your spouse receives a pension, what is the amount monthly"
+                        formControlName="spouse_pension_amount" type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="Your Social Security, if received"
+                        formControlName="social_security_amount" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control"
+                        placeholder="Your Spouse’s Social Security, if received"
+                        formControlName="spouse_social_security_amount"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input class="form-control" placeholder="Any Child Support"
+                        formControlName="child_support_amount" type="number">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <input  class="form-control" placeholder="Any Alimony"
+                        formControlName="alimony_amount" type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="continue-answering-month-income-step-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="continue-answering-month-income-step-Add-Another-btn" type="button" class="btn m-2 btn3 btn-warning btn-lg "
+                (click)="addAnotherContinueAnsweringMonthIncomeStep();">Save and Add Another</button>
+              <button id="continue-answering-month-income-step-Next-btn" type="submit" 
+                class="btn m-2 btn-primary btn-lg btn3">Save and Finish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="continue-answering-living-expense-container" [ngClass]="{'container hide':curStep!=='continueAnsweringLivingExpense', 'container':curStep==='continueAnsweringLivingExpense'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="continue-answering-living-expense-form" [formGroup]="continueAnsweringLivingExpenseForm"
+            (ngSubmit)="addAnswer('submit-continue-answering-living-expense', continueAnsweringLivingExpenseForm)">
+            <div class="btn-wrp text-center">
+              <a id="continue-answering-living-expense-Previous-btn"
+                class="btn m-2 btn-info btn-lg prev previous-btn m-2 " (click)="getPrevious(curStep)">Previous</a>
+              <button id="continue-answering-living-expense-Next-btn" type="submit" value="skip"
+                class="continue-answering-living-expense-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="continue-answering-living-expense-Next-btn1" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="continue-answering-living-expense-submit-btn m-2 btn m-2 btn-success btn-lg btn3">Save and Continue Later</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="food-clothing-misc-container" [ngClass]="{'container hide':curStep!=='foodClothingMisc', 'container':curStep==='foodClothingMisc'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="food-clothing-misc-form" [formGroup]="foodClothingMiscForm" (ngSubmit)="addAnswer('submit-food-clothing-misc', foodClothingMiscForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Food, Clothing and Misc."
+                    formControlName="food_clothing_misc" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="food-clothing-misc-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="food-clothing-misc-Next-btn" type="submit" value="next"
+                class="food-clothing-misc-submit-btn m-2 btn m-2 btn-primary btn-lg btn3">Continue</button>
+              <button id="food-clothing-misc-Next-btn1" type="button" value="skip"
+                class="food-clothing-misc-submit-btn m-2 btn m-2 btn-default btn-lg btn3">None</button>
+              <button id="food-clothing-misc-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="food-clothing-misc-submit-btn m-2 btn m-2 btn-warning btn-lg btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="housing-utilities-container" [ngClass]="{'container hide':curStep!=='housingUtilities', 'container':curStep==='housingUtilities'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="housing-utilities-form" [formGroup]="housingUtilitiesForm" (ngSubmit)="addAnswer('submit-housing-utilities', housingUtilitiesForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$housing_utilities" class="form-control" placeholder="Housing and Utilities"
+                    formControlName="housing_utilities" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="housing-utilities-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="housing-utilities-Next-btn" type="submit" value="next"
+                class="housing-utilities-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="housing-utilities-Next-btn1" type="button" value="skip"
+                class="housing-utilities-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="housing-utilities-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="housing-utilities-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicle-ownership-cost-container" [ngClass]="{'container hide':curStep!=='vehicleOwnershipCost', 'container':curStep==='vehicleOwnershipCost'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicle-ownership-cost-form" [formGroup]="vehicleOwnershipCostForm" (ngSubmit)="addAnswer('submit-vehicle-ownership-cost', vehicleOwnershipCostForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$vehicle_ownership_cost" class="form-control" placeholder="Vehicle Ownership Costs"
+                    formControlName="vehicle_ownership_cost" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicle-ownership-cost-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicle-ownership-cost-Next-btn" type="submit" value="next"
+                class="vehicle-ownership-cost-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="vehicle-ownership-cost-Next-btn1" type="button" value="skip"
+                class="vehicle-ownership-cost-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="vehicle-ownership-cost-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="vehicle-ownership-cost-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="vehicle-operating-costs-container" [ngClass]="{'container hide':curStep!=='vehicleOperatingCosts', 'container':curStep==='vehicleOperatingCosts'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="vehicle-operating-costs-form" [formGroup]="vehicleOperatingCostsForm" (ngSubmit)="addAnswer('submit-vehicle-operating-costs', vehicleOperatingCostsForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$vehicle_operating_costs" class="form-control" placeholder="Vehicle Operating Costs"
+                    formControlName="vehicle_operating_costs" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="vehicle-operating-costs-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="vehicle-operating-costs-Next-btn" type="submit" value="next"
+                class="vehicle-operating-costs-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="vehicle-operating-costs-Next-btn1" type="button" value="skip"
+                class="vehicle-operating-costs-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="vehicle-operating-costs-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="vehicle-operating-costs-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="public-transportation-container" [ngClass]="{'container hide':curStep!=='publicTransportation', 'container':curStep==='publicTransportation'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="public-transportation-form" [formGroup]="publicTransportationForm" (ngSubmit)="addAnswer('submit-public-transportation', publicTransportationForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$public_transportation" class="form-control" placeholder="Public Transportation"
+                    formControlName="public_transportation" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="public-transportation-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="public-transportation-Next-btn" type="submit" value="next" 
+                class="public-transportation-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="public-transportation-Next-btn1" type="button" value="skip"
+                class="public-transportation-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="public-transportation-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="public-transportation-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="health-insurance-container" [ngClass]="{'container hide':curStep!=='healthInsurance', 'container':curStep==='healthInsurance'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="health-insurance-form" [formGroup]="healthInsuranceForm" (ngSubmit)="addAnswer('submit-health-insurance', healthInsuranceForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$health_insurance" class="form-control" placeholder="Health Insurance"
+                    formControlName="health_insurance" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="health-insurance-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="health-insurance-Next-btn" type="submit" value="next"
+                class="health-insurance-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="health-insurance-Next-btn1" type="button" value="skip"
+                class="health-insurance-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="health-insurance-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="health-insurance-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="out-pocket-health-cost-container" [ngClass]="{'container hide':curStep!=='outPocketHealthCost', 'container':curStep==='outPocketHealthCost'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="out-pocket-health-cost-form" [formGroup]="outPocketHealthCostForm" (ngSubmit)="addAnswer('submit-out-pocket-health-cost', outPocketHealthCostForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Health Care Costs"
+                    formControlName="health_care_cost" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="out-pocket-health-cost-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="out-pocket-health-cost-Next-btn" type="submit" value="next"
+                class="out-pocket-health-cost-submit-btn m-2 btn btn-primary btn-lg m-2 btn3" >Continue</button>
+              <button id="out-pocket-health-cost-Next-btn1" type="button" value="skip"
+                class="out-pocket-health-cost-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="out-pocket-health-cost-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="out-pocket-health-cost-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="court-ordered-payment-container" [ngClass]="{'container hide':curStep!=='courtOrderedPayment', 'container':curStep==='courtOrderedPayment'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="court-ordered-payment-form" [formGroup]="courtOrderedPaymentForm" (ngSubmit)="addAnswer('submit-court-ordered-payment', courtOrderedPaymentForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Court Ordered Payments"
+                    formControlName="court_ordered_payment" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="court-ordered-payment-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="court-ordered-payment-Next-btn" type="submit" value="next"
+                class="court-ordered-payment-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="court-ordered-payment-Next-btn1" type="button" value="skip"
+                class="court-ordered-payment-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="court-ordered-payment-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="court-ordered-payment-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="child-dependent-care-container" [ngClass]="{'container hide':curStep!=='childDependentCare', 'container':curStep==='childDependentCare'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="child-dependent-care-form" [formGroup]="childDependentCareForm" (ngSubmit)="addAnswer('submit-child-dependent-care', childDependentCareForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Child/Dependent Care"
+                    formControlName="child_dependent_care" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="life-insurance-container" [ngClass]="{'container hide':curStep!=='lifeInsurance', 'container':curStep==='lifeInsurance'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="life-insurance-form" [formGroup]="lifeInsuranceForm" (ngSubmit)="addAnswer('submit-life-insurance', lifeInsuranceForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$life_insurance" class="form-control" placeholder="Life Insurance"
+                    formControlName="life_insurance" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="current-year-taxe-container" [ngClass]="{'container hide':curStep!=='currentYearTaxe', 'container':curStep==='currentYearTaxe'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="current-year-taxe-form" [formGroup]="currentYearTaxeForm" (ngSubmit)="addAnswer('submit-current-year-taxe', currentYearTaxeForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control"
+                    placeholder="Current year taxes (Income/FICA)" formControlName="current_year_taxes" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="secured-debts-container" [ngClass]="{'container hide':curStep!=='securedDebts', 'container':curStep==='securedDebts'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="secured-debts-form" [formGroup]="securedDebtsForm" (ngSubmit)="addAnswer('submit-secured-debts', securedDebtsForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input value="$secured_debts" class="form-control" placeholder="Secured Debts"
+                    formControlName="secured_debts" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="local-taxes-container" [ngClass]="{'container hide':curStep!=='localTaxes', 'container':curStep==='localTaxes'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="local-taxes-form" [formGroup]="localTaxesForm" (ngSubmit)="addAnswer('submit-local-taxes', localTaxesForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Delinquent State or Local Taxes"
+                    formControlName="local_taxes" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="other-expenses-container" [ngClass]="{'container hide':curStep!=='otherExpenses', 'container':curStep==='otherExpenses'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="other-expenses-form" [formGroup]="otherExpensesForm" (ngSubmit)="addAnswer('submit-other-expenses', otherExpensesForm)">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <div class="form-group">
+                  <input class="form-control" placeholder="Other Expenses"
+                    formControlName="other_expenses" type="number">
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="child-dependent-care-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="child-dependent-care-Next-btn" type="submit" value="next"
+                class="child-dependent-care-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Continue</button>
+              <button id="child-dependent-care-Next-btn1" type="button" value="skip"
+                class="child-dependent-care-submit-btn m-2 btn btn-default btn-lg m-2 btn3">None</button>
+              <button id="child-dependent-care-Next-btn2" type="button" value="skip" (click)="skipThisStep(curStep)"
+                class="child-dependent-care-submit-btn m-2 btn btn-warning btn-lg m-2 btn3">Skip</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="total-result-container" [ngClass]="{'container hide':curStep!=='totalResult', 'container':curStep==='totalResult'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="total-result-form" [formGroup]="totalResultForm" (ngSubmit)="addAnswer('submit-total-result', totalResultForm)">
+            <input class="form-control total_living_expenses" placeholder="Total Living Expenses"
+              formControlName="total_living_expenses" type="hidden">
+            <input class="form-control net_difference" placeholder="Total Living Expenses" formControlName="net_difference"
+              type="hidden">
+            <div class="row text-center">
+              <div class="col-md-6 col-sm-6">
+                <h3>Total Living Expenses: $ <span id="total-living-expenses"
+                    class="total_living_expenses">{{totalResultForm.value.total_income}}</span></h3>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <h3>Net Difference: $ <span id="net-difference" class="net_difference">{{net_difference}}</span></h3>
+              </div>
+            </div>
+            <div class="btn-wrp text-center">
+              <a id="total-result-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="total-result-Next-btn" type="submit" class="btn m-2 btn-primary btn-lg btn3" >Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="quest-complete-container"  [ngClass]="{'container hide':curStep!=='questComplete', 'container':curStep==='questComplete'}">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>{{curStepTitle(curStep)}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <form id="quest-complete-form" [formGroup]="questCompleteForm" (ngSubmit)="addAnswer('submit-quest-complete', questCompleteForm)">
+            <div class="btn-wrp text-center">
+              <a id="quest-complete-Previous-btn" class="btn m-2 btn-info btn-lg prev previous-btn m-2 "
+                (click)="getPrevious(curStep)">Previous</a>
+              <button id="quest-complete-Next-btn" type="button" value="next" (click)="addSelfEmployedInfo()"
+                class="quest-complete-submit-btn m-2 btn btn-primary btn-lg m-2 btn3">Add Self-Employed Information</button>
+              <button id="quest-complete-Next-btn1" type="submit" value="skip"
+                class="quest-complete-submit-btn m-2 btn btn-success btn-lg m-2 btn3">Save and go to Dashboard</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </section>
 </div>
 
