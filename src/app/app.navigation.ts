@@ -21,6 +21,13 @@ export const NavigationItems = [
   //   role: 'user'
   // },
   {
+    title: "User Payment",
+    tags: "user payment",
+    icon: "fal fa-credit-card",
+    routerLink: "/user-payment",
+    role: 'user'
+  },
+  {
     title: "Common Info",
     role: 'user'
   },

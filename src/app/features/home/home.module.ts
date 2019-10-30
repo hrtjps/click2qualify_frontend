@@ -5,12 +5,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { TaxListComponent } from './tax-list/tax-list.component';
 import { TaxQAComponent } from './tax-qa/tax-qa.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
     TaxFormComponent,
     TaxListComponent,
-    TaxQAComponent
+    TaxQAComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,11 @@ import { TaxQAComponent } from './tax-qa/tax-qa.component';
         path: 'user-tax-qa/:id',
         component: TaxQAComponent,
         data: {breadcrumbs: ['User', 'Tax Question and Answer']}
+      },
+      {
+        path: 'user-payment',
+        component: PaymentComponent,
+        data: {breadcrumbs: ['User', 'Payment']}
       },
     ])
   ]

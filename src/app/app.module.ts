@@ -12,6 +12,9 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { CommonService } from './services/common.service';
 import { QuestionsService } from './services/questions.service';
 import { FormsService } from './services/forms.service';
+import { NgxStripeModule } from 'ngx-stripe';
+import { FormValidationService } from './services/form-validation.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +24,7 @@ import { FormsService } from './services/forms.service';
     AppRoutingModule,
     CoreModule,
     ToastrModule.forRoot(),
+    NgxStripeModule.forRoot('pk_test_O7Tryd3wgXkkjA9Jg4u32au5007bOkieTw')
   ],
   providers: [
     QuestionsService,
@@ -28,6 +32,7 @@ import { FormsService } from './services/forms.service';
     AuthService,
     FormsService,
     CommonService,
+    FormValidationService,
 
 
     {

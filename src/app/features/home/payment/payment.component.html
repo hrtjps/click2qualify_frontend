@@ -1,0 +1,97 @@
+<div class="card p-4 rounded-plus bg-faded">
+  <form [formGroup]="stripeInfoForm">
+    <div class="row">
+      <div class="col-3">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <div class="input-group mb-3">
+            <input formControlName="amount" placeholder="Amount(USD)" id="amount"
+              type="number" class="form-control">
+            <label *ngIf="fvs.showErrorOnField(stripeInfoForm.get('amount'))"
+              class="invalid-feedback">
+              Amount - is a required field
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="form-group">
+          <label for="">Card Info</label>
+          <!-- <div class="input-group mb-3"> -->
+            <div id="card-element" class="card-field form-control"></div>
+            <label *ngIf="stripeErrMsg"
+              class="invalid-feedback">
+              Card Info - {{stripeErrMsg}}
+            </label>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="">First name</label>
+          <div class="input-group mb-3">
+            <input formControlName="firstName" placeholder="Enter First Name"
+              type="text" class="form-control">
+            <label *ngIf="fvs.showErrorOnField(stripeInfoForm.get('firstName'))"
+              class="invalid-feedback">
+              First Name - is a required field
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="">Last name</label>
+          <div class="input-group mb-3">
+            <input formControlName="lastName" placeholder="Enter Last Name"
+              type="text" class="form-control">
+            <label *ngIf="fvs.showErrorOnField(stripeInfoForm.get('lastName'))"
+              class="invalid-feedback">
+              Last Name - is a required field
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="">Email address</label>
+          <div class="input-group mb-3">
+            <input formControlName="email" type="text" email placeholder="Enter Email"
+              class="form-control">
+            <label *ngIf="fvs.showErrorOnField(stripeInfoForm.get('email'))"
+              class="invalid-feedback">
+              Email - is a required field
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="">Phone number</label>
+          <div class="input-group mb-3 signupDropdown">
+            <div class="input-group-prepend">
+              <button class="btn btn-primary dropdown-toggle" (click)="toggleDropdown()"
+                type="button">+{{selectedCountry}}</button>
+              <div class="dropdown-menu" [ngClass]="{'show': showCountry}">
+                <div class="scroll">
+                  <div class="dropdown-item" *ngFor="let countryCode of countryCodes"
+                    (click)="selectCountryCode(countryCode.dialCode)">+{{countryCode.dialCode+": "+countryCode.name}}</div>
+                </div>
+              </div>
+            </div>
+            <input formControlName="phone" type="text" class="form-control"
+              aria-label="Text input with dropdown button">
+          </div>
+        </div>    
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-info shadow-2 mb-4 mt-2 mr-4" (click)="payWithStripe()">Pay with Stripe</button>
+      <button disabled class="btn btn-success shadow-2 mb-4 mt-2" (click)="payWithPlaid()">Pay with Plaid</button>
+    </div>
+  </form>
+</div>

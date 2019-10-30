@@ -203,5 +203,4 @@ export class TableListingComponent implements OnInit {
 
 
   }
-
 }
