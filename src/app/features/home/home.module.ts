@@ -23,7 +23,7 @@ import { TaxQAComponent } from './tax-qa/tax-qa.component';
         data: {breadcrumbs: ['User', 'Tax List']}
       },
       {
-        path: 'user-tax-form',
+        path: 'user-tax-form/:id',
         component: TaxFormComponent,
         data: {breadcrumbs: ['User', 'Tax Form']}
       },

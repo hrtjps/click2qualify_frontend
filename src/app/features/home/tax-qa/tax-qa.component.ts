@@ -409,7 +409,7 @@ export class TaxQAComponent implements OnInit {
   questions: any[];
   curStep="owe";
   curStepProgress=0;
-  formId;
+  taxId;
   userId;
   steps;
   years;
@@ -563,8 +563,8 @@ export class TaxQAComponent implements OnInit {
 
   initData() {
     this.activatedRoute.params.subscribe(params => {
-      this.formId = params.id;
-      this.formsService.getFormById(this.formId).subscribe((form:any) => {
+      this.taxId = params.id;
+      this.formsService.getFormById(this.taxId).subscribe((form:any) => {
         this.userId = form.data.user_id;
         const step = form.data.last_slug;
         
@@ -591,7 +591,7 @@ export class TaxQAComponent implements OnInit {
       this.toastr.warning('You should input/select answer.', 'Warning');
       return;
     }
-    this.formsService.addQA(qid, this.formId, this.curStep, formValue.value).subscribe((data: any) => {
+    this.formsService.addQA(qid, this.taxId, this.curStep, formValue.value).subscribe((data: any) => {
       console.log(data);
       if(data.status =="success") {
         this.toastr.success(data.message, 'Success');
@@ -630,7 +630,7 @@ export class TaxQAComponent implements OnInit {
   moveStep(step) {
     step = step.replace('-container', '');
     console.log(step);
-    this.formsService.getAnswer(this.formId, this.getQIdByStep(step)).subscribe((data:any)=> {
+    this.formsService.getAnswer(this.taxId, this.getQIdByStep(step)).subscribe((data:any)=> {
       console.log(data);
       const formName = step+'Form';
       if(data && data.data){

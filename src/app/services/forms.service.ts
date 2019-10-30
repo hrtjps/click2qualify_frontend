@@ -51,6 +51,9 @@ export class FormsService {
   }
   
   getAnswer(taxId, questionId) {
-    return this.http.get(`api/answers/${taxId}/${questionId}`)    
+    return this.http.get(`api/answers/one/${taxId}/${questionId}`)    
+  }
+  getAllAnswer(taxId) {
+    return this.http.get(`api/answers/all/${taxId}`);
   }
 }

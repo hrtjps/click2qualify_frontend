@@ -73,7 +73,7 @@ export class TaxListComponent implements OnInit {
     } else if($event.btn=="edit") {
       this.router.navigate(["/user-tax-qa", $event.data._id]);
     } else if($event.btn=="print") {
-      this.router.navigate(["/user-tax-qa", $event.data._id]);
+      this.router.navigate(["/user-tax-form", $event.data._id]);
     } else if($event.btn=="download") {
       this.router.navigate(["/user-tax-qa", $event.data._id]);
     } else {

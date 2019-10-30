@@ -9,10 +9,12 @@ import { PanelsModule } from './panels/panels.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { AgGridModule } from 'ag-grid-angular';
 import { TableModule } from './table/table.module';
+import { EmptyStringPipe } from './pipes/empty.pipe';
 
 @NgModule({
   declarations: [
-    FilterPipe
+    FilterPipe,
+    EmptyStringPipe
   ],
   imports: [
     CommonModule,
