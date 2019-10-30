@@ -22,24 +22,12 @@ export class TaxListComponent implements OnInit {
   
   dropDownMenu = [
     {
-      name: 'start',
-      label: 'Start'
-    },
-    {
       name: 'continue',
       label: 'Continue'
     },
     {
-      name: 'edit',
-      label: 'Edit'
-    },
-    {
       name: 'print',
       label: 'Print'
-    },
-    {
-      name: 'download',
-      label: 'Download'
     },
   ];
 
@@ -66,16 +54,10 @@ export class TaxListComponent implements OnInit {
   }
   buttonClicked($event) {
     console.log($event);
-    if($event.btn=="start") {
-      this.router.navigate(["/user-tax-qa", $event.data._id]);
-    } else if($event.btn=="continue") {
-      this.router.navigate(["/user-tax-qa", $event.data._id]);
-    } else if($event.btn=="edit") {
+    if($event.btn=="continue") {
       this.router.navigate(["/user-tax-qa", $event.data._id]);
     } else if($event.btn=="print") {
       this.router.navigate(["/user-tax-form", $event.data._id]);
-    } else if($event.btn=="download") {
-      this.router.navigate(["/user-tax-qa", $event.data._id]);
     } else {
 
     }
