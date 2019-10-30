@@ -8,6 +8,8 @@ import { FormValidationService } from 'src/app/services/form-validation.service'
 import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/services/common.service';
 
+import { allCountries } from 'country-telephone-data';
+
 @Component({
   selector: 'smart-payment',
   templateUrl: './payment.component.html',
@@ -19,6 +21,11 @@ export class PaymentComponent implements OnInit {
   stripeInfoForm: FormGroup;
   isSubmitted = false;
   user;
+
+  showCountry: boolean = false
+  countryCodes: any[] = allCountries
+  selectedCountry: string = '1'
+  
 
   elements: Elements;
   card: StripeElement;
@@ -32,7 +39,7 @@ export class PaymentComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
-    private fvs: FormValidationService,
+    public fvs: FormValidationService,
     private toastrService: ToastrService,
     private commonService: CommonService,
     private authService: AuthService,
@@ -77,6 +84,10 @@ export class PaymentComponent implements OnInit {
       });
   }
 
+  toggleDropdown() {
+    this.showCountry = !this.showCountry
+  }
+  
   payWithStripe(){
     this.isSubmitted = true;
     if (!this.stripeInfoForm.valid) {
