@@ -14,6 +14,7 @@ import { QuestionsService } from './services/questions.service';
 import { FormsService } from './services/forms.service';
 import { NgxStripeModule } from 'ngx-stripe';
 import { FormValidationService } from './services/form-validation.service';
+import { DownloadService } from './services/download.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormValidationService } from './services/form-validation.service';
     FormsService,
     CommonService,
     FormValidationService,
+    DownloadService,
 
 
     {

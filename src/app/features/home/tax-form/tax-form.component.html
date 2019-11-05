@@ -3,7 +3,7 @@
     <i class="fal fa-print mr-3"></i> Print/Download Current Tax
   </button>
 </div>
-<div #taxForm class="bottom-para" style="padding-bottom: 7px; background: white;">
+<div #taxForm id="print-section" class="bottom-para" style="padding-bottom: 7px; background: white;">
   <style>
     input[type="checkbox"] {
       display: inline;
@@ -295,7 +295,7 @@
     }
 
     .width-100 {
-      width: 100%
+      width: 100%;
     }
 
     .width-90 {
@@ -347,17 +347,19 @@
       border-right: 5px solid #fff;
       font-weight: bold;
     }
-    input[type=text] {
-      height: 20px;
-    }
-    input[type=text],
-    textarea {
-      border: none;
-      background: rgb(241,244,255);
+
+    input[type="text"] {
       height: 20px;
     }
 
-    input[type=text]:focus,
+    input[type="text"],
+    textarea {
+      border: none;
+      background: rgb(241, 244, 255);
+      height: 20px;
+    }
+
+    input[type="text"]:focus,
     textarea:focus {
       background: white;
     }
@@ -436,7 +438,7 @@
                       style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;"
                       colspan="3">
                       <span style="display:block;"><i class="num-on"
-                          style="font-weight: bold; padding-right:5px;display: inline-block;border-right: none; width:20px;">1a</i>
+                          style="font-weight: bold; padding-right:5px;display: inline-block;border-right: none; width:23px;">1a</i>
                         Full Name of Taxpayer and Spouse (if applicable)</span>
                       <input type="text" value="{{user.firstName + ' ' + user.lastName}}" name="spouse_name"
                         class="width-100">
@@ -586,8 +588,6 @@
           </tr>
         </tbody>
       </table>
-
-
     </div>
     <div class="table-grp">
       <h1 class="mn-heading" style="margin-top:0px; padding-top:1px; padding-bottom:1px;">Section 2: Employment
@@ -959,8 +959,8 @@
               <td style="font-size:10pt;padding:1px 5px;border-right: 1px solid #000;" colspan="2">
                 <div style="display:block;">Name of the trust, estate, or policy</div>
                 <div style="display:block;">
-                  <input type="text" [value]="item.policy_name" name="policy_name"
-                    style="display:block;font-size:10pt;" class="width-100">
+                  <input type="text" [value]="item.policy_name" name="policy_name" style="display:block;font-size:10pt;"
+                    class="width-100">
                 </div>
               </td>
               <td style="font-size:10pt;padding:1px 5px;border-right: 1px solid #000;" colspan="2">
@@ -1098,9 +1098,39 @@
         </table>
       </div>
     </div>
+    <table style="margin-bottom:0px;border-top:1px solid #000;margin-top:70px;">
+      <tbody>
+        <tr style="border-bottom:none;width:100%;">
+          <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Catalog Number 20312N
+          </td>
+          <td
+            style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
+            <a href="http://www.irs.gov/">www.irs.gov</a>
+          </td>
+          <td
+            style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+            <span style="display:block;">Form <span style="font-weight:bold;font-size:14px;">433-A</span>
+              (Rev.12-2012)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div style=" height:100%;">
     <div class="table-grp">
+      <table style="margin-bottom:0px;margin-top:70px;border-bottom:2px solid #000;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Form 433-A (Rev. 2-2019)
+            </td>
+            <td style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Page <span style="font-weight:bold;font-size:13px;">2</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
       <h1 class="mn-heading" style="margin-top:0px; padding-top:1px; padding-bottom:1px;">Section 4: Personal Asset
         Information for All Individuals</h1>
       <div class="headining-check">
@@ -1182,7 +1212,8 @@
               <td
                 style="padding-bottom:1px;padding-top: 1px;border-right:1px solid #000;vertical-align:bottom;font-size: 10pt;">
                 <span style="display: table;width: 100%">
-                  <h1 style="font-size: 10pt;color: #000;display:inline-block;margin-top: 0px;font-weight: bold;">13b</h1>
+                  <h1 style="font-size: 10pt;color: #000;display:inline-block;margin-top: 0px;font-weight: bold;">13b
+                  </h1>
                   <textarea name="banking_account13b" class="width-80"
                     style="display:inline-block;font-size: 10pt;height:30pt;display: table-cell;vertical-align: middle;float: none;">&nbsp;</textarea>
                 </span>
@@ -1611,9 +1642,39 @@
         </table>
       </div>
     </div>
+    <table style="margin-bottom:0px;border-top:1px solid #000;margin-top:70px;">
+      <tbody>
+        <tr style="border-bottom:none;width:100%;">
+          <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Catalog Number 20312N
+          </td>
+          <td
+            style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
+            <a href="http://www.irs.gov/">www.irs.gov</a>
+          </td>
+          <td
+            style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+            <span style="display:block;">Form <span style="font-weight:bold;font-size:14px;">433-A</span>
+              (Rev.12-2012)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div style=" height:100%;">
     <div class="table-grp">
+      <table style="margin-bottom:0px;margin-top:70px;border-bottom:2px solid #000;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Form 433-A (Rev. 2-2019)
+            </td>
+            <td style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Page <span style="font-weight:bold;font-size:13px;">3</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
       <div class="headining-check">
         <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:0px; width: 100%;">
           <tbody style="width: 100%; border-bottom:1px solid #000;">
@@ -1681,8 +1742,8 @@
                     style="display:block;" class="width-100">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;">
-                  <input type="text" value="{{item.equal || ''}}" name="equal17 getABCode(i)"
-                    style="display:block;" class="width-100">
+                  <input type="text" value="{{item.equal || ''}}" name="equal17 getABCode(i)" style="display:block;"
+                    class="width-100">
                 </td>
               </tr>
 
@@ -1716,8 +1777,7 @@
                   <h1 style="font-size: 9pt;color: #000;display:inline-block;margin-top: 0px;">
                     17 {{getABCode((getAnswer(75).property_details_step_arr || []).length + i)}}
                     <span style="font-weight:normal;"> Property Description</span></h1>
-                  <input type="text" value="" name="property_address17 chr($j+$i+97)"
-                    style="display:block;">
+                  <input type="text" value="" name="property_address17 chr($j+$i+97)" style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px; border-right:1px solid #000;">
                   <input type="text" class="width-100" value="" name="purchase_date17 chr($j+$i+97)"
@@ -1876,8 +1936,7 @@
               <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px; border-right:1px solid #000;">
                 <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px;font-weight:normal;">
                   License/Tag Number</h1>
-                <input type="text" value="" name="LicenseTagNumber18a" style="display:block;"
-                  class="width-100">
+                <input type="text" value="" name="LicenseTagNumber18a" style="display:block;" class="width-100">
               </td>
 
               <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px; border-left:1px solid #000;"
@@ -1958,7 +2017,8 @@
                 <div style="display: flex;">
                   <h1 style="font-size:11px;color: #000;font-weight: normal;display:inline-block;margin-top: 0px;">Phone
                   </h1>
-                  <input type="text" value="" name="phn-5" class="width-100" style="display:block;font-size:11px;padding: 15px 0px;">
+                  <input type="text" value="" name="phn-5" class="width-100"
+                    style="display:block;font-size:11px;padding: 15px 0px;">
                 </div>
               </td>
             </tr>
@@ -1966,7 +2026,8 @@
               <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;" colspan="2">
                 <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px;font-weight:normal;">
                   Vehicle Identification Number</h1>
-                <input type="text" value="" class="width-100" name="VehicleIdentificationNumber18b" style="display:block;">
+                <input type="text" value="" class="width-100" name="VehicleIdentificationNumber18b"
+                  style="display:block;">
               </td>
             </tr>
           </tbody>
@@ -2039,8 +2100,8 @@
                     style="display:block;" class="width-100">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;">
-                  <input type="text" [value]="item.equality || ''" name="equality19 chr($j)"
-                    style="display:block;" class="width-100">
+                  <input type="text" [value]="item.equality || ''" name="equality19 chr($j)" style="display:block;"
+                    class="width-100">
                 </td>
               </tr>
               <tr>
@@ -2059,7 +2120,8 @@
                   <div style="display: flex;">
                     <h1 style="font-size:11.5px;color: #000;font-weight: normal;display:inline-block;margin-top: 0px;">
                       Phone</h1>
-                    <input type="text" class="width-100" value="" name="dssd55" style="display:block;font-size:11px;padding: 15px 0px;width: 100%;">
+                    <input type="text" class="width-100" value="" name="dssd55"
+                      style="display:block;font-size:11px;padding: 15px 0px;width: 100%;">
                   </div>
                 </td>
               </tr>
@@ -2076,19 +2138,23 @@
                     style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px; border-right:1px solid #000;">
-                  <input type="text" value="" class="width-100" name="purchase_date19 chr($j+$i)" style="display:block;">
+                  <input type="text" value="" class="width-100" name="purchase_date19 chr($j+$i)"
+                    style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px; border-right:1px solid #000;">
-                  <input type="text" value="" class="width-100" name="fair_market_value19 chr($j+$i)" style="display:block;">
+                  <input type="text" value="" class="width-100" name="fair_market_value19 chr($j+$i)"
+                    style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;border-right:1px solid #000;">
                   <input type="text" value="" class="width-100" name="loan_balance19 chr($j+$i)" style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;border-right:1px solid #000;">
-                  <input type="text" value="" class="width-100" name="monthly_payment19 chr($j+$i)" style="display:block;">
+                  <input type="text" value="" class="width-100" name="monthly_payment19 chr($j+$i)"
+                    style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;border-right:1px solid #000;">
-                  <input type="text" value="" class="width-100" name="final_payment_date19 chr($j+$i)" style="display:block;">
+                  <input type="text" value="" class="width-100" name="final_payment_date19 chr($j+$i)"
+                    style="display:block;">
                 </td>
                 <td style="padding-bottom:1px;padding-top: 0px;padding-bottom: 0px;">
                   <input type="text" value="" class="width-100" name="equality19 chr($j+$i)" style="display:block;">
@@ -2099,7 +2165,8 @@
                   colspan="4">
                   <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px; font-weight:normal;">
                     Location (Street, City, State, ZIP code) and County</h1>
-                  <textarea name="Location19 chr($j+$i)" class="width-100" style="display:block;height:50px;">&nbsp;</textarea>
+                  <textarea name="Location19 chr($j+$i)" class="width-100"
+                    style="display:block;height:50px;">&nbsp;</textarea>
                 </td>
                 <td style="padding-bottom:1px;padding-top: 1px;" colspan="5">
                   <h1 style="font-size: 11px;color: #000;display:block;margin-top: 0px; font-weight:normal;">
@@ -2107,9 +2174,11 @@
                   <textarea name="LenderLessorName19 chr($j+$i)" class="width-100"
                     style="display:block;height:35px;">&nbsp;</textarea>
                   <div style="display: flex;">
-                    <h1 style="font-size:11px;color: #000;font-weight: normal;display:inline-block;margin-top: 0px;">Phone
+                    <h1 style="font-size:11px;color: #000;font-weight: normal;display:inline-block;margin-top: 0px;">
+                      Phone
                     </h1>
-                    <input type="text" value="" class="width-100" name="dssd" style="display:block;font-size:11px;padding: 15px 0px;">
+                    <input type="text" value="" class="width-100" name="dssd"
+                      style="display:block;font-size:11px;padding: 15px 0px;">
                   </div>
                 </td>
               </tr>
@@ -2125,17 +2194,47 @@
                 </span>
               </td>
               <td style="padding-bottom:1px;padding-top: 15px;padding-bottom: 0px;">
-                <input type="text" value="{{total_personal_asset}}" name="TotalEquity chr($j+$i)"
-                  style="display:block;" class="width-100">
+                <input type="text" value="{{total_personal_asset}}" name="TotalEquity chr($j+$i)" style="display:block;"
+                  class="width-100">
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <table style="margin-bottom:0px;border-top:1px solid #000;margin-top:70px;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+                Catalog Number 20312N
+            </td>
+            <td
+              style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
+              <a href="http://www.irs.gov/">www.irs.gov</a>
+            </td>
+            <td
+              style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Form <span style="font-weight:bold;font-size:14px;">433-A</span>
+                (Rev.12-2012)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div style=" height:100%;">
     <div class="table-grp">
+      <table style="margin-bottom:0px;margin-top:70px;border-bottom:2px solid #000;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Form 433-A (Rev. 2-2019)
+            </td>
+            <td style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Page <span style="font-weight:bold;font-size:13px;">4</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
       <div class="headining-check">
         <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:0px; width: 100%;">
           <tbody style="width: 100%; border-bottom:1px solid #000;">
@@ -2448,7 +2547,8 @@
                 <span style="font-weight:bold;margin-right: 5px;">32</span></td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-                $<input type="text" value="" name="OtherExpenses2" style="display:inline-block;width: calc(100% - 10%);">
+                $<input type="text" value="" name="OtherExpenses2"
+                  style="display:inline-block;width: calc(100% - 10%);">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
@@ -2467,7 +2567,8 @@
                 <span style="font-weight:bold;margin-right: 5px;">33</span></td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-                $<input type="text" value="" name="OtherExpenses3" style="display:inline-block;width: calc(100% - 10%);">
+                $<input type="text" value="" name="OtherExpenses3"
+                  style="display:inline-block;width: calc(100% - 10%);">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
@@ -2520,14 +2621,14 @@
                 from Business:</span> Enter monthly net business income. This is the amount earned after ordinary and
               necessary monthly business
               expenses are paid. <span style="font-weight:bold;">This figure is the amount from page 6, line
-                89.</span> If the net business income is a loss, enter “0�?. Do not enter a negative
+                89.</span> If the net business income is a loss, enter “0”. Do not enter a negative
               number. If this amount is more or less than previous years, attach an explanation.
             </li>
             <li><span style="font-weight:bold;margin-right:7px;">3</span><span style="font-weight:bold;">Net Rental
                 Income:</span> Enter monthly net rental income. This is the amount earned after ordinary and necessary
               monthly rental expenses are
               paid. Do not include deductions for depreciation or depletion. If the net rental income is a loss, enter
-              “0.�? Do not enter a negative number.
+              “0”. Do not enter a negative number.
             </li>
             <li><span style="font-weight:bold;margin-right:7px;">4</span><span
                 style="font-weight:bold;">Distributions:</span> Enter the total distributions from partnerships and
@@ -2629,11 +2730,41 @@
         </table>
       </div>
     </div>
+    <table style="margin-bottom:0px;border-top:1px solid #000;margin-top:70px;">
+      <tbody>
+        <tr style="border-bottom:none;width:100%;">
+          <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Catalog Number 20312N
+          </td>
+          <td
+            style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
+            <a href="http://www.irs.gov/">www.irs.gov</a>
+          </td>
+          <td
+            style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+            <span style="display:block;">Form <span style="font-weight:bold;font-size:14px;">433-A</span>
+              (Rev.12-2012)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 
   <div style=" height:100%;">
     <div class="table-grp">
+      <table style="margin-bottom:0px;margin-top:70px;border-bottom:2px solid #000;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Form 433-A (Rev. 2-2019)
+            </td>
+            <td style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Page <span style="font-weight:bold;font-size:13px;">5</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
       <div class="headining-check">
         <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:0px; width: 100%;">
           <tbody style="width: 100%; border-bottom:1px solid #000;">
@@ -2757,8 +2888,7 @@
                 colspan="2">
                 <span style="font-size:10pt; display: block;"><span style="font-weight:bold;">59</span> Frequency of
                   Tax Deposits</span>
-                <input type="text" name="FrequencyofTaxDeposits" value=""
-                  style="display:block; font-size:10pt;">
+                <input type="text" name="FrequencyofTaxDeposits" value="" style="display:block; font-size:10pt;">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left; width:50%;">
@@ -2796,7 +2926,8 @@
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;"
                 colspan="2">
                 <div style="display: flex;">
-                  <h1 style="font-size:10pt;color: #000;font-weight: bold; display:inline-block;margin-top: 0px;">61a</h1>
+                  <h1 style="font-size:10pt;color: #000;font-weight: bold; display:inline-block;margin-top: 0px;">61a
+                  </h1>
                   <textarea name="StreetCity" style="display:block;height:45px;width:100%">&nbsp;</textarea>
                 </div>
               </td>
@@ -2811,7 +2942,8 @@
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;"
                 colspan="2">
                 <div style="display: flex;">
-                  <h1 style="font-weight: bold; font-size:10pt;color: #000;display:inline-block;margin-top: 0px;">61b</h1>
+                  <h1 style="font-weight: bold; font-size:10pt;color: #000;display:inline-block;margin-top: 0px;">61b
+                  </h1>
                   <textarea name="PaymentProcessorAccountNumber12"
                     style="display:block;height:45px; width: 100%;">&nbsp;</textarea>
                 </div>
@@ -2862,8 +2994,7 @@
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;width:25%;vertical-align: bottom;">
-                <input type="text" name="MerchantAccountNumber" value=""
-                  style="display:block; width: 100%;">
+                <input type="text" name="MerchantAccountNumber" value="" style="display:block; width: 100%;">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;width:50%;">
@@ -2876,14 +3007,12 @@
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;width:25%;vertical-align: bottom;">
                 <div style="display: flex;">
                   <span style="font-weight:bold;font-size: 11px;display:inline-block;">62b</span>
-                  <input type="text" name="IssuingBankNameaddress" value=""
-                    style="display:block;  width: 100%;">
+                  <input type="text" name="IssuingBankNameaddress" value="" style="display:block;  width: 100%;">
                 </div>
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;width:25%;vertical-align: bottom;">
-                <input type="text" name="PaymentProcessorAccountNumber14a" value=""
-                  style="display:block; width: 100%;">
+                <input type="text" name="PaymentProcessorAccountNumber14a" value="" style="display:block; width: 100%;">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;width:50%;">
@@ -2902,8 +3031,7 @@
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;border-right:1px solid #000;width:25%;vertical-align: bottom;">
-                <input type="text" name="PaymentProcessorAccountNumber14d" value=""
-                  style="display:block; width: 100%;">
+                <input type="text" name="PaymentProcessorAccountNumber14d" value="" style="display:block; width: 100%;">
               </td>
               <td
                 style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;width:50%;">
@@ -3086,8 +3214,7 @@
               </td>
               <td
                 style="font-size:10pt;padding: 2px 1px;padding-top:1px;text-align:center;border-right:1px solid #000;width:15%;vertical-align: bottom;">
-                <input type="text" name="BUSINESSCASHoNHANDBalance68c" value=""
-                  style="display:block; width:100%;">
+                <input type="text" name="BUSINESSCASHoNHANDBalance68c" value="" style="display:block; width:100%;">
               </td>
               <td
                 style="font-size:10pt;padding: 2px 5px;padding-top:1px;text-align:center;border-right:1px solid #000;vertical-align: bottom;">
@@ -3113,8 +3240,7 @@
               </td>
               <td
                 style="font-size:10pt;padding: 2px 1px;padding-top:1px;text-align:center;border-right:1px solid #000;width:15%;vertical-align: bottom;">
-                <input type="text" name="AccountsNotesReceivable65c" value=""
-                  style="display:block;width:100%; ">
+                <input type="text" name="AccountsNotesReceivable65c" value="" style="display:block;width:100%; ">
               </td>
               <td
                 style="font-size:10pt;padding: 2px 5px;padding-top:1px;text-align:center;border-right:1px solid #000;vertical-align: bottom;">
@@ -3140,8 +3266,7 @@
               </td>
               <td
                 style="font-size:10pt;padding: 2px 1px;padding-top:1px;text-align:center;border-right:1px solid #000;width:15%;vertical-align: bottom;">
-                <input type="text" name="AccountsNotesReceivable65c" value=""
-                  style="display:block;width:100%; ">
+                <input type="text" name="AccountsNotesReceivable65c" value="" style="display:block;width:100%; ">
               </td>
               <td
                 style="font-size:10pt;padding: 2px 5px;padding-top:1px;text-align:center;border-right:1px solid #000;vertical-align: bottom;">
@@ -3216,11 +3341,41 @@
             </tr>
           </tbody>
         </table>
+        <table style="margin-bottom:0px;border-top:1px solid #000;margin-top:70px;">
+          <tbody>
+            <tr style="border-bottom:none;width:100%;">
+              <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+                  Catalog Number 20312N
+              </td>
+              <td
+                style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
+                <a href="http://www.irs.gov/">www.irs.gov</a>
+              </td>
+              <td
+                style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+                <span style="display:block;">Form <span style="font-weight:bold;font-size:14px;">433-A</span>
+                  (Rev.12-2012)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
   <div style=" height:100%;">
     <div class="table-grp">
+      <table style="margin-bottom:0px;margin-top:70px;border-bottom:2px solid #000;">
+        <tbody>
+          <tr style="border-bottom:none;width:100%;">
+            <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
+              Form 433-A (Rev. 2-2019)
+            </td>
+            <td style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">
+              <span style="display:block;">Page <span style="font-weight:bold;font-size:13px;">6</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
       <div class="headining-check">
         <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:0px; width: 100%;">
           <tbody style="width: 100%; border-bottom:1px solid #000;">
@@ -3264,8 +3419,8 @@
           </tr>
           <tr>
             <td style="padding-bottom:1px;padding-top: 1px; border-right:1px solid #000;" colspan="2">
-              <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px; font-weight: bold;">66a &nbsp;<span
-                  style="font-weight:normal;">Property Description</span></h1>
+              <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px; font-weight: bold;">66a
+                &nbsp;<span style="font-weight:normal;">Property Description</span></h1>
               <input type="text" name="PropertyDescription66a" value="" style="display:block; width:100%;">
             </td>
             <td style="padding-bottom:1px;padding-top: 1px; border-right:1px solid #000;vertical-align: bottom;">
@@ -3291,12 +3446,14 @@
             <td style="padding-bottom:1px;padding-top:1px;border-right:1px solid #000;" colspan="4">
               <h1 style="font-size: 11px;color: #000;display:inline-block;margin-top: 0px; font-weight:normal;">
                 Location (Street, City, State, ZIP code) and County</h1>
-              <textarea name="Location66g" style="display:block;height:70px;font-size: 11px;width: 100%;">&nbsp;</textarea>
+              <textarea name="Location66g"
+                style="display:block;height:70px;font-size: 11px;width: 100%;">&nbsp;</textarea>
             </td>
             <td style="padding-bottom:1px;padding-top:1px;" colspan="5">
               <h1 style="font-size: 11px;color: #000;display:block;margin-top: 0px; font-weight:normal;">
                 Lender/Contract Holder Name, Address (Street, City, State, ZIP code), and Phone</h1>
-              <textarea name="Lender66g" style="display:block;height:35px;font-size: 11px;width: 100%;">&nbsp;</textarea>
+              <textarea name="Lender66g"
+                style="display:block;height:35px;font-size: 11px;width: 100%;">&nbsp;</textarea>
               <div style="display:flex;">
                 <h1 style="font-size:9pt;color: #000;font-weight: normal;display:inline-block;margin-top: 0px;">Phone
                 </h1>
@@ -3446,13 +3603,17 @@
               <span style="font-weight:bold;margin-right: 5px;">67</span> Gross Receipts</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="GrossReceiptsaa" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="GrossReceiptsaa" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">77</span> Materials Purchased<sup>1</sup></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="MaterialsPurchased22" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="MaterialsPurchased22" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3460,13 +3621,17 @@
               <span style="font-weight:bold;margin-right: 5px;">68</span> Gross Rental Income</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="GrossRentalIncome" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="GrossRentalIncome" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">78</span> Inventory Purchased<sup>2</sup></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="InventoryPurchased" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="InventoryPurchased" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3474,13 +3639,17 @@
               <span style="font-weight:bold;margin-right: 5px;">69</span> Interest</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="Interest" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="Interest" value="" style="display:inline-block;">
+              </div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">79</span> Gross Wages & Salaries</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="GrossWagesSalaries" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="GrossWagesSalaries" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3488,14 +3657,17 @@
               <span style="font-weight:bold;margin-right: 5px;">70</span> Dividends</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="GrossWagesSalariesDividends" value="" style="display:inline-block;"></div>
+              <div style="display: flex;">$<input type="text" name="GrossWagesSalariesDividends" value=""
+                  style="display:inline-block;"></div>
             </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">80</span> Rent</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="GrossWagesDividends" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="GrossWagesDividends" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3504,13 +3676,17 @@
             </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="CashReceipts" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="CashReceipts" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">81</span> Supplies<sup>3</sup></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="Supplies" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="Supplies" value="" style="display:inline-block;">
+              </div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3525,68 +3701,90 @@
               <span style="font-weight:bold;margin-right: 5px;">82</span> Utilities/Telephone<sup>4</sup></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="UtilitiesTelephone" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="UtilitiesTelephone" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">72</span><input type="text" name="UtilitiesTelephone72"
-                value="" style="display:inline-block;width: 100%;"></div></td>
+              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">72</span><input type="text"
+                  name="UtilitiesTelephone72" value="" style="display:inline-block;width: 100%;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="UtilitiesTelephone" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="UtilitiesTelephone" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">83</span> Vehicle Gasoline/Oil</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="VehicleGasolineOil" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="VehicleGasolineOil" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">73</span><input type="text" name="VehicleGasolineOil73a"
-                value="" style="display:inline-block;width: 100%;"></div></td>
+              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">73</span><input type="text"
+                  name="VehicleGasolineOil73a" value="" style="display:inline-block;width: 100%;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="VehicleGasolineOil73ab" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="VehicleGasolineOil73ab" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">84</span> Repairs & Maintenance</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="RepairsMaintenance" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="RepairsMaintenance" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">74</span><input type="text" name="RepairsMaintenance74"
-                value="" style="display:inline-block;width: 100%;"></div></td>
+              <div style="display: flex;"><span style="font-weight:bold;margin-right: 5px;">74</span><input type="text"
+                  name="RepairsMaintenance74" value="" style="display:inline-block;width: 100%;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="RepairsMaintenance75" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="RepairsMaintenance75" value=""
+                  style="display:inline-block;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">85</span> Insurance</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="Insurance85" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="Insurance85" value="" style="display:inline-block;">
+              </div>
+            </td>
           </tr>
           <tr>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <div style="display: flex;">
-              <span style="font-weight:bold;margin-right: 5px;">75</span><input type="text" name="Insurance75" value=""
-                style="display:inline-block;width: 100%;"></div></td>
+                <span style="font-weight:bold;margin-right: 5px;">75</span><input type="text" name="Insurance75"
+                  value="" style="display:inline-block;width: 100%;"></div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="Insurance86" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="Insurance86" value="" style="display:inline-block;">
+              </div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">86</span> Current Taxes<sup>5</sup></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="CurrentTaxes" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="CurrentTaxes" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3595,7 +3793,9 @@
                 Income</span> (Add lines 67 through 75)</td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="TotalIncome" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="TotalIncome" value="" style="display:inline-block;">
+              </div>
+            </td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;border-right: 1px solid #000; font-weight:normal;color:#000;text-align:left;">
               <span style="font-weight:bold;margin-right: 5px;">87</span> Other Expenses, including installment
@@ -3603,7 +3803,8 @@
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
               <div style="display: flex;">$<input type="text" name="OtherExpensesincludinginstallmentpayments" value=""
-                style="display:inline-block;"></div></td>
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3615,7 +3816,9 @@
                 (Add lines 77 through 87)</span></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="TotalExpenses88" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="TotalExpenses88" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
           <tr>
             <td
@@ -3627,7 +3830,9 @@
                 Income (Line 76 minus 88) <sup>6</sup></span></td>
             <td
               style="font-size:10pt; word-wrap:break-word;overflow-wrap: break-word; padding: 2px 5px;font-weight:normal;color:#000;text-align:left;">
-              <div style="display: flex;">$<input type="text" name="NetBusinessIncome89" value="" style="display:inline-block;"></div></td>
+              <div style="display: flex;">$<input type="text" name="NetBusinessIncome89" value=""
+                  style="display:inline-block;"></div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -3689,11 +3894,11 @@
         <tbody>
           <tr style="border-bottom:none;width:100%;">
             <td style="font-size:10pt;padding: 2px 5px; padding-top:1px;width:33%; border-bottom: none;">
-
+                Catalog Number 20312N
             </td>
             <td
               style="font-size:10pt;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align: center;">
-
+              <a href="http://www.irs.gov/">www.irs.gov</a>
             </td>
             <td
               style="font-size:11px;padding: 2px 5px;padding-top:1px;width:33%; border-bottom: none; text-align:right;">

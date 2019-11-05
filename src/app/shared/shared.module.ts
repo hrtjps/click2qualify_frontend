@@ -10,6 +10,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { AgGridModule } from 'ag-grid-angular';
 import { TableModule } from './table/table.module';
 import { EmptyStringPipe } from './pipes/empty.pipe';
+import {NgxPrintModule} from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EmptyStringPipe } from './pipes/empty.pipe';
     PopoverModule.forRoot(),
     AgGridModule.withComponents([]),
     ProgressbarModule.forRoot(),
-    TableModule
+    TableModule,
+    NgxPrintModule
   ],
   exports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { EmptyStringPipe } from './pipes/empty.pipe';
     AgGridModule,
     TableModule,
     ProgressbarModule,
-    BsDropdownModule
+    BsDropdownModule,
+    NgxPrintModule
   ]
 })
 export class SharedModule {

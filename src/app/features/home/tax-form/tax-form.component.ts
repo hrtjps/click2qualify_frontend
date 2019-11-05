@@ -3,6 +3,7 @@ import { FormsService } from 'src/app/services/forms.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DownloadService } from 'src/app/services/download.service';
 
 @Component({
   selector: 'smart-tax-form',
@@ -40,6 +41,7 @@ export class TaxFormComponent implements OnInit {
     private formsService: FormsService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
+    private downloadService: DownloadService,
   ) { 
     this.allAnswer = [];
   }
@@ -124,12 +126,24 @@ export class TaxFormComponent implements OnInit {
   
 
   printTaxForm() {
-    // console.log(this.taxForm);
+    let resultForm = this.taxForm.nativeElement.innerHTML;
+    resultForm = resultForm.replace('_ngcontent-fox-c10=""', "");
+    // console.log(resultForm);
     window.print();
+    // this.downloadService.download(resultForm).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+
+    //   },
+    //   (error: any) => {
+    //     console.log(error);
+    //   }
+    // );
     // const win = window.open('', '');
     // // win.document.write('<html><head><title>INVOICE</title>'
     // //             +'</head><body></body></html>');
     // win.document.body.innerHTML = this.taxForm.nativeElement.innerHTML;
+
 
     // if (navigator.userAgent.match(/Trident\/\d.\d/)) { // IE needs to call this without a setTimeout
     //   win.print();

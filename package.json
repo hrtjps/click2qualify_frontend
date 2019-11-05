@@ -40,6 +40,7 @@
     "ngx-bootstrap": "^5.0.0",
     "ngx-cookie": "^4.1.2",
     "ngx-dropzone": "^2.1.1",
+    "ngx-print": "^1.2.0-beta.3",
     "ngx-stripe": "^7.4.4",
     "ngx-toastr": "^11.1.0",
     "pace-js": "^1.0.2",
