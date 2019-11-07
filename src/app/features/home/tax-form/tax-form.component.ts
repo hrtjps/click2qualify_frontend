@@ -124,36 +124,19 @@ export class TaxFormComponent implements OnInit {
     }
   }
   
-
   printTaxForm() {
-    let resultForm = this.taxForm.nativeElement.innerHTML;
-    resultForm = resultForm.replace('_ngcontent-fox-c10=""', "");
-    // console.log(resultForm);
     window.print();
+    // let resultForm = this.taxForm.nativeElement.innerHTML;
+    // const pos = resultForm.indexOf(" ",5);
+    // const tempStr = resultForm.substring(4, pos);
+    // resultForm = resultForm.replace(new RegExp(tempStr, "g"), "");
     // this.downloadService.download(resultForm).subscribe(
     //   (data: any) => {
     //     console.log(data);
-
     //   },
     //   (error: any) => {
     //     console.log(error);
     //   }
     // );
-    // const win = window.open('', '');
-    // // win.document.write('<html><head><title>INVOICE</title>'
-    // //             +'</head><body></body></html>');
-    // win.document.body.innerHTML = this.taxForm.nativeElement.innerHTML;
-
-
-    // if (navigator.userAgent.match(/Trident\/\d.\d/)) { // IE needs to call this without a setTimeout
-    //   win.print();
-    //   // win.close();
-    // } else {
-    //   setTimeout(() => {
-    //     win.print();
-    //     // win.close();
-    //   }, 0);
-    // }
-
   }
 }

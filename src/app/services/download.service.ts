@@ -10,7 +10,6 @@ export class DownloadService {
     private http: HttpClient
   ) { }
   download(data) {
-    return this.http.post('api/download-pdf', {data: "hello"});
-
+    return this.http.post('api/download-pdf', {data: data});
   }
 }
