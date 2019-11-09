@@ -586,19 +586,36 @@ export class TaxQAComponent implements OnInit {
   addAnswer(formName, formValue) {
     let qid =this.questions.find(it => it.step === this.curStep).id;
     
-    console.log(formValue);
+    console.log(this.curStep, formValue.value);
     if(formValue.invalid) {
       this.toastr.warning('You should input/select answer.', 'Warning');
       return;
     }
     this.formsService.addQA(qid, this.taxId, this.curStep, formValue.value).subscribe((data: any) => {
-      console.log(data);
       if(data.status =="success") {
         this.toastr.success(data.message, 'Success');
         if(this.curStep === "questComplete"){
           this.router.navigate(['/user-tax-list']);
         } else {
-          this.moveNextStep(this.curStep);
+          if(this.curStep === "irs" && formValue.value.check_IRS==="No") {
+            this.moveStep("state");
+          } else if(this.curStep === "state" && formValue.value.check_State==="No") {
+            this.moveStep("taxReturns");
+          } else if(this.curStep === "taxReturns" && formValue.value.tax_returns==="No") {
+            this.moveStep("noticeReceive");
+          } else if(this.curStep === "phoneCall" && formValue.value.phone_call==="Continue") {
+            this.moveStep("callYouSoon");
+          } else if(this.curStep === "lawsuitParty" && formValue.value.check_lawsuit_party==="No") {
+            this.moveStep("bankruptcy");
+          } else if(this.curStep === "bankruptcy" && formValue.value.check_bankruptcy==="No") {
+            this.moveStep("insurancePolicy");
+          } else if(this.curStep === "insurancePolicy" && formValue.value.check_insurance_policy==="No") {
+            this.moveStep("safeDeposit");
+          } else if(this.curStep === "safeDeposit" && formValue.value.check_safe_deposit==="No") {
+            this.moveStep("worthTransferred");
+          } else {
+            this.moveNextStep(this.curStep);
+          }
         }
       } else {
         this.toastr.error(data.message, 'Error');
@@ -629,12 +646,9 @@ export class TaxQAComponent implements OnInit {
 
   moveStep(step) {
     step = step.replace('-container', '');
-    console.log(step);
     this.formsService.getAnswer(this.taxId, this.getQIdByStep(step)).subscribe((data:any)=> {
-      console.log(data);
       const formName = step+'Form';
       if(data && data.data){
-        console.log(this[formName]);
         if(step === 'policyDetails'){
           (<FormArray>this.policyDetailsForm.controls.policy_details).clear();
           for(let i=0; i<data.data.answer.policy_details.length;i++){
