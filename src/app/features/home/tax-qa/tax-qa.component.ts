@@ -898,7 +898,7 @@ export class TaxQAComponent implements OnInit, OnDestroy {
 
   whosTyping() {
     return this.membersTyping.map(m => {
-      if (m.identity === this.userName) {
+      if (m.identity !== this.userName) {
         return m.identity;
       }
     }).join(', ');
