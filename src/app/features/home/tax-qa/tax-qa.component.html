@@ -3479,7 +3479,6 @@
     </button>
   </div>
   <div class="modal-body p-0 h-100 d-flex">
-    <!-- BEGIN msgr-list -->
     <div
       class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
       <div>
@@ -3538,42 +3537,58 @@
         </a>
       </div>
     </div>
-    <!-- END msgr-list -->
-    <!-- BEGIN msgr -->
-    <div class="msgr d-flex h-100 flex-column bg-white">
-      <!-- BEGIN custom-scroll -->
+    <div class="msgr d-flex flex-column bg-white">
       <div class="custom-scroll flex-1 h-100">
 
         <div id="chat_container" class="w-100 p-4">
-          <!-- start .chat-segment -->
-          <div class="chat-segment">
-            <div class="time-stamp text-center mb-2 fw-400">
-              Jun 19
+          
+          <ng-container *ngFor="let message of messages; let i=index;">
+            <div class="chat-segment"
+              [ngClass]="{'chat-segment-sent': message.bodyType==='send', 'chat-segment-get': message.bodyType==='get', 'chat-segment-console': message.bodyType==='console'}"
+            >
+              <ng-container *ngIf="message.bodyType==='console'">
+                <div class="text-center fw-300 text-muted mt-1 fs-xs">
+                  <p>
+                    {{message.body}}
+                  </p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="message.bodyType==='send'">
+                <div class="time-stamp text-right mb-2 fw-400">
+                  {{message.dateUpdated.toLocaleString()}}
+                </div>
+                <div class="chat-message">
+                  <p>
+                    {{message.body}}
+                  </p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="message.bodyType==='get'">
+                <div class="time-stamp text-left mb-2 fw-400">
+                  {{message.author}}, {{message.dateUpdated.toLocaleString()}}
+                </div>
+                <div class="chat-message">
+                  <p>
+                    {{message.body}}
+                  </p>
+                </div>
+              </ng-container>
             </div>
-          </div>
-          <!--  end .chat-segment -->
-          <!-- start .chat-segment -->
-          <div class="chat-segment chat-segment-sent">
-            <div class="chat-message">
-              <p>
-                Hey Tracey, did you get my files?
-              </p>
-            </div>
-            <div class="text-right fw-300 text-muted mt-1 fs-xs">
-              3:00 pm
-            </div>
-          </div>
+          </ng-container>
+          
         </div>
 
       </div>
-      <!-- END custom-scroll  -->
-      <!-- BEGIN msgr__chatinput -->
       <div class="d-flex flex-column">
+        <div *ngIf="membersTyping.length">
+          <span class="form-text text-muted font-italic">{{whosTyping()}} is typing...</span>
+        </div>
         <div
           class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
           <div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
-            <div id="msgr_input" contenteditable="true" data-placeholder="Type your message here..."
-              class="height-10 form-content-editable"></div>
+            <textarea id="msgr_input" #chatElement data-placeholder="Type your message here..."
+              (ngModelChange)="typing()"
+              [(ngModel)]="chatMessage" [disabled]="!isConnected" class="height-10 w-100 form-content-editable"></textarea>
           </div>
         </div>
         <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
@@ -3590,12 +3605,10 @@
             <i class="fal fa-camera color-fusion-300"></i>
           </a>
           <div class="ml-auto">
-            <a href="javascript:void(0);" class="btn btn-info waves-effect waves-themed">Send</a>
+            <button (click)="sendMessage()" [disabled]="!isConnected" class="btn btn-info waves-effect waves-themed">Send</button>
           </div>
         </div>
       </div>
-      <!-- END msgr__chatinput -->
     </div>
-    <!-- END msgr -->
   </div>
 </ng-template>

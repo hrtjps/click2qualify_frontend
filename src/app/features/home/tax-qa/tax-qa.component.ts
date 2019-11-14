@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
@@ -6,12 +6,61 @@ import { FormsService } from 'src/app/services/forms.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ChatService } from 'src/app/services/chat.service';
+
+import { Channel } from "twilio-chat/lib/channel";
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import * as Twilio from 'twilio-chat';
+import Client from 'twilio-chat';
+import { AuthService } from 'src/app/services/auth.service';
+
+type MBodyType='get' | 'send' | 'console';
+type MContentType="text" | 'html';
+class _Message {
+  body: String;
+  author: String;
+  dateUpdated: Date;
+  bodyType: String;
+  contentType: String;
+  constructor(body, author='', bodyType='console', dateUpdated=new Date(), contentType='text') {
+    this.body = body;
+    this.author = author;
+    this.bodyType = bodyType;
+    this.contentType = contentType;
+    this.dateUpdated = dateUpdated;
+  }
+}
 @Component({
   selector: 'smart-tax-qa',
   templateUrl: './tax-qa.component.html',
   styleUrls: ['./tax-qa.component.scss']
 })
-export class TaxQAComponent implements OnInit {
+export class TaxQAComponent implements OnInit, OnDestroy {
+  public isConnected: boolean = false;
+  public isConnecting: boolean = false;
+  public isGettingChannels: boolean = false;
+  public channels: any[] = [];
+  public channelObj: any;
+  public chatMessage: string;
+  public currentChannel: Channel;
+  public typeObservable: any;
+  public messages: _Message[] = [];
+  public currentUsername: string = localStorage.getItem('twackUsername');
+  public isMemberOfCurrentChannel: boolean = false;
+  public membersTyping: any = [];
+
+  private conSub: any;
+  private disconSub: any;
+
+  @ViewChild('chatElement', {static: true}) chatElement: ElementRef;
+  // private chatElement: ElementRef;
+  // @ViewChild('chatElement', {static: true}) set content(content: ElementRef) {
+  //   console.log(content);
+  //   this.chatElement = content;
+  // }
+  // @ViewChild('chatDisplay', {static: false}) chatDisplay: ElementRef;
+
   oweForm: FormGroup = new FormGroup({
     check_owe: new FormControl('', Validators.required)
   });
@@ -411,9 +460,11 @@ export class TaxQAComponent implements OnInit {
   curStepProgress=0;
   taxId;
   userId;
+  userName;
   steps;
   years;
   @ViewChild('template', {static: true}) template: any;
+
 
   modalRef: BsModalRef;
   constructor(
@@ -424,6 +475,8 @@ export class TaxQAComponent implements OnInit {
     private formsService: FormsService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private chatService: ChatService
   ) { 
     this.questions = [];
     this.steps=[];
@@ -436,7 +489,9 @@ export class TaxQAComponent implements OnInit {
 
   ngOnInit() {
     this.initData();
+    this.connect();
   }
+
   addSelfEmployedInfo() {
 
   }
@@ -558,6 +613,7 @@ export class TaxQAComponent implements OnInit {
     if (this.modalRef) {
       this.modalRef.hide();
       this.modalRef = null;
+      this.leaveChannel();
     }
   }
 
@@ -703,5 +759,163 @@ export class TaxQAComponent implements OnInit {
       this.curStepProgress = this.steps.indexOf(step) + 1;
       this.cdr.markForCheck();
     })
+  }
+  
+  connect() {
+    this.isConnecting = true;
+    let user=this.authService.currentUserValue;
+    this.userName= user.firstName + ' ' + user.lastName;
+    // let token = {
+    //   identity: "EccentricRoddyEssex", 
+    //   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aW…DQifQ.zf11HPC_aLyjwV7A6OikrIrSh4YC1YaG7g-DxoblDjw"
+    // }
+    this.chatService.getToken(this.userName).subscribe((token: any) => {
+      this.messages.push(new _Message('Connecting ...'));
+      this.chatService.connect(token.token).then(() => {
+        this.chatService.createChannel().then(() => {
+          this.enterChannel();
+        })        
+      });  
+      
+      this.conSub = this.chatService.chatConnectedEmitter.subscribe(() => {
+        this.isConnected = true;
+        this.isConnecting = false;
+        this.cdr.markForCheck();
+        this.cdr.detectChanges();
+        this.getChannels();
+        this.chatService.chatClient.on('channelAdded', () => {
+          this.getChannels();
+        });
+        this.chatService.chatClient.on('channelRemoved', () => {
+          this.getChannels();
+        });
+        this.chatService.chatClient.on('tokenExpired', () => {
+          console.log("token expired");
+          // this.authService.refreshToken();
+        });
+      })
+
+      this.disconSub = this.chatService.chatDisconnectedEmitter.subscribe(() => {
+        this.isConnecting = false;
+        this.isConnected = false;
+        this.cdr.markForCheck();
+        this.cdr.detectChanges();
+      });
+    })
+  }
+
+  getChannels() {
+    this.isGettingChannels = true;
+    this.chatService.getPublicChannels().then((channels: any) => {
+      this.channelObj = channels;
+      this.channels = this.channelObj.items;
+      console.log(channels);
+      this.isGettingChannels = false;
+      /* clean em up
+      this.channels.forEach( c => {
+        this.chatService.getChannel(c.sid).then(ch => {
+          ch.delete();
+        })
+      })
+      */
+    });
+  }
+
+  leaveChannel() {
+    if (this.typeObservable) {
+      this.typeObservable.unsubscribe();
+    }
+    if (this.currentChannel) {
+      return this.currentChannel.leave().then((channel: Channel) => {
+        channel.removeAllListeners('messageAdded');
+        channel.removeAllListeners('typingStarted');
+        channel.removeAllListeners('typingEnded');
+      });
+    }
+    else {
+      return Promise.resolve();
+    }
+  }
+
+  enterChannel() {
+    // this.messages = [];
+    // this.membersTyping = [];
+
+    // this.leaveChannel()
+    //   .then(() => {
+    //     this.chatService.getChannel(sid).then(channel => {
+          this.currentChannel = this.chatService.currentChannel;
+          console.log(this.currentChannel);
+          this.currentChannel.join()
+            .then(r => {
+              this.initChannel();
+              this.cdr.markForCheck();
+            })
+            .catch(e => {
+              if (e.message.indexOf('already exists') > 0) {
+                this.initChannel();
+                this.cdr.markForCheck();
+              }
+            });
+      //   });
+      // });
+  }
+
+  initChannel() {
+    this.messages.push(new _Message('Connected to Administrator!'));
+    // this.typeObservable = fromEvent(this.chatElement.nativeElement, 'keyup')
+    // .pipe(
+    //   debounceTime(100)
+    // ).subscribe(() => {
+    //   this.typing();
+    // });
+
+    this.currentChannel.on('messageAdded', (m: any) => {
+      this.messages.push(new _Message(m.state.body, m.state.author, 
+        m.state.author === this.userName?'send':'get',
+        m.state.dateUpdated, 'text'));
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+    this.currentChannel.on('typingStarted', (m) => {
+      console.log('typing started',m);
+      this.membersTyping.push(m);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+    this.currentChannel.on('typingEnded', (m) => {
+      console.log('typing ended',m);
+      const mIdx = this.membersTyping.findIndex(mem => mem.identity === m.identity);
+      this.membersTyping = this.membersTyping.splice(mIdx, 0);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+  }
+
+  typing() {
+    this.currentChannel.typing();
+  }
+
+  whosTyping() {
+    return this.membersTyping.map(m => {
+      if (m.identity === this.userName) {
+        return m.identity;
+      }
+    }).join(', ');
+  }
+
+  sendMessage() {
+    this.currentChannel.sendMessage(this.chatMessage);
+    this.chatMessage = null;
+  }
+
+  createChannel() {
+    this.chatService.createChannel();
+    return false;
+  }
+
+  ngOnDestroy() {
+    this.conSub.unsubscribe();
+    this.disconSub.unsubscribe();
   }
 }

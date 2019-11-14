@@ -48,6 +48,7 @@
     "subsink": "^1.0.0",
     "sweetalert2": "^8.18.2",
     "tslib": "^1.10.0",
+    "twilio-chat": "^3.3.2",
     "uuid": "^3.3.3",
     "zone.js": "~0.9.1"
   },

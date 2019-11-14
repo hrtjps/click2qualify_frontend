@@ -21,7 +21,7 @@
 	& + .msgr {
 
 		width: calc(100% - #{$msgr-list-width-collapsed});
-		height: 100%;
+		// height: 100%;
 
 		&:before {
 			content:'';

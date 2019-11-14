@@ -15,6 +15,7 @@ import { FormsService } from './services/forms.service';
 import { NgxStripeModule } from 'ngx-stripe';
 import { FormValidationService } from './services/form-validation.service';
 import { DownloadService } from './services/download.service';
+import { ChatService } from './services/chat.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DownloadService } from './services/download.service';
     CommonService,
     FormValidationService,
     DownloadService,
+    ChatService,
 
 
     {
